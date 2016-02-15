@@ -1,0 +1,12 @@
+/**
+ * @license
+ * tivy.js - v<%= pkg.version %>
+ * Compiled <%= date %>
+ *
+ * tivy.js is licensed under the Apache-2.0 License.
+ * http://www.apache.org/licenses/
+ *
+ *
+ * <% licenseText.split('\n').forEach(function (line) { %><%= line %>
+ * <% }); %>
+ */

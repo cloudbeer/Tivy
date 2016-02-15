@@ -1,0 +1,65 @@
+{
+  //"extends": "eslint-config-airbnb",
+  "rules": {
+    //"indent": [2, 2],
+    "quotes": [
+      2,
+      "single"
+    ],
+    "linebreak-style": [
+      2,
+      "unix"
+    ],
+    "semi": [
+      2,
+      "always"
+    ],
+    "no-underscore-dangle": 1,
+    "curly": 2,
+    "no-use-before-define": 2,
+    //"spaced-comment": [2, "always"],
+    "space-before-function-paren": [
+      2,
+      {
+        "anonymous": "always",
+        "named": "never"
+      }
+    ],
+    "keyword-spacing": 1,
+    "space-before-blocks": [
+      2,
+      "always"
+    ],
+    "semi-spacing": [
+      2,
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    //"no-var": 2,
+    //"object-shorthand": [2, "always"],
+    "prefer-const": 2,
+    "no-cond-assign": 2,
+    "no-undef": 2,
+    "no-delete-var": 2,
+    "no-unused-vars": 1,
+    //"no-eq-null": 2,
+    "no-alert": 1,
+    //"no-console": 0,
+    "no-lone-blocks": 2,
+    "eqeqeq": 0,
+    "no-label-var": 1,
+    "no-undef-init": 1,
+    "one-var": [1, "never"],
+    "vars-on-top":0
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "PIXI": true,
+    "$": true
+  }
+}
