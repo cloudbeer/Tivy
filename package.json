@@ -1,14 +1,23 @@
 {
-  "name": "tivy",
+  "name": "tivy.js",
   "version": "0.0.1",
   "description": "Tivy.js is a lightware UI framework based on Pixi.js. It is designed for TV.",
   "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Xie Zhengwei <iam@xiezhengwei.com>",
-  "license": "ISC",
-  "devDependencies": {
-    "gulp": "^3.9.1"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudbeer/Tivy.git"
+  },
+  "author": "Xie Zhengwei <xiezhengwei@youku.com>",
+  "license": "Apache License 2.0",
+  "bugs": {
+    "url": "https://github.com/cloudbeer/Tivy/issues"
+  },
+  "homepage": "https://github.com/cloudbeer/Tivy#readme"
 }
