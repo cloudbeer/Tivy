@@ -13,8 +13,9 @@ var fs          = require('fs'),
     watchify    = require('watchify'),
     handleErrors = require('../util/handleErrors'),
     headerText  = fs.readFileSync(path.join(__dirname, '..', 'header.txt'), 'utf8'),
-    licenseText = fs.readFileSync(path.join(__dirname, '..', '..', 'LICENSE'), 'utf8'),
+    licenseText = ''; //fs.readFileSync(path.join(__dirname, '..', '..', 'LICENSE'), 'utf8'),
     date        = new Date();
+
 
 function rebundle(devBundle) {
   if (devBundle) {
@@ -36,7 +37,7 @@ function rebundle(devBundle) {
   var stream = this.bundle()
     .on('error', handleErrors.handler)
     .pipe(handleErrors())
-    .pipe(source('pixi.js'))
+    .pipe(source('tivy.js'))
     .pipe(buffer())
     .pipe(header(
       headerText,
@@ -60,7 +61,7 @@ function rebundle(devBundle) {
 function createBundler(args) {
   args = args || {};
   args.debug = true;
-  args.standalone = 'PIXI';
+  args.standalone = 'Tivy';
 
   var bundle = browserify(paths.jsEntry, args),
       argv = require('minimist')(process.argv.slice(2)),

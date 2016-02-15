@@ -2,7 +2,7 @@
   "name": "tivy.js",
   "version": "0.0.1",
   "description": "Tivy.js is a lightware UI framework based on Pixi.js. It is designed for TV.",
-  "main": "index.js",
+  "main": ".src/index.js",
   "dependencies": {},
   "devDependencies": {
     "browserify": "^13.0.0",
@@ -16,6 +16,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.2",
+    "jaguarjs-jsdoc-patched": "0.0.5",
+    "jsdoc": "^3.4.0",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",
     "vinyl-buffer": "^1.0.0",
@@ -23,6 +25,9 @@
     "watchify": "^3.7.0"
   },
   "scripts": {
+    "start": "gulp && gulp watch",
+    "build": "gulp",
+    "docs": "jsdoc -c ./gulp/util/jsdoc.conf.json -R README.md",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

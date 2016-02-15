@@ -27,3 +27,7 @@ test.js
 publish
 
 *.xcodeproj
+
+docs
+
+bin
