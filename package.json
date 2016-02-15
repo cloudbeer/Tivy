@@ -1,0 +1,14 @@
+{
+  "name": "tivy",
+  "version": "0.0.1",
+  "description": "Tivy.js is a lightware UI framework based on Pixi.js. It is designed for TV.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Xie Zhengwei <iam@xiezhengwei.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
