@@ -15,7 +15,7 @@
  *
  * @class
  * @memberof Tivy
- * @param options {json} config json object.
+ * @param options {json} - config json object.
  * @constructor
  */
 var Stage = function (options) {
@@ -97,6 +97,10 @@ Stage.prototype = {
    */
   addChild: function (uiObject) {
     this._stage.addChild(uiObject);
+  },
+
+  removeChild:function(uiObject){
+    this._stage.removeChild(uiObject);
   }
 
 };
