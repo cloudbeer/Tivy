@@ -60,7 +60,6 @@ function Poster(options) {
   }
 
   this.size          = options.size || {w: 300, h: 400};
-  this.position      = options.position || {x: 0, y: 0};
   this.showText      = options.showText || false;
   this.text          = options.text;
   this.textColor     = options.textColor || 0x7f7f7f;
@@ -133,6 +132,7 @@ Poster.prototype.paint = function () {
   this.imageSprite        = new PIXI.Sprite(this.placeHolderTexture);
   this.imageSprite.width  = this.size.w;
   this.imageSprite.height = this.showText ? this.size.h - this.textHeight : this.size.h;
+  //this.imageSprite.setInteractive(true);
 
   if (this.imageUrl) {
     this.setContent(this.imageUrl);

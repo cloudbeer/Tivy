@@ -1,6 +1,6 @@
 var tivy = module.exports = {
   Stage: require('./Stage'),
-  Button : require('./Button'),
+  Button : require('./basic/Button'),
   Poster:require('./components/Poster'),
 };
 

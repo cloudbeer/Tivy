@@ -18,6 +18,7 @@ function UIObject(options) {
   if (!this.stage) {
     throw new Error('A stage is required.');
   }
+  this.position = options.position || {x: 0, y: 0}
   this.stage.addChild(this);
 }
 
