@@ -1,22 +1,19 @@
 $(function () {
 
-  var stage = new Tivy.Stage({
-    size: {w: 600, h: 600},
-    background: '#ccc',
-    id: 'buttonSample'
-  });
+    var stage = new Tivy.Stage({
+        size: {w: 600, h: 600},
+        background: '#ccc',
+        id: 'buttonSample'
+    });
+    var button = new Tivy.Button({});
+    button.setImgView({default:"./assets/img/test.png",mousedown:"./assets/img/test.png"});
 
+    stage.addChild(button);
 
-
-
-  var texture = PIXI.Texture.fromImage('./assets/img/test.png');
-  var sprite  = new PIXI.Sprite(texture);
-  stage.addChild(sprite);
-
-  texture.baseTexture.on('loaded', function () {
-    stage.repaint();
-  });
-
-  window.stage = stage;
-
+    button.reloadView(function()
+    {
+        console.log(1);
+      setTimeout(  stage.repaint, 1000);
+    });
+    window.stage = stage;
 });
