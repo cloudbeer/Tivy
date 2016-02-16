@@ -38,15 +38,15 @@ function rebundle(devBundle) {
     .on('error', handleErrors.handler)
     .pipe(handleErrors())
     .pipe(source('tivy.js'))
-    .pipe(buffer())
-    .pipe(header(
-      headerText,
-      {
-        licenseText: licenseText,
-        date: new Date().toISOString(),
-        pkg: require('../../package.json')
-      }
-    ));
+    .pipe(buffer());
+    //.pipe(header(
+    //  headerText,
+    //  {
+    //    licenseText: licenseText,
+    //    date: new Date().toISOString(),
+    //    pkg: require('../../package.json')
+    //  }
+    //));
 
   if (devBundle) {
     return stream.pipe(debug).once('end', function () {
