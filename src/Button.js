@@ -1,3 +1,4 @@
+var UIObject = require('./UIObject');
 /***
  *
  * @au huangxing
@@ -8,11 +9,13 @@
  *
  * */
 var Button = function (model) {
-    PIXI.Sprite.call(this);
+    UIObject.call(this, model);
     this.checkModel(model);
     this.model = model;
+    this.btnSprite = null;
+    this.interactive = true;
 };
-Button.prototype = Object.create(PIXI.Sprite.prototype);
+Button.prototype = Object.create(UIObject.prototype);
 Button.prototype.constructor = Button;
 
 /**
@@ -37,7 +40,8 @@ Button.prototype.getSize = function () {
  * @param size:{w:500, h:400}, //Size of the stage, w is width, h is heigt
  */
 Button.prototype.setSize = function (size) {
-    this.model.size = size; return this;// 不做 检查  获取时 直接返回这个 对象
+    this.model.size = size;
+    return this;// 不做 检查  获取时 直接返回这个 对象
 };
 
 /**获取绝对位置*/
@@ -51,7 +55,8 @@ Button.prototype.getPosition = function () {
  * @param position 绝对位置
  */
 Button.prototype.setPosition = function (position) {
-    this.model.positions = position; return this;
+    this.model.positions = position;
+    return this;
 };
 
 /**
@@ -62,7 +67,22 @@ Button.prototype.setPosition = function (position) {
  */
 Button.prototype.setImgView = function (imgView) {
     this.checkImgViewMap(imgView);
-    this.model.imgView = imgView; return this;
+    this.model.imgView = imgView;
+    return this;
+};
+/***
+ * 设置 视图
+ *
+ * */
+Button.prototype.setThisImgView = function ( url ) {
+    var texture = PIXI.Texture.fromImage( url );
+    this.btnSprite = new PIXI.Sprite(texture);
+    this.btnSprite.texture = texture;
+    this.addChild(this.btnSprite);
+    var _stage = this.stage;
+    texture.baseTexture.on('loaded', function () {
+        _stage.repaint();
+    });
 };
 /***
  *
@@ -70,40 +90,35 @@ Button.prototype.setImgView = function (imgView) {
  *
  * */
 Button.prototype.showDefaultView = function () {
-    var texture = PIXI.Texture.fromImage(this.model.imgView.default);
-    this.texture = texture; return this;
+    this.setThisImgView(this.model.imgView.default);
 };
 /***
  * show 鼠标按下时候的 视图
  *
  * */
 Button.prototype.showMouseDownView = function () {
-    var texture = PIXI.Texture.fromImage(this.model.imgView.mousedown);
-    this.texture = texture;
+    this.setThisImgView(this.model.imgView.mousedown);
 };
 /***
  * show 鼠标按下后松开 时的 视图
  *
  * */
 Button.prototype.showMouseUpView = function () {
-    var texture = PIXI.Texture.fromImage(this.model.imgView.mouseup);
-    this.texture = texture;
+    this.setThisImgView(this.model.imgView.mouseup);
 };
 /***
  * show 鼠标 移入时的视图
  *
  * */
 Button.prototype.showMouseOverView = function () {
-    var texture = PIXI.Texture.fromImage(this.model.imgView.mouseover);
-    this.texture = texture;
+    this.setThisImgView(this.model.imgView.mouseover);
 };
 /***
  * show 鼠标 离开时候 的视图
  *
  * */
 Button.prototype.showMouseOutView = function () {
-    var texture = PIXI.Texture.fromImage(this.model.imgView.mouseout);
-    this.texture = texture;
+    this.setThisImgView(this.model.imgView.mouseout);
 };
 /**
  * 检测 视图对象是否合法
@@ -125,33 +140,62 @@ Button.prototype.checkImgViewMap = function (imgView) {
     }
 };
 /***
- *
- * 图片组 加载完毕后 触发回调
- *
- * */
-Button.prototype.reloadView = function ( loadCallback ) {
-    var loader = new PIXI.loaders.Loader();
-    if (this.model.imgView.mouseup) {
-        loader.add("mouseup", this.model.imgView.mouseup);
-    }
-    if (this.model.imgView.mouseover) {
-        loader.add("mouseover", this.model.imgView.mouseover);
-    }
-    if (this.model.imgView.mouseout) {
-        loader.add("mouseout", this.model.imgView.mouseout);
-    }
-    loader.add("default", this.model.imgView.default);
-    loader.add("mousedown", this.model.imgView.mousedown);
-    loader.once('complete', this.setDefaultTexture( loadCallback ));
-    loader.load(); return  this;
-};
-/***
  * 添加到容器
  *
  * */
-Button.prototype.setDefaultTexture = function ( loadCallback ) {
+Button.prototype.setDefaultTexture = function () {
     this.showDefaultView();
-    loadCallback();
+};
+/***
+ *  重写鼠标按下时候的事件
+ *
+ * */
+Button.prototype.mousedown = function () {
+    this.showMouseDownView();
+    this.runEventCallback(this.model.mousedown);
+};
+/***
+ * 重写鼠标按下后松开 事件
+ *
+ * */
+Button.prototype.mouseup = function () {
+    if (this.model.imgView.mouseup) {
+        this.showMouseUpView();
+    }
+    else {
+        this.showDefaultView()
+    } //  如果  没有 指定 就还原到 默认视图
+    this.runEventCallback(this.model.mouseup);
+};
+/***
+ * 重写 鼠标 移入时 事件
+ *
+ * */
+Button.prototype.mouseover = function () {
+    if (this.model.imgView.mouseover) {
+        this.showMouseOverView();
+    }
+    this.runEventCallback(this.model.mouseover);
+};
+/***
+ * show 鼠标 离开时候 的视图
+ *
+ * */
+Button.prototype.mouseout = function () {
+    if (this.model.imgView.mouseout) {
+        this.showMouseOutView();
+    }
+    this.runEventCallback(this.model.mouseout);
+};
+/**
+ *
+ * 有判断写到这里 方便阅读
+ * */
+Button.prototype.runEventCallback = function (eventCallback) {
+    if (eventCallback) {
+        eventCallback();
+    }
+    // 如果 没有传回调函数 则不回调  只执行默认的 函数
 };
 
 /****/
