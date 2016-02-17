@@ -155,9 +155,6 @@ $(function () {
 
     metro.bindData(data);
 
-    //metro.on('click', function (data) {
-    //  console.log(this.currentTile, this.currentIndex);
-    //});
 
     metro.onTileOver = function (target, index) {
       var oriH     = target.height,
