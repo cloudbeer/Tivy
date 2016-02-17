@@ -18,10 +18,37 @@ function UIObject(options) {
   if (!this.stage) {
     throw new Error('A stage is required.');
   }
-  this.position = options.position || {x: 0, y: 0}
-  this.stage.addChild(this);
+  this.owner    = options.owner;
+  this.position = options.position || {x: 0, y: 0};
+  this.size     = options.size;
+  if (this.size && this.size.w > 0 && this.size.h > 0) {
+    this.width  = this.size.w;
+    this.height = this.size.h;
+  }
+  if (this.owner) {
+    this.owner.addChild(this);
+  } else {
+    this.stage.addChild(this);
+  }
 }
 
 UIObject.prototype             = Object.create(PIXI.Container.prototype);
 UIObject.prototype.constructor = UIObject;
 module.exports                 = UIObject;
+
+UIObject.prototype.bringToFront = function () {
+  if (this.parent) {
+    var parent = this.parent;
+    parent.removeChild(this);
+    parent.addChild(this);
+  }
+};
+
+
+UIObject.prototype.sendToBack = function () {
+  if (this.parent) {
+    var parent = this.parent;
+    parent.removeChild(this);
+    parent.addChildAt(this, 0);
+  }
+};

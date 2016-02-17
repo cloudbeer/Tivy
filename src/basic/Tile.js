@@ -48,7 +48,7 @@ var UIObject = require('../UIObject');
  * @constructor
  * @extends Tivy.UIObject
  */
-function Poster(options) {
+function Tile(options) {
   if (!options) {
     options = {};
   }
@@ -56,9 +56,9 @@ function Poster(options) {
   UIObject.call(this, options);
 
   this.placeHolderTexture = options.placeHolderTexture;
-  if (!this.placeHolderTexture) {
-    throw new Error('placeHolderTexture is null');
-  }
+  //if (!this.placeHolderTexture) {
+  //  throw new Error('placeHolderTexture is null');
+  //}
 
   this.showText      = options.showText || false;
   this.text          = options.text;
@@ -72,20 +72,20 @@ function Poster(options) {
   this.imageSprite   = null;
   this.textLabel     = null;
   this.posterSetted  = false;
-
-  this._paint();
+  this.interactive   = true;
+  this._init();
 }
 
-Poster.prototype             = Object.create(UIObject.prototype);
-Poster.prototype.constructor = Poster;
-module.exports               = Poster;
+Tile.prototype             = Object.create(UIObject.prototype);
+Tile.prototype.constructor = Tile;
+module.exports             = Tile;
 
 /**
- * 画上去
+ * 初始化
  *
  * @private
  */
-Poster.prototype._paint = function () {
+Tile.prototype._init = function () {
   if (this.radius) {
     var mask = new PIXI.Graphics();
     mask.lineStyle(0);
@@ -148,7 +148,7 @@ Poster.prototype._paint = function () {
  * @param imgUrl {string} 海报的图片路径
  * @param text {string} 海报的标题
  */
-Poster.prototype.setContent = function (imgUrl, text) {
+Tile.prototype.setContent = function (imgUrl, text) {
   if (imgUrl) {
     imgUrl                   = imgUrl + '?t=' + (new Date()) * 1;
     this.posterTexture       = PIXI.Texture.fromImage(imgUrl);
@@ -177,7 +177,7 @@ Poster.prototype.setContent = function (imgUrl, text) {
  * Destroys the poster
  * @param reserveTexture {boolean} 是否保留贴图, 默认不保存
  */
-Poster.prototype.destroy = function (reserveTexture) {
+Tile.prototype.destroy = function (reserveTexture) {
   this.removeChildren();
   this.stage.removeChild(this);
   UIObject.prototype.destroy.call(this, true);

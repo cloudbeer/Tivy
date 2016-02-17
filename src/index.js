@@ -1,7 +1,10 @@
 var tivy = module.exports = {
+  UIObject: require('./UIObject'),
   Stage: require('./Stage'),
-  Button : require('./basic/Button'),
-  Poster:require('./components/Poster'),
+  Button: require('./basic/Button'),
+  Tile: require('./basic/Tile'),
+  Poster: require('./components/Poster'),
+  Metro: require('./components/Metro'),
 };
 
 global.Tivy = tivy;
