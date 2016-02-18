@@ -274,13 +274,13 @@ Metro.prototype._init = function () {
   var _this = this;
   this.layout.tiles.forEach(function (ele, i) {
     var tile = new Tile({
-      stage: _this.stage,
-      owner: _this,
-      size: {width: ele.width, height: ele.height},
-      position: {x: ele.x, y: ele.y},
+      stage             : _this.stage,
+      owner             : _this,
+      size              : {width: ele.width, height: ele.height},
+      position          : {x: ele.x, y: ele.y},
       placeHolderTexture: _this.layout.placeHolderTexture,
-      radius: ele.radius == null ? _this.layout.radius : ele.radius,
-      data: ele.data
+      radius            : ele.radius == null ? _this.layout.radius : ele.radius,
+      data              : ele.data
     });
     _this.tiles.push(tile);
 

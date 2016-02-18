@@ -80,7 +80,7 @@ Stage.prototype = {
   },
 
   /**
-   *
+   * 重绘
    * @param uiObject {PIXI.DisplayObject} The object to repaint. if it is null, repaint this stage.
    */
   repaint: function (uiObject) {
@@ -92,7 +92,7 @@ Stage.prototype = {
   },
 
   /**
-   *
+   * 增加子节点
    * @param uiObject {PIXI.DisplayObject} The object to add.
    */
   addChild: function (uiObject) {

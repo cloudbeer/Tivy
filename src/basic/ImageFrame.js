@@ -2,7 +2,20 @@ var UIObject = require('../UIObject');
 
 /**
  * 这是一个图片外框, 你可以指定一个带有阴影的正方形图片.
- *
+ * ```
+ var frame = new Tivy.ImageFrame({
+      stage: stage,
+      imageUrl: './assets/img/frame.png',
+      position: {x: 100, y: 100},
+      size: {
+        width: 50, height: 50,
+      },
+      borderLength: 61,
+      radius: 15,
+      imageLength: 130
+    });
+
+ * ```
  * @class
  * @memberof Tivy
  * @constructor
@@ -44,33 +57,33 @@ ImageFrame.prototype._init = function () {
   });
 
   var crtTT = new PIXI.Texture(ttFrame, {
-    x: this.imageLength - this.borderLength,
-    y: 0,
-    width: this.borderLength,
+    x     : this.imageLength - this.borderLength,
+    y     : 0,
+    width : this.borderLength,
     height: this.borderLength,
   });
   var crTT  = new PIXI.Texture(ttFrame, {
-    x: this.imageLength - this.borderLength,
-    y: this.borderLength,
-    width: this.borderLength,
+    x     : this.imageLength - this.borderLength,
+    y     : this.borderLength,
+    width : this.borderLength,
     height: 1,
   });
   var crbTT = new PIXI.Texture(ttFrame, {
-    x: this.imageLength - this.borderLength,
-    y: this.imageLength - this.borderLength,
-    width: this.borderLength,
+    x     : this.imageLength - this.borderLength,
+    y     : this.imageLength - this.borderLength,
+    width : this.borderLength,
     height: this.borderLength,
   });
   var cbTT  = new PIXI.Texture(ttFrame, {
-    x: this.borderLength,
-    y: this.imageLength - this.borderLength,
-    width: 1,
+    x     : this.borderLength,
+    y     : this.imageLength - this.borderLength,
+    width : 1,
     height: this.borderLength,
   });
   var clbTT = new PIXI.Texture(ttFrame, {
-    x: 0,
-    y: this.imageLength - this.borderLength,
-    width: this.borderLength,
+    x     : 0,
+    y     : this.imageLength - this.borderLength,
+    width : this.borderLength,
     height: this.borderLength,
   });
   var clTT  = new PIXI.Texture(ttFrame, {
@@ -97,6 +110,13 @@ ImageFrame.prototype._init = function () {
 };
 
 
+/**
+ * 设置尺寸
+ * @param newSize {json} 尺寸
+ * ```json
+ * {width:100, height:100}
+ * ```
+ */
 ImageFrame.prototype.setSize = function (newSize) {
   var nWidth  = newSize.width,
       nHeight = newSize.height;
@@ -124,15 +144,15 @@ ImageFrame.prototype.setSize = function (newSize) {
   this._clb.position = {
     x: this.radius - this.borderLength, y: nHeight - this.radius,
   };
-  this._ct.position = {
+  this._ct.position  = {
     x: this.radius, y: -this.borderLength + this.radius,
   };
-  this._ct.width    = nWidth - this.radius * 2;
-  this._cr.position = {
+  this._ct.width     = nWidth - this.radius * 2;
+  this._cr.position  = {
     x: nWidth - this.radius, y: this.radius,
   };
-  this._cr.height   = nHeight - this.radius * 2;
-  this._cb.position = {
+  this._cr.height    = nHeight - this.radius * 2;
+  this._cb.position  = {
     x: this.radius, y: nHeight - this.radius,
   };
 
@@ -144,11 +164,27 @@ ImageFrame.prototype.setSize = function (newSize) {
 
 };
 
+/**
+ * 设置位置
+ *
+ * @param newPosition {json} 位置
+ * ```json
+ * { x:10, y:10 }
+ * ```
+ */
 ImageFrame.prototype.setPosition = function (newPosition) {
   this.x = newPosition.x;
   this.y = newPosition.y;
 };
 
+/**
+ * 设置一个框框
+ *
+ * @param newBounds {json} 框框
+ * ```json
+ * { x:0, y:0, width:100, height:100 }
+ * ```
+ */
 ImageFrame.prototype.setBounds = function (newBounds) {
   this.x = newBounds.x;
   this.y = newBounds.y;

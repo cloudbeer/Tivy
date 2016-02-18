@@ -179,7 +179,7 @@ Tile.prototype.setContent = function (imgUrl, text, data) {
 /**
  * 销毁海报
  * Destroys the poster
- * @param reserveTexture {boolean} 是否保留贴图, 默认不保存
+ * @param [reserveTexture=false] {boolean} 是否保留贴图, 默认不保存
  */
 Tile.prototype.destroy = function (reserveTexture) {
   this.removeChildren();
