@@ -3,6 +3,7 @@ var tivy = module.exports = {
   Stage: require('./Stage'),
   Button: require('./basic/Button'),
   Tile: require('./basic/Tile'),
+  ImageFrame: require('./basic/ImageFrame'),
   Poster: require('./components/Poster'),
   Metro: require('./components/Metro'),
 };

@@ -8,7 +8,7 @@ var UIObject = require('../UIObject');
  var xTexture = PIXI.Texture.fromImage('./assets/img/place-holder.png');
  xTexture.baseTexture.on('loaded', function () {
     var poster = new Tivy.Poster({
-      size: {w: 192, h: 338},
+      size: {width: 192, height: 338},
       stage: stage,
       showText: true,
       text: "中文",
@@ -29,11 +29,13 @@ var UIObject = require('../UIObject');
  * ```
  * @class
  * @memberof Tivy
+ * @constructor
+ * @extends Tivy.UIObject
  * @param options {json} 配置节点
  * ```json
  * {
  *  stage: stage01, //Instance of Stage
- *  size: {w: 300, h: 400},
+ *  size: {width: 300, height: 400},
  *  position: {x: 0, y: 0},
  *  textColor: 0x7f7f7f,
  *  textBgColor: 0xffffff,
@@ -45,14 +47,12 @@ var UIObject = require('../UIObject');
  *  showText: false
  * }
  * ```
- * @constructor
- * @extends Tivy.UIObject
  */
 function Poster(options) {
   if (!options) {
     options = {};
   }
-  this.size = options.size = options.size || {w: 300, h: 400};
+  this.size = options.size = options.size || {width: 300, height: 400};
   UIObject.call(this, options);
 
   this.placeHolderTexture = options.placeHolderTexture;
@@ -90,7 +90,7 @@ Poster.prototype._paint = function () {
     var mask = new PIXI.Graphics();
     mask.lineStyle(0);
     mask.beginFill(0xffffff);
-    mask.drawRoundedRect(0, 0, this.size.w, this.size.h, this.radius);
+    mask.drawRoundedRect(0, 0, this.size.width, this.size.height, this.radius);
     mask.endFill();
     this.addChild(mask);
     this.mask = mask;
@@ -101,35 +101,35 @@ Poster.prototype._paint = function () {
   g.lineStyle(0);
   g.beginFill(this.textBgColor, .5);
   if (this.showText && this.text) {
-    g.drawRect(0, 0, this.size.w, this.size.h - this.textHeight);
+    g.drawRect(0, 0, this.size.width, this.size.height - this.textHeight);
 
     //文字背景
     g.beginFill(this.textBgColor, .7);
-    g.drawRect(0, this.size.h - 50, this.size.w, this.textHeight);
+    g.drawRect(0, this.size.height - 50, this.size.width, this.textHeight);
 
     this.textLabel = new PIXI.Text(this.text, {
       font: this.font,
       fill: this.textColor
     });
 
-    this.textLabel.y = this.size.h - this.textHeight + (this.textHeight - this.textLabel.height) / 2;
-    if (this.textLabel.width > this.size.w) {
+    this.textLabel.y = this.size.height - this.textHeight + (this.textHeight - this.textLabel.height) / 2;
+    if (this.textLabel.width > this.size.width) {
       this.textLabel.x = 10;
     } else {
-      this.textLabel.x = (this.size.w - this.textLabel.width) / 2;
+      this.textLabel.x = (this.size.width - this.textLabel.width) / 2;
     }
 
     g.addChild(this.textLabel);
   }
   else {
-    g.drawRect(0, 0, this.size.w, this.size.h);
+    g.drawRect(0, 0, this.size.width, this.size.height);
   }
   g.endFill();
   this.addChild(g);
 
   this.imageSprite        = new PIXI.Sprite(this.placeHolderTexture);
-  this.imageSprite.width  = this.size.w;
-  this.imageSprite.height = this.showText ? this.size.h - this.textHeight : this.size.h;
+  this.imageSprite.width  = this.size.width;
+  this.imageSprite.height = this.showText ? this.size.height - this.textHeight : this.size.height;
   //this.imageSprite.setInteractive(true);
 
   if (this.imageUrl) {
@@ -161,10 +161,10 @@ Poster.prototype.setContent = function (imgUrl, text) {
 
   if (this.showText && text) {
     this.textLabel.text = text;
-    if (this.textLabel.width > this.size.w) {
+    if (this.textLabel.width > this.size.width) {
       this.textLabel.x = 10;
     } else {
-      this.textLabel.x = (this.size.w - this.textLabel.width) / 2;
+      this.textLabel.x = (this.size.width - this.textLabel.width) / 2;
     }
   }
   this.text         = text;

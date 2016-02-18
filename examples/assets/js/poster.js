@@ -3,14 +3,14 @@ $(function () {
   var stage = new Tivy.Stage({
     background: '#000',
     id: 'stage01',
-    size: {w: $(document.body).width(), h: $(document.body).height()}
+    size: {width: $(document.body).width(), height: $(document.body).height()}
   });
 
 
   var xTexture = PIXI.Texture.fromImage('./assets/img/place-holder.png');
   xTexture.baseTexture.on('loaded', function () {
     var poster = new Tivy.Poster({
-      size: {w: 200, h: 200},
+      size: {width: 200, height: 200},
       stage: stage,
       showText: true,
       text: "中文",
@@ -23,7 +23,7 @@ $(function () {
     });
 
     var poster2 = new Tivy.Poster({
-      size: {w: 200, h: 200},
+      size: {width: 200, height: 200},
       stage: stage,
       showText: true,
       text: "中文",

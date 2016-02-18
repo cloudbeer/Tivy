@@ -1,7 +1,7 @@
 $(function () {
 
   var stage = new Tivy.Stage({
-    size: {w: 600, h: 600},
+    size: {width: 600, height: 600},
     background: '#373435',
     id: 'buttonSample',
   });
@@ -11,7 +11,7 @@ $(function () {
     textureDefault: PIXI.Texture.fromImage('./assets/img/d.png'),
     textureDown: PIXI.Texture.fromImage('./assets/img/d1.png'),
     position: {x: 100, y: 100},
-    size: {w: 200, h: 50}
+    size: {width: 200, height: 50}
   });
 
   button.on('click', function () {

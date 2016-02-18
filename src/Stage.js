@@ -6,7 +6,7 @@
  * ```js
  * var stage = new Tivy.Stage({
    *  id: 'stage01', //The canvas id
-   *  size:{w:500, h:400}, //Size of the stage, w is width, h is heigt
+   *  size:{width:500, height:400}, //Size of the stage, w is width, h is heigt
    *  position:{x:0, y:0}, //Position of the stage
    *  background: '#ccc', //Backgound of the canvas, it is a css style.
    *  zIndex: 10 //z-index of the canvas, it is a css style.
@@ -24,7 +24,7 @@ var Stage = function (options) {
   }
   this.id         = options.id || 'stage_' + new Date() * 1;
   this.position   = options.position || {x: 0, y: 0};
-  this.size       = options.size || {w: 1920, h: 1080};
+  this.size       = options.size || {width: 1920, height: 1080};
   this.background = options.background;
   this.zIndex     = options.zIndex || 0;
 
@@ -46,10 +46,10 @@ var Stage = function (options) {
   var _stage = new PIXI.Container();
   //_stage.screenX = this.position.x;
   //_stage.screenY = this.position.y;
-  _stage.width  = this.size.w;
-  _stage.height = this.size.h;
+  _stage.width  = this.size.width;
+  _stage.height = this.size.height;
 
-  this.render = new PIXI.WebGLRenderer(this.size.w, this.size.h, {
+  this.render = new PIXI.WebGLRenderer(this.size.width, this.size.height, {
     transparent: true,
     view: canvas,
     //antialias: true,
@@ -99,7 +99,7 @@ Stage.prototype = {
     this._stage.addChild(uiObject);
   },
 
-  removeChild:function(uiObject){
+  removeChild: function (uiObject) {
     this._stage.removeChild(uiObject);
   }
 

@@ -12,71 +12,71 @@ var Tile     = require('../basic/Tile');
     radius: 20,
     tiles: [
       {
-        x: 0, y: 0, w: 200, h: 200,
+        x: 0, y: 0, width: 200, height: 200,
         showText: false,
         radius: 0
       },
       {
-        x: 0, y: 210, w: 200, h: 200,
+        x: 0, y: 210, width: 200, height: 200,
         showText: false,
         radius: 0
       },
       {
-        x: 0, y: 420, w: 200, h: 200,
+        x: 0, y: 420, width: 200, height: 200,
         showText: false,
         radius: 0
       },
       {
-        x: 210, y: 0, w: 400, h: 620,
+        x: 210, y: 0, width: 400, height: 620,
         showText: false
       },
       {
-        x: 620, y: 0, w: 500, h: 305,
+        x: 620, y: 0, width: 500, height: 305,
         showText: false,
         radius: 0
       },
       {
-        x: 620, y: 315, w: 500, h: 305,
+        x: 620, y: 315, width: 500, height: 305,
         showText: false,
         radius: 0
       },
       {
-        x: 1130, y: 0, w: 410, h: 410,
+        x: 1130, y: 0, width: 410, height: 410,
         showText: false,
         radius: 10
       },
       {
-        x: 1130, y: 420, w: 200, h: 200,
+        x: 1130, y: 420, width: 200, height: 200,
         showText: false,
         radius: 10
       },
       {
-        x: 1340, y: 420, w: 200, h: 200,
+        x: 1340, y: 420, width: 200, height: 200,
         showText: false,
         radius: 10
       },
       {
-        x: 1550, y: 0, w: 500, h: 305,
+        x: 1550, y: 0, width: 500, height: 305,
         showText: false,
         radius: 10
       },
       {
-        x: 1550, y: 315, w: 500, h: 305,
+        x: 1550, y: 315, width: 500, height: 305,
         showText: false,
         radius: 10
       },
       {
-        x: 2060, y: 0, w: 410, h: 410,
+        x: 2060, y: 0, width: 410, height: 410,
         showText: false,
         radius: 10
       },
       {
-        x: 2060, y: 420, w: 200, h: 200,
+        x: 2060, y: 420, width: 200, height: 200,
         showText: false,
         radius: 10
       },
       {
-        x: 2270, y: 420, w: 200, h: 200,
+        x: 2270, y: 420, width: 200, height: 200,
         showText: false,
         radius: 10
       }
@@ -146,8 +146,8 @@ var Tile     = require('../basic/Tile');
  var stage = new Tivy.Stage({
     background: '#000',
     id: 'stage01',
-    //size: {w: $(document.body).width(), h: $(document.body).height()}
-    size: {w: 1920, h: 1080}
+    //size: {width: $(document.body).width(), height: $(document.body).height()}
+    size: {width: 1920, height: 1080}
   });
 
  xTexture.baseTexture.on('loaded', function () {
@@ -211,12 +211,51 @@ function Metro(options) {
   this._currentTile  = null;
   this._currentIndex = 0;
 
-  this.onTileOver    = null;
-  this.onTileOut     = null;
-  this.onTileClick   = null;
-  this.onTileExecute = null;
 
   this._init();
+
+
+  /**
+   * 当某个 tile 被执行的时候发生. 例如, 鼠标在tile上点击, touch点击, enter 键按下去
+   *```javascript
+   *
+   metro.on('execute', function (target, index) {
+      console.log('execute', target.text, index);
+    });
+   * ```
+   *
+   * @event execute
+   * @memberof Tivy.Metro#
+   * @protected
+   */
+
+  /**
+   * 当某个 tile 被聚焦的时候发生. 例如, 鼠标划过 tile, touch 按住, 键盘聚焦等
+   *```javascript
+   *
+   metro.on('focus', function (target, index) {
+      console.log('focus', target.text, index);
+    });
+   * ```
+   *
+   * @event focus
+   * @memberof Tivy.Metro#
+   * @protected
+   */
+
+  /**
+   * 当某个 tile 失去焦点的时候发生. 例如, 鼠标划过 tile, touch 松开, 键盘移除聚焦等
+   *```javascript
+   *
+   metro.on('leave', function (target, index) {
+      console.log('leave', target.text, index);
+    });
+   * ```
+   *
+   * @event leave
+   * @memberof Tivy.Metro#
+   * @protected
+   */
 }
 
 
@@ -237,10 +276,11 @@ Metro.prototype._init = function () {
     var tile = new Tile({
       stage: _this.stage,
       owner: _this,
-      size: {w: ele.w, h: ele.h},
+      size: {width: ele.width, height: ele.height},
       position: {x: ele.x, y: ele.y},
       placeHolderTexture: _this.layout.placeHolderTexture,
-      radius: ele.radius == null ? _this.layout.radius : ele.radius
+      radius: ele.radius == null ? _this.layout.radius : ele.radius,
+      data: ele.data
     });
     _this.tiles.push(tile);
 
@@ -248,74 +288,54 @@ Metro.prototype._init = function () {
     tile.on('mouseover', function () {
       _this._currentIndex = i;
       _this._currentTile  = this;
-      if (_this.onTileOver) {
-        _this.onTileOver(this, i);
-      }
+      _this.emit('focus', this, i);
     });
     tile.on('mouseout', function () {
-      if (_this.onTileOut) {
-        _this.onTileOut(this, i);
-      }
+      _this.emit('leave', this, i);
     });
     tile.on('keydown', function () {
       console.log('keydown');
     });
 
     tile.on('touchstart', function () {
-      console.log('touch start');
       _this._currentIndex = i;
       _this._currentTile  = this;
-      if (_this.onTileOver) {
-        _this.onTileOver(this, i);
-      }
+      _this.emit('focus', this, i);
     });
     tile.on('touchend', function (data) {
-      //console.log(data.target.text);
-      //console.log('leave', i);
-      if (_this._currentTile == data.target && _this.onTileExecute) {
-        _this.onTileExecute(this, i);
+      if (_this._currentTile == data.target) {
+        _this.emit('execute', this, i);
       }
-      if (_this.onTileOut) {
-        _this.onTileOut(_this._currentTile, _this._currentIndex);
-      }
+      _this.emit('leave', _this._currentTile, _this._currentIndex);
+    });
+    tile.on('click', function (data) {
+      _this.emit('execute', this, i);
     });
 
-    tile.on('touchcancel', function (data) {
-      console.log('touch touchcancel', data);
-    });
-    //tile.on('touchmove', function (data) {
-    //  if (_this._currentTile != data.target && _this.onTileOut) {
-    //    _this.onTileOut(_this._currentTile, _this._currentIndex);
-    //  }
-    //});
-
-    //tile.on('touchend', function () {
-    //  console.log(i);
-    //  if (_this.onTileOut) {
-    //    _this.onTileOut(_this._currentTile, _this._currentIndex);
-    //  }
-    //  _this._currentIndex = -1;
-    //  _this._currentTile  = null;
-    //});
-
-    //tile.on('click', function () {
-    //  if (_this.onTileClick) {
-    //    _this.onTileClick(this, i);
-    //  }
-    //});
-    //tile.on('touchcancel', function () {
-    //  if (_this.onTileOut) {
-    //    _this.onTileOut(this, i);
-    //  }
-    //});
   });
 
 };
 
-
-Metro.prototype.bindData = function (_data) {
+/**
+ * 绑定数据
+ *
+ * @param newData {json} 绑定的数据, 格式如下:
+ * ```json
+ *  [{
+   imageUrl: './assets/img/200X200-1.jpg',
+   text: '小正0',
+   data: 'anything'
+ },
+ {
+   imageUrl: './assets/img/200X200.jpg',
+   text: '小正1',
+   data: 'anything'
+ }]
+ * ```
+ */
+Metro.prototype.bindData = function (newData) {
   var _this = this;
-  _data.forEach(function (ele, i) {
-    _this.tiles[i].setContent(ele.imageUrl, ele.text);
+  newData.forEach(function (ele, i) {
+    _this.tiles[i].setContent(ele.imageUrl, ele.text, ele.data);
   });
 };

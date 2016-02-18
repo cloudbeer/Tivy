@@ -11,7 +11,7 @@ var UIObject = require('../UIObject');
  * ```json
  * {
  *  stage: stage01, //Instance of Stage
- *  size: {w: 300, h: 400},
+ *  size: {width: 300, height: 400},
  *  position: {x: 0, y: 0},
  *  textureDefault: textureDefault, //required.
  *  textureDown: textureDown,

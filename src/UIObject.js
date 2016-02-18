@@ -21,9 +21,9 @@ function UIObject(options) {
   this.owner    = options.owner;
   this.position = options.position || {x: 0, y: 0};
   this.size     = options.size;
-  if (this.size && this.size.w > 0 && this.size.h > 0) {
-    this.width  = this.size.w;
-    this.height = this.size.h;
+  if (this.size && this.size.width > 0 && this.size.height > 0) {
+    this.width  = this.size.width;
+    this.height = this.size.height;
   }
   if (this.owner) {
     this.owner.addChild(this);
@@ -36,6 +36,9 @@ UIObject.prototype             = Object.create(PIXI.Container.prototype);
 UIObject.prototype.constructor = UIObject;
 module.exports                 = UIObject;
 
+/**
+ * 将这个置于顶部
+ */
 UIObject.prototype.bringToFront = function () {
   if (this.parent) {
     var parent = this.parent;
@@ -44,7 +47,9 @@ UIObject.prototype.bringToFront = function () {
   }
 };
 
-
+/**
+ * 将这个置于底部
+ */
 UIObject.prototype.sendToBack = function () {
   if (this.parent) {
     var parent = this.parent;
