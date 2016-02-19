@@ -4,7 +4,7 @@ var Tile     = require('../basic/Tile');
 /**
  * Metro 是一组自定义位置 tile 的组合
  *
- * ```javascript
+ * @example
  var xTexture = PIXI.Texture.fromImage('./assets/img/place-holder.png');
 
  var layout = {
@@ -187,7 +187,7 @@ var Tile     = require('../basic/Tile');
   });
 
  *
- * ```
+ *
  *
  * @class
  * @param options {json} Metro config

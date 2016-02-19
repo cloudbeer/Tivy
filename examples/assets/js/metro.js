@@ -242,6 +242,15 @@ $(function () {
       console.log('execute', target.text, index);
     });
 
+
+    metro.activate();
+
+    //metro.accessible = true;
+    metro.on('keypress', function (a, b) {
+      console.log('keypress', a, b);
+    });
+
+    window.metro = metro;
   });
 
   window.stage = stage;
