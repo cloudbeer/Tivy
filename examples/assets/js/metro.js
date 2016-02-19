@@ -254,6 +254,24 @@ $(function () {
       target.x     = target.x + (oriW - target.width) / 2;
       target.y     = target.y + (oriH - target.height) / 2;
       target.bringToFront();
+
+      stage.repaint();
+
+      var tarGlobalPos = target.getGlobalPosition();
+      var rightDelta   = tarGlobalPos.x + target.width - stage.width;
+      if (rightDelta > 0) {
+        this.container.x -= rightDelta + 50;
+      }
+      var leftDelta = tarGlobalPos.x;
+      if (leftDelta < 50) {
+        this.container.x += target.width + 10;
+        if (this.container.x > 0) {
+          this.container.x = 0;
+        }
+      }
+      stage.repaint();
+      //console.log(tarGlobalPos.x, target.width, stage.width);
+
       frame.setPosition(target.getGlobalPosition());
       frame.setSize({width: target.width, height: target.height});
 

@@ -33,6 +33,9 @@ var Stage = function (options) {
   }
 
 
+  this.width  = this.size.width;
+  this.height = this.size.height;
+
   var canvas              = document.createElement('canvas');
   canvas.id               = this.id;
   canvas.style.position   = 'absolute';
@@ -46,14 +49,14 @@ var Stage = function (options) {
   var _stage = new PIXI.Container();
   //_stage.screenX = this.position.x;
   //_stage.screenY = this.position.y;
-  _stage.width  = this.size.width;
-  _stage.height = this.size.height;
+  //_stage.width  = this.size.width;
+  //_stage.height = this.size.height;
 
   this.render = new PIXI.WebGLRenderer(this.size.width, this.size.height, {
     transparent: true,
-    view: canvas,
+    view       : canvas,
     //antialias: true,
-    forceFXAA: true
+    forceFXAA  : true
   });
 
   _stage.id      = this.id;

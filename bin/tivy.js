@@ -34,6 +34,9 @@ var Stage = function (options) {
   }
 
 
+  this.width  = this.size.width;
+  this.height = this.size.height;
+
   var canvas              = document.createElement('canvas');
   canvas.id               = this.id;
   canvas.style.position   = 'absolute';
@@ -47,14 +50,14 @@ var Stage = function (options) {
   var _stage = new PIXI.Container();
   //_stage.screenX = this.position.x;
   //_stage.screenY = this.position.y;
-  _stage.width  = this.size.width;
-  _stage.height = this.size.height;
+  //_stage.width  = this.size.width;
+  //_stage.height = this.size.height;
 
   this.render = new PIXI.WebGLRenderer(this.size.width, this.size.height, {
     transparent: true,
-    view: canvas,
+    view       : canvas,
     //antialias: true,
-    forceFXAA: true
+    forceFXAA  : true
   });
 
   _stage.id      = this.id;
@@ -187,6 +190,13 @@ function UIObjectGroup(options) {
   this.size = options.size = options.size || {width: 200, height: 200};
   UIObject.call(this, options);
 
+
+  /**
+   * 这是控件的装载容器, 新建子控件的时候,需要指定 owner 为 这个 container. 创建这个控件的目的也是为了滑动整个内容
+   * @readonly
+   */
+  this.container = new PIXI.Container();
+  this.addChild(this.container);
 
   /**
    * 具有事件响应的控件们
@@ -1041,7 +1051,7 @@ Metro.prototype._init = function () {
   this.layout.tiles.forEach(function (ele, i) {
     var tile = new Tile({
       stage             : _this.stage,
-      owner             : _this,
+      owner             : _this.container,
       size              : {width: ele.width, height: ele.height},
       position          : {x: ele.x, y: ele.y},
       placeHolderTexture: _this.layout.placeHolderTexture,

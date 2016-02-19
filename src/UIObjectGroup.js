@@ -18,6 +18,13 @@ function UIObjectGroup(options) {
 
 
   /**
+   * 这是控件的装载容器, 新建子控件的时候,需要指定 owner 为 这个 container. 创建这个控件的目的也是为了滑动整个内容
+   * @readonly
+   */
+  this.container = new PIXI.Container();
+  this.addChild(this.container);
+
+  /**
    * 具有事件响应的控件们
    * @member {Array}
    * @readonly

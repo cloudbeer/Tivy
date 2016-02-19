@@ -226,7 +226,7 @@ Metro.prototype._init = function () {
   this.layout.tiles.forEach(function (ele, i) {
     var tile = new Tile({
       stage             : _this.stage,
-      owner             : _this,
+      owner             : _this.container,
       size              : {width: ele.width, height: ele.height},
       position          : {x: ele.x, y: ele.y},
       placeHolderTexture: _this.layout.placeHolderTexture,
