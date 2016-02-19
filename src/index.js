@@ -1,5 +1,6 @@
 var tivy = module.exports = {
   UIObject       : require('./UIObject'),
+  UIObjectGroup  : require('./UIObjectGroup'),
   Stage          : require('./Stage'),
   Button         : require('./basic/Button'),
   Tile           : require('./basic/Tile'),
@@ -9,6 +10,7 @@ var tivy = module.exports = {
   KeyboardManager: require('./events/KeyboardManager'),
 };
 
+//mixin tow class
 Object.assign(
   tivy.UIObject.prototype,
   tivy.KeyboardManager.prototype

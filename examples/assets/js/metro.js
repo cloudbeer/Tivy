@@ -249,8 +249,14 @@ $(function () {
     metro.on('keypress', function (a, b) {
       console.log('keypress', a, b);
     });
+    metro.on('change', function (a, b, c,d) {
+      console.log('change', a, b, c, d);
+    });
+
 
     window.metro = metro;
+
+
   });
 
   window.stage = stage;

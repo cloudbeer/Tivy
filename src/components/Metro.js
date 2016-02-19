@@ -1,5 +1,5 @@
-var UIObject = require('../UIObject');
-var Tile     = require('../basic/Tile');
+var UIObjectGroup = require('../UIObjectGroup');
+var Tile          = require('../basic/Tile');
 
 /**
  * Metro 是一组自定义位置 tile 的组合
@@ -193,73 +193,24 @@ var Tile     = require('../basic/Tile');
  * @param options {json} Metro config
  * @constructor
  * @memberof Tivy
- * @extends {Tivy.UIObject}
+ * @extends {Tivy.UIObjectGroup}
  */
 function Metro(options) {
   if (!options) {
     options = {};
   }
-  UIObject.call(this, options);
+  UIObjectGroup.call(this, options);
 
   this.layout = options.layout;
   if (!this.layout) {
     throw new Error('layout is null');
   }
-  this.tiles = [];
-
-  //this.interactive   = true;
-  this._currentTile  = null;
-  this._currentIndex = 0;
-
-
   this._init();
 
-
-  /**
-   * 当某个 tile 被执行的时候发生. 例如, 鼠标在tile上点击, touch点击, enter 键按下去
-   *```javascript
-   *
-   metro.on('execute', function (target, index) {
-      console.log('execute', target.text, index);
-    });
-   * ```
-   *
-   * @event execute
-   * @memberof Tivy.Metro#
-   * @protected
-   */
-
-  /**
-   * 当某个 tile 被聚焦的时候发生. 例如, 鼠标划过 tile, touch 按住, 键盘聚焦等
-   *```javascript
-   *
-   metro.on('focus', function (target, index) {
-      console.log('focus', target.text, index);
-    });
-   * ```
-   *
-   * @event focus
-   * @memberof Tivy.Metro#
-   * @protected
-   */
-
-  /**
-   * 当某个 tile 失去焦点的时候发生. 例如, 鼠标划过 tile, touch 松开, 键盘移除聚焦等
-   *```javascript
-   *
-   metro.on('leave', function (target, index) {
-      console.log('leave', target.text, index);
-    });
-   * ```
-   *
-   * @event leave
-   * @memberof Tivy.Metro#
-   * @protected
-   */
 }
 
 
-Metro.prototype             = Object.create(UIObject.prototype);
+Metro.prototype             = Object.create(UIObjectGroup.prototype);
 Metro.prototype.constructor = Metro;
 module.exports              = Metro;
 
@@ -282,36 +233,7 @@ Metro.prototype._init = function () {
       radius            : ele.radius == null ? _this.layout.radius : ele.radius,
       data              : ele.data
     });
-    _this.tiles.push(tile);
-
-
-    tile.on('mouseover', function () {
-      _this._currentIndex = i;
-      _this._currentTile  = this;
-      _this.emit('focus', this, i);
-    });
-    tile.on('mouseout', function () {
-      _this.emit('leave', this, i);
-    });
-    tile.on('keydown', function () {
-      console.log('keydown');
-    });
-
-    tile.on('touchstart', function () {
-      _this._currentIndex = i;
-      _this._currentTile  = this;
-      _this.emit('focus', this, i);
-    });
-    tile.on('touchend', function (data) {
-      if (_this._currentTile == data.target) {
-        _this.emit('execute', this, i);
-      }
-      _this.emit('leave', _this._currentTile, _this._currentIndex);
-    });
-    tile.on('click', function (data) {
-      _this.emit('execute', this, i);
-    });
-
+    _this.attachEvent(tile);
   });
 
 };
@@ -320,7 +242,7 @@ Metro.prototype._init = function () {
  * 绑定数据
  *
  * @param newData {json} 绑定的数据, 格式如下:
- * ```json
+ * @example
  *  [{
    imageUrl: './assets/img/200X200-1.jpg',
    text: '小正0',
@@ -331,11 +253,11 @@ Metro.prototype._init = function () {
    text: '小正1',
    data: 'anything'
  }]
- * ```
+ *
  */
 Metro.prototype.bindData = function (newData) {
   var _this = this;
   newData.forEach(function (ele, i) {
-    _this.tiles[i].setContent(ele.imageUrl, ele.text, ele.data);
+    _this.controls[i].setContent(ele.imageUrl, ele.text, ele.data);
   });
 };

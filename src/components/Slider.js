@@ -1,6 +1,6 @@
 var UIObject = require('../UIObject');
 
-function Slider() {
+function Slider(options) {
   if (!options) {
     options = {};
   }

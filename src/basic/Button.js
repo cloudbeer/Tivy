@@ -2,13 +2,10 @@ var UIObject = require('../UIObject');
 
 /**
  * 这是一个按钮, 默认开启了事件支持.
- * 支持如下事件:
- * mousedown mouseup mouseover mouseupoutside mouseout click
- * touchstart touchend, touchmove touchendoutside
  *
  * @class
  * @param options  {json} 配置节点
- * ```json
+ * @example
  * {
  *  stage: stage01, //Instance of Stage
  *  size: {width: 300, height: 400},
@@ -16,7 +13,7 @@ var UIObject = require('../UIObject');
  *  textureDefault: textureDefault, //required.
  *  textureDown: textureDown,
  * }
- * ```
+ *
  * @constructor
  * @memberof Tivy
  * @extends Tivy.UIObject
