@@ -214,7 +214,40 @@ $(function () {
     metro.bindData(data);
 
 
-    metro.on('focus', function (target, index) {
+    //metro.on('focus', function (target, index) {
+    //  var oriH     = target.height,
+    //      oriW     = target.width;
+    //  target.scale = {x: 1.2, y: 1.2};
+    //  target.x     = target.x + (oriW - target.width) / 2;
+    //  target.y     = target.y + (oriH - target.height) / 2;
+    //  target.bringToFront();
+    //  frame.setPosition(target.getGlobalPosition());
+    //  frame.setSize({width: target.width, height: target.height});
+    //  stage.repaint();
+    //});
+    //
+    //metro.on('leave', function (target, index) {
+    //  var oriH     = target.height,
+    //      oriW     = target.width;
+    //  target.scale = {x: 1, y: 1};
+    //  target.x     = target.x + (oriW - target.width) / 2;
+    //  target.y     = target.y + (oriH - target.height) / 2;
+    //  frame.setPosition(target.getGlobalPosition());
+    //  frame.setSize({width: target.width, height: target.height});
+    //  target.sendToBack();
+    //  stage.repaint();
+    //});
+
+    metro.on('execute', function (target, index) {
+      console.log('execute', target.text, index);
+    });
+
+
+    //metro.accessible = true;
+    metro.on('keyup', function (a) {
+      console.log('keyup', a);
+    });
+    metro.on('change', function (target, i1, target2, i2) {
       var oriH     = target.height,
           oriW     = target.width;
       target.scale = {x: 1.2, y: 1.2};
@@ -223,36 +256,23 @@ $(function () {
       target.bringToFront();
       frame.setPosition(target.getGlobalPosition());
       frame.setSize({width: target.width, height: target.height});
-      stage.repaint();
-    });
 
-    metro.on('leave', function (target, index) {
-      var oriH     = target.height,
-          oriW     = target.width;
-      target.scale = {x: 1, y: 1};
-      target.x     = target.x + (oriW - target.width) / 2;
-      target.y     = target.y + (oriH - target.height) / 2;
-      frame.setPosition(target.getGlobalPosition());
-      frame.setSize({width: target.width, height: target.height});
-      target.sendToBack();
-      stage.repaint();
-    });
 
-    metro.on('execute', function (target, index) {
-      console.log('execute', target.text, index);
+      if (target2) {
+        oriH          = target2.height;
+        oriW          = target2.width;
+        target2.scale = {x: 1, y: 1};
+        target2.x     = target2.x + (oriW - target2.width) / 2;
+        target2.y     = target2.y + (oriH - target2.height) / 2;
+        target2.sendToBack();
+      }
+
+      stage.repaint();
+
     });
 
 
     metro.activate();
-
-    //metro.accessible = true;
-    metro.on('keypress', function (a, b) {
-      console.log('keypress', a, b);
-    });
-    metro.on('change', function (a, b, c,d) {
-      console.log('change', a, b, c, d);
-    });
-
 
     window.metro = metro;
 

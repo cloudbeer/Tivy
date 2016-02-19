@@ -99,6 +99,23 @@ module.exports                      = UIObjectGroup;
 //  var _this = this;
 //};
 
+/**
+ * 给控件附加事件
+ * @param uiObject {Object} 子元素控件, 在初始化元素之后附加事件
+ * @example
+ *
+ var tile = new Tile({
+      stage             : _this.stage,
+      owner             : someGoupContainer,
+      size              : {width: ele.width, height: ele.height},
+      position          : {x: ele.x, y: ele.y},
+      placeHolderTexture: _this.layout.placeHolderTexture,
+      radius            : 10,
+      data              : somedata
+    });
+ someGoupContainer.attachEvent(tile);
+ *
+ */
 UIObjectGroup.prototype.attachEvent = function (uiObject) {
 
   this.controls.push(uiObject);
@@ -123,9 +140,14 @@ UIObjectGroup.prototype.attachEvent = function (uiObject) {
   });
 
   uiObject.on('touchstart', function () {
+    var oldIndex         = _this.currentIndex;
+    var oldCtr           = _this.currentControl;
     _this.currentIndex   = i;
     _this.currentControl = this;
     _this.emit('focus', this, i);
+    if (oldIndex !== i) {
+      _this.emit('change', this, i, oldCtr, oldIndex);
+    }
   });
   uiObject.on('touchend', function (data) {
     if (_this.currentControl == data.target) {
@@ -136,5 +158,22 @@ UIObjectGroup.prototype.attachEvent = function (uiObject) {
   uiObject.on('click', function (data) {
     _this.emit('execute', this, i);
   });
+
+};
+
+/**
+ * 当控件组重新被聚焦的时候, 触发 change 事件
+ */
+UIObjectGroup.prototype.activate = function () {
+  if (this.isActive) {
+    return;
+  }
+  UIObject.prototype.activate.call(this);
+
+  if (this.currentIndex < 0) {
+    this.currentIndex   = 0;
+    this.currentControl = this.controls[0];
+  }
+  this.emit('change', this.currentControl, this.currentIndex, null, -1);
 
 };
