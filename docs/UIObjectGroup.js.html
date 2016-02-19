@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Source: UIObjectGroup.js</title>
+    
+    
+    
+    
+    
+    <meta property="og:title" content=""/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    
+    <meta property="og:url" content=""/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+    
+    
+    <script>
+    var config = {"monospaceLinks":false,"cleverLinks":false,"default":{"outputSourceFiles":true},"applicationName":"Tivy","footer":"Made with ♥ by Cloudbeer","copyright":"Tivy Copyright © 2016 Cloudbeer.","disqus":"","googleAnalytics":"","openGraph":{"title":"","type":"website","image":"","site_name":"","url":""},"meta":{"title":"","description":"","keyword":""},"linenums":true};
+    </script>
+    
+
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    <h3 class="applicationName"><a href="index.html">Tivy</a></h3>
+
+    <div class="search">
+        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
+    </div>
+    <ul class="list">
+    
+        <li class="item" data-name="Tivy.Button">
+            <span class="title">
+                <a href="Tivy.Button.html">Tivy.Button</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.Button#bringToFront"><a href="Tivy.Button.html#bringToFront">bringToFront</a></li>
+            
+                <li data-name="Tivy.Button#sendToBack"><a href="Tivy.Button.html#sendToBack">sendToBack</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.ImageFrame">
+            <span class="title">
+                <a href="Tivy.ImageFrame.html">Tivy.ImageFrame</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.ImageFrame#bringToFront"><a href="Tivy.ImageFrame.html#bringToFront">bringToFront</a></li>
+            
+                <li data-name="Tivy.ImageFrame#sendToBack"><a href="Tivy.ImageFrame.html#sendToBack">sendToBack</a></li>
+            
+                <li data-name="Tivy.ImageFrame#setBounds"><a href="Tivy.ImageFrame.html#setBounds">setBounds</a></li>
+            
+                <li data-name="Tivy.ImageFrame#setPosition"><a href="Tivy.ImageFrame.html#setPosition">setPosition</a></li>
+            
+                <li data-name="Tivy.ImageFrame#setSize"><a href="Tivy.ImageFrame.html#setSize">setSize</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.KeyboardManager">
+            <span class="title">
+                <a href="Tivy.KeyboardManager.html">Tivy.KeyboardManager</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="Tivy.KeyboardManager#isActive"><a href="Tivy.KeyboardManager.html#isActive">isActive</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.KeyboardManager#activate"><a href="Tivy.KeyboardManager.html#activate">activate</a></li>
+            
+                <li data-name="Tivy.KeyboardManager#deactivate"><a href="Tivy.KeyboardManager.html#deactivate">deactivate</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            <span class="subtitle">Events</span>
+            
+                <li data-name="Tivy.KeyboardManager#event:activated"><a href="Tivy.KeyboardManager.html#event:activated">activated</a></li>
+            
+                <li data-name="Tivy.KeyboardManager#event:deactivated"><a href="Tivy.KeyboardManager.html#event:deactivated">deactivated</a></li>
+            
+                <li data-name="Tivy.KeyboardManager#event:keydown"><a href="Tivy.KeyboardManager.html#event:keydown">keydown</a></li>
+            
+                <li data-name="Tivy.KeyboardManager#event:keypress"><a href="Tivy.KeyboardManager.html#event:keypress">keypress</a></li>
+            
+                <li data-name="Tivy.KeyboardManager#event:keyup"><a href="Tivy.KeyboardManager.html#event:keyup">keyup</a></li>
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.Metro">
+            <span class="title">
+                <a href="Tivy.Metro.html">Tivy.Metro</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="Tivy.Metro#controls"><a href="Tivy.Metro.html#controls">controls</a></li>
+            
+                <li data-name="Tivy.Metro#currentControl"><a href="Tivy.Metro.html#currentControl">currentControl</a></li>
+            
+                <li data-name="Tivy.Metro#currentIndex"><a href="Tivy.Metro.html#currentIndex">currentIndex</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.Metro#activate"><a href="Tivy.Metro.html#activate">activate</a></li>
+            
+                <li data-name="Tivy.Metro#attachEvent"><a href="Tivy.Metro.html#attachEvent">attachEvent</a></li>
+            
+                <li data-name="Tivy.Metro#bindData"><a href="Tivy.Metro.html#bindData">bindData</a></li>
+            
+                <li data-name="Tivy.Metro#bringToFront"><a href="Tivy.Metro.html#bringToFront">bringToFront</a></li>
+            
+                <li data-name="Tivy.Metro#sendToBack"><a href="Tivy.Metro.html#sendToBack">sendToBack</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            <span class="subtitle">Events</span>
+            
+                <li data-name="Tivy.Metro#event:change"><a href="Tivy.Metro.html#event:change">change</a></li>
+            
+                <li data-name="Tivy.Metro#event:execute"><a href="Tivy.Metro.html#event:execute">execute</a></li>
+            
+                <li data-name="Tivy.Metro#event:focus"><a href="Tivy.Metro.html#event:focus">focus</a></li>
+            
+                <li data-name="Tivy.Metro#event:leave"><a href="Tivy.Metro.html#event:leave">leave</a></li>
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.Poster">
+            <span class="title">
+                <a href="Tivy.Poster.html">Tivy.Poster</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.Poster#bringToFront"><a href="Tivy.Poster.html#bringToFront">bringToFront</a></li>
+            
+                <li data-name="Tivy.Poster#destroy"><a href="Tivy.Poster.html#destroy">destroy</a></li>
+            
+                <li data-name="Tivy.Poster#sendToBack"><a href="Tivy.Poster.html#sendToBack">sendToBack</a></li>
+            
+                <li data-name="Tivy.Poster#setContent"><a href="Tivy.Poster.html#setContent">setContent</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.Stage">
+            <span class="title">
+                <a href="Tivy.Stage.html">Tivy.Stage</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.Stage#addChild"><a href="Tivy.Stage.html#addChild">addChild</a></li>
+            
+                <li data-name="Tivy.Stage#hide"><a href="Tivy.Stage.html#hide">hide</a></li>
+            
+                <li data-name="Tivy.Stage#repaint"><a href="Tivy.Stage.html#repaint">repaint</a></li>
+            
+                <li data-name="Tivy.Stage#show"><a href="Tivy.Stage.html#show">show</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.Tile">
+            <span class="title">
+                <a href="Tivy.Tile.html">Tivy.Tile</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.Tile#bringToFront"><a href="Tivy.Tile.html#bringToFront">bringToFront</a></li>
+            
+                <li data-name="Tivy.Tile#destroy"><a href="Tivy.Tile.html#destroy">destroy</a></li>
+            
+                <li data-name="Tivy.Tile#sendToBack"><a href="Tivy.Tile.html#sendToBack">sendToBack</a></li>
+            
+                <li data-name="Tivy.Tile#setContent"><a href="Tivy.Tile.html#setContent">setContent</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.UIObject">
+            <span class="title">
+                <a href="Tivy.UIObject.html">Tivy.UIObject</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.UIObject#bringToFront"><a href="Tivy.UIObject.html#bringToFront">bringToFront</a></li>
+            
+                <li data-name="Tivy.UIObject#sendToBack"><a href="Tivy.UIObject.html#sendToBack">sendToBack</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.UIObjectGroup">
+            <span class="title">
+                <a href="Tivy.UIObjectGroup.html">Tivy.UIObjectGroup</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="Tivy.UIObjectGroup#controls"><a href="Tivy.UIObjectGroup.html#controls">controls</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#currentControl"><a href="Tivy.UIObjectGroup.html#currentControl">currentControl</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#currentIndex"><a href="Tivy.UIObjectGroup.html#currentIndex">currentIndex</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.UIObjectGroup#activate"><a href="Tivy.UIObjectGroup.html#activate">activate</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#attachEvent"><a href="Tivy.UIObjectGroup.html#attachEvent">attachEvent</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#bringToFront"><a href="Tivy.UIObjectGroup.html#bringToFront">bringToFront</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#sendToBack"><a href="Tivy.UIObjectGroup.html#sendToBack">sendToBack</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            <span class="subtitle">Events</span>
+            
+                <li data-name="Tivy.UIObjectGroup#event:change"><a href="Tivy.UIObjectGroup.html#event:change">change</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#event:execute"><a href="Tivy.UIObjectGroup.html#event:execute">execute</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#event:focus"><a href="Tivy.UIObjectGroup.html#event:focus">focus</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#event:leave"><a href="Tivy.UIObjectGroup.html#event:leave">leave</a></li>
+            
+            </ul>
+        </li>
+    
+    </ul>
+</div>
+    <div class="main">
+        <h1 class="page-title" data-filename="UIObjectGroup.js.html">Source: UIObjectGroup.js</h1>
+        
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var UIObject = require('./UIObject');
+
+/**
+ * 描述了一个控件组, 并绑定了事件
+ *
+ * @class
+ * @param options {json} 配置节点
+ * @constructor
+ * @memberof Tivy
+ * @extends {Tivy.UIObject}
+ */
+function UIObjectGroup(options) {
+  if (!options) {
+    options = {};
+  }
+  this.size = options.size = options.size || {width: 200, height: 200};
+  UIObject.call(this, options);
+
+
+  /**
+   * 具有事件响应的控件们
+   * @member {Array}
+   * @readonly
+   */
+  this.controls = [];
+
+  /**
+   * 当前选中的 index
+   * @member {number}
+   * @readonly
+   */
+  this.currentIndex = -1;
+
+  /**
+   * 当前选中的控件
+   * @member {Object}
+   * @readonly
+   */
+  this.currentControl = null;
+
+  /**
+   * 当某个 tile 被执行的时候发生. 例如, 鼠标在tile上点击, touch点击, enter 键按下去
+   * @example
+   *
+   metro.on('execute', function (target, index) {
+      console.log('execute', target.text, index);
+    });
+   *
+   *
+   * @event execute
+   * @memberof Tivy.UIObjectGroup#
+   * @protected
+   */
+
+  /**
+   * 当某个 tile 被聚焦的时候发生. 例如, 鼠标划过 tile, touch 按住, 键盘聚焦等
+   *
+   * @example
+   metro.on('focus', function (target, index) {
+      console.log('focus', target.text, index);
+    });
+   *
+   *
+   * @event focus
+   * @memberof Tivy.UIObjectGroup#
+   * @protected
+   */
+
+  /**
+   * 当某个 tile 失去焦点的时候发生. 例如, 鼠标划过 tile, touch 松开, 键盘移除聚焦等
+   *
+   * @event leave
+   * @memberof Tivy.UIObjectGroup#
+   * @protected
+   */
+
+  /**
+   * 当某个组内的tile改变的时候发生
+   * @example
+   *
+   * metro.on('change', function (target, index, oldTarget, oldIndex) {
+   *   console.log('change', target.text, index);
+   * });
+   *
+   *
+   * @event change
+   * @memberof Tivy.UIObjectGroup#
+   * @protected
+   */
+
+}
+
+UIObjectGroup.prototype             = Object.create(UIObject.prototype);
+UIObjectGroup.prototype.constructor = UIObjectGroup;
+module.exports                      = UIObjectGroup;
+
+
+//UIObjectGroup.prototype._init = function () {
+//  var _this = this;
+//};
+
+/**
+ * 给控件附加事件
+ * @param uiObject {Object} 子元素控件, 在初始化元素之后附加事件
+ * @example
+ *
+ var tile = new Tile({
+      stage             : _this.stage,
+      owner             : someGoupContainer,
+      size              : {width: ele.width, height: ele.height},
+      position          : {x: ele.x, y: ele.y},
+      placeHolderTexture: _this.layout.placeHolderTexture,
+      radius            : 10,
+      data              : somedata
+    });
+ someGoupContainer.attachEvent(tile);
+ *
+ */
+UIObjectGroup.prototype.attachEvent = function (uiObject) {
+
+  this.controls.push(uiObject);
+  var i = this.controls.indexOf(uiObject);
+
+  var _this = this;
+  uiObject.on('mouseover', function () {
+    var oldIndex         = _this.currentIndex;
+    var oldCtr           = _this.currentControl;
+    _this.currentIndex   = i;
+    _this.currentControl = this;
+    _this.emit('focus', this, i);
+    if (oldIndex !== i) {
+      _this.emit('change', this, i, oldCtr, oldIndex);
+    }
+  });
+  uiObject.on('mouseout', function () {
+    _this.emit('leave', this, i);
+  });
+  uiObject.on('keydown', function () {
+    console.log('keydown');
+  });
+
+  uiObject.on('touchstart', function () {
+    var oldIndex         = _this.currentIndex;
+    var oldCtr           = _this.currentControl;
+    _this.currentIndex   = i;
+    _this.currentControl = this;
+    _this.emit('focus', this, i);
+    if (oldIndex !== i) {
+      _this.emit('change', this, i, oldCtr, oldIndex);
+    }
+  });
+  uiObject.on('touchend', function (data) {
+    if (_this.currentControl == data.target) {
+      _this.emit('execute', this, i);
+    }
+    _this.emit('leave', _this.currentControl, _this.currentIndex);
+  });
+  uiObject.on('click', function (data) {
+    _this.emit('execute', this, i);
+  });
+
+};
+
+/**
+ * 当控件组重新被聚焦的时候, 触发 change 事件
+ */
+UIObjectGroup.prototype.activate = function () {
+  if (this.isActive) {
+    return;
+  }
+  UIObject.prototype.activate.call(this);
+
+  if (this.currentIndex &lt; 0) {
+    this.currentIndex   = 0;
+    this.currentControl = this.controls[0];
+  }
+  this.emit('change', this.currentControl, this.currentIndex, null, -1);
+
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+
+
+        
+
+        <footer>
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Feb 19 2016 15:12:16 GMT+0800 (CST)
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>
