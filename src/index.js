@@ -1,4 +1,5 @@
 var tivy = module.exports = {
+  CONST       : require('./const'),
   UIObject       : require('./UIObject'),
   UIObjectGroup  : require('./UIObjectGroup'),
   Stage          : require('./Stage'),

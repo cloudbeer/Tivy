@@ -1,7 +1,6 @@
 /**
  * 键盘事件管理器, 此类已经混合进 UIObject, 可以直接在 UIObject 示例上进行调用
  * @mixin
- * @class
  * @constructor
  * @memberof Tivy
  */

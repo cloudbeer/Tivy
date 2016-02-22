@@ -22,7 +22,7 @@
       "outputSourceFiles": true
     },
     "applicationName": "Tivy",
-    "footer": "Made with ♥ by Cloudbeer",
+    //"footer": "Made with ♥ by Cloudbeer",
     "copyright": "Tivy Copyright © 2016 Cloudbeer.",
     "disqus": "",
     "googleAnalytics": "",
@@ -34,11 +34,14 @@
       "url": ""
     },
     "meta": {
-      "title": "",
-      "description": "",
-      "keyword": ""
+      "title": "Tivy - a lightware WebGL UI framework.",
+      "description": "Tivy is a lightware WebGL UI framework based on Pixi.js. It's designed for TV.",
+      "keyword": "TV UI pixi.js WebGL Html5"
     },
-    "linenums": true
+    "linenums": true,
+    "systemName": "Tivy",
+    "theme": "spacelab",
+    "navType": "vertical"
   },
   "markdown": {
     "parser": "gfm",
@@ -50,6 +53,6 @@
     "private": false,
     "lenient": true,
     "destination": "./docs",
-    "template": "./node_modules/jaguarjs-jsdoc-patched"
+    "template": "./node_modules/jaguarjs-jsdoc-patched-2"
   }
 }

@@ -54,7 +54,6 @@ li {
   width: 100%;
 }
 .navigation li.item {
-  overflow: hidden;
   margin-bottom: 8px;
   padding-bottom: 8px;
   border-bottom: 1px solid #333;
@@ -141,8 +140,11 @@ li {
   font-size: 0.7em;
   padding: 2px 4px;
 }
-.main h4.name span.type-signature a {
-  color: inherit;
+.main h4.name span.type-signature.type a {
+  color: #fff;
+}
+.main h4.name > span.type-signature:first-child {
+  margin-right: 8px;
 }
 .main h4.name span.type {
   margin-left: 5px;
@@ -249,6 +251,17 @@ li {
   margin-right: 5px;
 }
 .main .nameContainer .inherited a {
+  color: #fff;
+}
+.main .nameContainer .overrides {
+  display: inline-block;
+  border-radius: 3px;
+  background-color: #666!important;
+  font-size: 0.7em;
+  padding: 2px 4px;
+  margin-right: 5px;
+}
+.main .nameContainer .overrides a {
   color: #fff;
 }
 .main .nameContainer .tag-source {

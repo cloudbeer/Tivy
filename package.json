@@ -18,7 +18,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.2",
     "gulp-util": "^3.0.7",
-    "jaguarjs-jsdoc-patched": "0.0.5",
+    "jaguarjs-jsdoc-patched-2": "0.0.3",
     "jsdoc": "^3.4.0",
     "minimist": "^1.2.0",
     "require-dir": "^0.3.0",
