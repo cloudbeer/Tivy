@@ -1,5 +1,5 @@
 var tivy = module.exports = {
-  CONST       : require('./const'),
+  CONST          : require('./const'),
   UIObject       : require('./UIObject'),
   UIObjectGroup  : require('./UIObjectGroup'),
   Stage          : require('./Stage'),
@@ -9,6 +9,8 @@ var tivy = module.exports = {
   Poster         : require('./components/Poster'),
   Metro          : require('./components/Metro'),
   KeyboardManager: require('./events/KeyboardManager'),
+  Animal         : require('./animation/Animal'),
+  AnimalManager  : require('./animation/AnimalManager'),
 };
 
 //mixin tow class

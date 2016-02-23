@@ -28,7 +28,7 @@
     "watchify": "^3.7.0"
   },
   "scripts": {
-    "start": "gulp && gulp watch",
+    "_start": "gulp && gulp watch",
     "build": "gulp",
     "docs": "jsdoc -c ./gulp/util/jsdoc.conf.json -R README.md",
     "test": "echo \"Error: no test specified\" && exit 1"

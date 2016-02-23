@@ -214,6 +214,15 @@ $(function () {
     metro.bindData(data);
 
 
+    //加入动画
+    var manager = new Tivy.AnimalManager({
+      stage   : stage,
+      duration: 300,
+      fps     : 30
+    });
+    manager.runAnimals();
+
+
     //metro.on('focus', function (target, index) {
     //  var oriH     = target.height,
     //      oriW     = target.width;
@@ -272,7 +281,11 @@ $(function () {
       stage.repaint();
       //console.log(tarGlobalPos.x, target.width, stage.width);
 
-      frame.setPosition(target.getGlobalPosition());
+      //frame.setPosition(target.getGlobalPosition());
+
+      //console.log(frame.position, target.getGlobalPosition());
+      manager.addTarget(frame, 'x', frame.x, target.getGlobalPosition().x);
+      manager.addTarget(frame, 'y', frame.y, target.getGlobalPosition().y);
       frame.setSize({width: target.width, height: target.height});
 
 

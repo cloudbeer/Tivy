@@ -359,6 +359,279 @@ UIObjectGroup.prototype.activate = function () {
 
 };
 },{"./UIObject":2}],4:[function(require,module,exports){
+/**
+ * 一个动画, 这个单词是我故意写错的
+ * An animation, this is a wrong word, it is cool!
+ *
+ * 动画参考了这个 {@link http://javascript.info/tutorial/animation}
+ *
+ * @class
+ * @memberof Tivy
+ * @param options {json} 动画配置
+ */
+function Animal(options) {
+
+  /**
+   * 这个是一个函数,指定 target 的属性
+   * @member {object}
+   */
+  this.target = options.target;
+  /**
+   * 需要变化的物件的属性
+   * @member {string}
+   */
+  this.property = options.property;
+
+  //this.tweeners = [];
+
+
+  ///**
+  // * 运行动画的间隔时间, 单位 ms, 默认 16 （~=60fps）
+  // * @member {number}
+  // */
+  //this.delay = options.delay || 16;
+
+  /**
+   * 运行动画的总时间, 单位 ms
+   * @member {number}
+   */
+  this.duration = options.duration;
+  /**
+   * 这是一个函数,计算坐标变化
+   * @member {function}
+   */
+  this.easing = options.easing;
+
+  /**
+   * 这个是一个函数,指定 target 的属性
+   * @member {function}
+   */
+  this.step = options.step;
+  this.from = options.from;
+  this.to   = options.to;
+
+
+  this.tag      = null;
+  this.reserve  = false;
+  this.finished = false;
+
+  this._start = new Date;
+
+
+  //this.start      = new Date;
+  //this.timePassed = 0;
+  //this.progress   = 0;
+
+}
+
+
+Animal.prototype.constructor = Animal;
+module.exports               = Animal;
+
+
+//Object.defineProperties(Animal.prototype, {
+//  property:{
+//    get: function(){
+//      return this.property;
+//    }
+//  }
+//
+//});
+},{}],5:[function(require,module,exports){
+var Animal = require('./Animal');
+var CONST  = require('../const');
+
+/**
+ * 动画管理器
+ * @param options {json} 配置
+ * @constructor
+ * @memberof Tivy
+ */
+function AnimalManager(options) {
+  /**
+   * @readonly
+   */
+  this.stage = options.stage;
+  this.duration = options.duration;
+  this.fps      = options.fps || 60;
+
+  this.delay = 1000 / this.fps;
+  /**
+   * 动画数组
+   * @member {Tivy.Animal}
+   */
+  this.animals = [];
+
+  /**
+   * 一个 stage 启动一个 线程刷新
+   * @member {Array}
+   */
+  this.stages = [];
+
+}
+
+AnimalManager.prototype.constructor = AnimalManager;
+module.exports                      = AnimalManager;
+
+/**
+ * 寻找动画
+ * @param _target
+ * @param _property
+ * @returns {Tivy.Animal}
+ */
+AnimalManager.prototype.findAnimal = function (_target, _property) {
+  var animals = this.animals.filter(function (ele) {
+    return ele.target === _target && ele.property === _property;
+  });
+  if (animals.length > 0) {
+    return animals[0];
+  }
+  return null;
+};
+
+/**
+ * 找到绘制舞台
+ * @param _target
+ * @returns {*}
+ */
+AnimalManager.prototype.findStage = function (_target) {
+  var stages = this.animals.filter(function (ele) {
+    return ele.target.stage === _target.stage;
+  });
+  if (stages.length > 0) {
+    return stages[0];
+  }
+  return null;
+};
+
+
+/**
+ * 增加一个动画物件
+ * @param _target {object}
+ * @param _property {string}
+ * @param _from {number}
+ * @param _to {number}
+ */
+AnimalManager.prototype.addTarget = function (_target, _property, _from, _to) {
+  if (_target.stage !== this.stage) {
+    throw new Error('This target is not in this stage.');
+  }
+  var av3 = arguments[4];
+  var av4 = arguments[5];
+  var av5 = arguments[6];
+  var av6 = arguments[7];
+  var avs = this.parseArg(av3, av4, av5, av6);
+
+  var animal = this.findAnimal(_target, _property);
+
+  if (!animal) {
+    animal = new Animal({
+      target: _target
+    });
+    this.animals.push(animal);
+  }
+
+  animal.property = _property;
+  animal.from     = _from;
+  animal.to       = _to;
+  animal.step     = function (delta) {
+    _target[_property] = _from + (_to - _from) * delta;
+  };
+  animal.easing   = avs._easing || CONST.EASINGS.linear;
+  animal.duration = avs._duration || this.duration;
+  animal.delay    = 1000 / this.fps;
+  animal.reserve  = avs._reserve;
+  animal.tag      = avs._tag;
+};
+
+/**
+ * 运行动画
+ */
+AnimalManager.prototype.runAnimals = function () {
+
+  var _this = this;
+
+  var idTimer = window.setInterval(function () {
+
+    var index = 0;
+    _this.animals.forEach(function (ele) {
+      if (ele.finished) {
+        _this.animals.splice(index, 1);
+      } else {
+        var timePassed = new Date - ele._start;
+        var progress   = timePassed / ele.duration;
+        if (progress > 1) {
+          progress = 1;
+        }
+        var delta = ele.easing(progress);
+        ele.step(delta);
+        if (progress == 1) {
+          ele.finished = true;
+        }
+      }
+      index++;
+    });
+    if (_this.animals.length > 0) {
+      _this.stage.repaint();
+    }
+  }, this.delay);
+
+};
+
+/**
+ * 解析动画参数
+ * @param v1
+ * @param v2
+ * @param v3
+ * @param v4
+ * @returns {{}}
+ */
+AnimalManager.prototype.parseArg = function (v1, v2, v3, v4) {
+  var t1  = typeof v1;
+  var t2  = typeof v2;
+  var t3  = typeof v3;
+  var t4  = typeof v4;
+  var rtn = {};
+  if (t1 === 'number') {
+    rtn._duration = v1;
+  } else if (t2 === 'number') {
+    rtn._duration = v2;
+  } else if (t3 === 'number') {
+    rtn._duration = v3;
+  } else if (t4 === 'number') {
+    rtn._duration = v4;
+  }
+  if (t1 === 'string') {
+    rtn._tag = v1;
+  } else if (t2 === 'string') {
+    rtn._tag = v2;
+  } else if (t3 === 'string') {
+    rtn._tag = v3;
+  } else if (t4 === 'string') {
+    rtn._tag = v4;
+  }
+  if (t1 === 'function') {
+    rtn._easing = v1;
+  } else if (t2 === 'function') {
+    rtn._easing = v2;
+  } else if (t3 === 'function') {
+    rtn._easing = v3;
+  } else if (t4 === 'function') {
+    rtn._easing = v4;
+  }
+  if (t1 === 'boolean') {
+    rtn._reserve = v1;
+  } else if (t2 === 'boolean') {
+    rtn._reserve = v2;
+  } else if (t3 === 'boolean') {
+    rtn._reserve = v3;
+  } else if (t4 === 'boolean') {
+    rtn._reserve = v4;
+  }
+  return rtn;
+};
+
+},{"../const":11,"./Animal":4}],6:[function(require,module,exports){
 var UIObject = require('../UIObject');
 
 /**
@@ -429,7 +702,7 @@ Button.prototype._paint = function (_texture) {
 };
 
 
-},{"../UIObject":2}],5:[function(require,module,exports){
+},{"../UIObject":2}],7:[function(require,module,exports){
 var UIObject = require('../UIObject');
 
 /**
@@ -623,7 +896,7 @@ ImageFrame.prototype.setBounds = function (newBounds) {
   this.setSize({width: newBounds.width, height: newBounds.height});
 
 };
-},{"../UIObject":2}],6:[function(require,module,exports){
+},{"../UIObject":2}],8:[function(require,module,exports){
 var UIObject = require('../UIObject');
 /**
  * 广告招贴
@@ -822,7 +1095,7 @@ Tile.prototype.destroy = function (reserveTexture) {
 };
 
 
-},{"../UIObject":2}],7:[function(require,module,exports){
+},{"../UIObject":2}],9:[function(require,module,exports){
 var UIObjectGroup = require('../UIObjectGroup');
 var Tile          = require('../basic/Tile');
 
@@ -1086,7 +1359,7 @@ Metro.prototype.bindData = function (newData) {
     _this.controls[i].setContent(ele.imageUrl, ele.text, ele.data);
   });
 };
-},{"../UIObjectGroup":3,"../basic/Tile":6}],8:[function(require,module,exports){
+},{"../UIObjectGroup":3,"../basic/Tile":8}],10:[function(require,module,exports){
 var UIObject = require('../UIObject');
 /**
  * 广告招贴
@@ -1281,7 +1554,7 @@ Poster.prototype.destroy = function (reserveTexture) {
 };
 
 
-},{"../UIObject":2}],9:[function(require,module,exports){
+},{"../UIObject":2}],11:[function(require,module,exports){
 /**
  * 静态值
  * Constant values used in Tivy
@@ -1322,44 +1595,72 @@ var CONST = {
     EMAIL   : 180
   },
   /**
-   * 系统内置的 delta 动画函数
+   * 缓动函数
    *
    * @property {function} linear - 线性动画
-   * @property {function} quadrantic - 抛物线（平方）
-   * @property {function} circ - circ
-   * @property {function} back - back
-   * @property {function} bounce - bounce
-   * @property {function} elastic - elastic
+   * @property {function} swing - swing
+   * @property {function} easeInQuad - easeInQuad
    */
-  DELTAS   : {
-    linear    : function (progress) {
-      return progress;
+  EASINGS  : {
+    linear: function (t) {
+      return t;
     },
-    quadrantic: function (progress) {
-      return Math.pow(progress, 2);
+    swing : function (t) {
+      return 0.5 - Math.cos(t * Math.PI) / 2;
     },
-    circ      : function (progress) {
-      return 1 - Math.sin(Math.acos(progress));
-    },
-    back      : function (progress) {
-      return Math.pow(progress,2)*((1.5+ 1)*progress- 1.5)
-    },
-    bounce    : function (progress) {
-      for (var a = 0, b = 1, result; 1; a += b, b /= 2) {
-        if (progress >= (7 - 4 * a) / 11) {
-          return -Math.pow((11 - 6 * a - 11 * progress) / 4, 2) + Math.pow(b, 2);
-        }
-      }
-    },
-    elastic   : function (progress) {
-      return Math.pow(2, 10 * (progress - 1)) * Math.cos(20 * Math.PI * 1.5 / 3 * progress);
-    }
 
+    easeInQuad    : function (t) {
+      return t * t
+    },
+    // decelerating to zero velocity
+    easeOutQuad   : function (t) {
+      return t * (2 - t)
+    },
+    // acceleration until halfway, then deceleration
+    easeInOutQuad : function (t) {
+      return t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t
+    },
+    // accelerating from zero velocity
+    easeInCubic   : function (t) {
+      return t * t * t
+    },
+    // decelerating to zero velocity
+    easeOutCubic  : function (t) {
+      return (--t) * t * t + 1
+    },
+    // acceleration until halfway, then deceleration
+    easeInOutCubic: function (t) {
+      return t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
+    },
+    // accelerating from zero velocity
+    easeInQuart   : function (t) {
+      return t * t * t * t
+    },
+    // decelerating to zero velocity
+    easeOutQuart  : function (t) {
+      return 1 - (--t) * t * t * t
+    },
+    // acceleration until halfway, then deceleration
+    easeInOutQuart: function (t) {
+      return t < .5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t
+    },
+    // accelerating from zero velocity
+    easeInQuint   : function (t) {
+      return t * t * t * t * t
+    },
+    // decelerating to zero velocity
+    easeOutQuint  : function (t) {
+      return 1 + (--t) * t * t * t * t
+    },
+    // acceleration until halfway, then deceleration
+    easeInOutQuint: function (t) {
+      return t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t
+    }
   }
 };
 
 module.exports = CONST;
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 /**
  * 键盘事件管理器, 此类已经混合进 UIObject, 可以直接在 UIObject 示例上进行调用
  * @mixin
@@ -1456,10 +1757,10 @@ KeyboardManager.prototype.deactivate = function () {
 
 };
 
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 (function (global){
 var tivy = module.exports = {
-  CONST       : require('./const'),
+  CONST          : require('./const'),
   UIObject       : require('./UIObject'),
   UIObjectGroup  : require('./UIObjectGroup'),
   Stage          : require('./Stage'),
@@ -1469,6 +1770,8 @@ var tivy = module.exports = {
   Poster         : require('./components/Poster'),
   Metro          : require('./components/Metro'),
   KeyboardManager: require('./events/KeyboardManager'),
+  Animal         : require('./animation/Animal'),
+  AnimalManager  : require('./animation/AnimalManager'),
 };
 
 //mixin tow class
@@ -1482,7 +1785,7 @@ global.Tivy = tivy;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./Stage":1,"./UIObject":2,"./UIObjectGroup":3,"./basic/Button":4,"./basic/ImageFrame":5,"./basic/Tile":6,"./components/Metro":7,"./components/Poster":8,"./const":9,"./events/KeyboardManager":10}]},{},[11])(11)
+},{"./Stage":1,"./UIObject":2,"./UIObjectGroup":3,"./animation/Animal":4,"./animation/AnimalManager":5,"./basic/Button":6,"./basic/ImageFrame":7,"./basic/Tile":8,"./components/Metro":9,"./components/Poster":10,"./const":11,"./events/KeyboardManager":12}]},{},[13])(13)
 });
 
 

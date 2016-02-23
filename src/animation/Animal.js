@@ -12,19 +12,23 @@ function Animal(options) {
 
   /**
    * 这个是一个函数,指定 target 的属性
-   * @member {Object}
+   * @member {object}
    */
   this.target = options.target;
   /**
-   * 这个是属性
-   *  @member {string}
+   * 需要变化的物件的属性
+   * @member {string}
    */
   this.property = options.property;
-  /**
-   * 运行动画的间隔时间, 单位 ms, 默认 16 （~=60fps）
-   * @member {number}
-   */
-  this.delay = options.delay || 16;
+
+  //this.tweeners = [];
+
+
+  ///**
+  // * 运行动画的间隔时间, 单位 ms, 默认 16 （~=60fps）
+  // * @member {number}
+  // */
+  //this.delay = options.delay || 16;
 
   /**
    * 运行动画的总时间, 单位 ms
@@ -35,20 +39,23 @@ function Animal(options) {
    * 这是一个函数,计算坐标变化
    * @member {function}
    */
-  this.delta = options.delta;
-
-  this.from     = null;
-  this.to       = null;
-  this.tag      = null;
-  this.reserve  = false;
-  this.finished = false;
-
+  this.easing = options.easing;
 
   /**
    * 这个是一个函数,指定 target 的属性
    * @member {function}
    */
   this.step = options.step;
+  this.from = options.from;
+  this.to   = options.to;
+
+
+  this.tag      = null;
+  this.reserve  = false;
+  this.finished = false;
+
+  this._start = new Date;
+
 
   //this.start      = new Date;
   //this.timePassed = 0;
@@ -59,3 +66,13 @@ function Animal(options) {
 
 Animal.prototype.constructor = Animal;
 module.exports               = Animal;
+
+
+//Object.defineProperties(Animal.prototype, {
+//  property:{
+//    get: function(){
+//      return this.property;
+//    }
+//  }
+//
+//});

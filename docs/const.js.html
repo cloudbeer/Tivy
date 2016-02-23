@@ -47,31 +47,6 @@
     <ul class="list">
 
     
-        <li class="item" data-name="AnimalManager">
-            <span class="title">
-                <a href="AnimalManager.html">AnimalManager</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            <span class="subtitle">Methods</span>
-            
-                <li data-name="AnimalManager#addTarget"><a href="AnimalManager.html#addTarget">addTarget</a></li>
-            
-                <li data-name="AnimalManager#parseArg"><a href="AnimalManager.html#parseArg">parseArg</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
         <li class="item" data-name="Tivy.Animal">
             <span class="title">
                 <a href="Tivy.Animal.html">Tivy.Animal</a>
@@ -81,11 +56,9 @@
             
             <span class="subtitle">Members</span>
             
-                <li data-name="Tivy.Animal#delay"><a href="Tivy.Animal.html#delay">delay</a></li>
-            
-                <li data-name="Tivy.Animal#delta"><a href="Tivy.Animal.html#delta">delta</a></li>
-            
                 <li data-name="Tivy.Animal#duration"><a href="Tivy.Animal.html#duration">duration</a></li>
+            
+                <li data-name="Tivy.Animal#easing"><a href="Tivy.Animal.html#easing">easing</a></li>
             
                 <li data-name="Tivy.Animal#property"><a href="Tivy.Animal.html#property">property</a></li>
             
@@ -98,6 +71,43 @@
             
             </ul>
             <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.AnimalManager">
+            <span class="title">
+                <a href="Tivy.AnimalManager.html">Tivy.AnimalManager</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="Tivy.AnimalManager#animals"><a href="Tivy.AnimalManager.html#animals">animals</a></li>
+            
+                <li data-name="Tivy.AnimalManager#stages"><a href="Tivy.AnimalManager.html#stages">stages</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.AnimalManager#addTarget"><a href="Tivy.AnimalManager.html#addTarget">addTarget</a></li>
+            
+                <li data-name="Tivy.AnimalManager#findAnimal"><a href="Tivy.AnimalManager.html#findAnimal">findAnimal</a></li>
+            
+                <li data-name="Tivy.AnimalManager#findStage"><a href="Tivy.AnimalManager.html#findStage">findStage</a></li>
+            
+                <li data-name="Tivy.AnimalManager#parseArg"><a href="Tivy.AnimalManager.html#parseArg">parseArg</a></li>
+            
+                <li data-name="Tivy.AnimalManager#runAnimals"><a href="Tivy.AnimalManager.html#runAnimals">runAnimals</a></li>
             
             </ul>
             <ul class="events itemMembers">
@@ -141,7 +151,7 @@
             
             <span class="subtitle">Members</span>
             
-                <li data-name="Tivy.CONST.DELTAS"><a href="Tivy.CONST.html#.DELTAS">DELTAS</a></li>
+                <li data-name="Tivy.CONST.EASINGS"><a href="Tivy.CONST.html#.EASINGS">EASINGS</a></li>
             
                 <li data-name="Tivy.CONST.KEY_CODES"><a href="Tivy.CONST.html#.KEY_CODES">KEY_CODES</a></li>
             
@@ -491,39 +501,67 @@ var CONST = {
     EMAIL   : 180
   },
   /**
-   * 系统内置的 delta 动画函数
+   * 缓动函数
    *
    * @property {function} linear - 线性动画
-   * @property {function} quadrantic - 抛物线（平方）
-   * @property {function} circ - circ
-   * @property {function} back - back
-   * @property {function} bounce - bounce
-   * @property {function} elastic - elastic
+   * @property {function} swing - swing
+   * @property {function} easeInQuad - easeInQuad
    */
-  DELTAS   : {
-    linear    : function (progress) {
-      return progress;
+  EASINGS  : {
+    linear: function (t) {
+      return t;
     },
-    quadrantic: function (progress) {
-      return Math.pow(progress, 2);
+    swing : function (t) {
+      return 0.5 - Math.cos(t * Math.PI) / 2;
     },
-    circ      : function (progress) {
-      return 1 - Math.sin(Math.acos(progress));
-    },
-    back      : function (progress, x) {
-      return Math.pow(progress, 2) * ((x + 1) * progress - x);
-    },
-    bounce    : function (progress) {
-      for (var a = 0, b = 1, result; 1; a += b, b /= 2) {
-        if (progress >= (7 - 4 * a) / 11) {
-          return -Math.pow((11 - 6 * a - 11 * progress) / 4, 2) + Math.pow(b, 2);
-        }
-      }
-    },
-    elastic   : function (progress, x) {
-      return Math.pow(2, 10 * (progress - 1)) * Math.cos(20 * Math.PI * x / 3 * progress);
-    }
 
+    easeInQuad    : function (t) {
+      return t * t
+    },
+    // decelerating to zero velocity
+    easeOutQuad   : function (t) {
+      return t * (2 - t)
+    },
+    // acceleration until halfway, then deceleration
+    easeInOutQuad : function (t) {
+      return t &lt; .5 ? 2 * t * t : -1 + (4 - 2 * t) * t
+    },
+    // accelerating from zero velocity
+    easeInCubic   : function (t) {
+      return t * t * t
+    },
+    // decelerating to zero velocity
+    easeOutCubic  : function (t) {
+      return (--t) * t * t + 1
+    },
+    // acceleration until halfway, then deceleration
+    easeInOutCubic: function (t) {
+      return t &lt; .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
+    },
+    // accelerating from zero velocity
+    easeInQuart   : function (t) {
+      return t * t * t * t
+    },
+    // decelerating to zero velocity
+    easeOutQuart  : function (t) {
+      return 1 - (--t) * t * t * t
+    },
+    // acceleration until halfway, then deceleration
+    easeInOutQuart: function (t) {
+      return t &lt; .5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t
+    },
+    // accelerating from zero velocity
+    easeInQuint   : function (t) {
+      return t * t * t * t * t
+    },
+    // decelerating to zero velocity
+    easeOutQuint  : function (t) {
+      return 1 + (--t) * t * t * t * t
+    },
+    // acceleration until halfway, then deceleration
+    easeInOutQuint: function (t) {
+      return t &lt; .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t
+    }
   }
 };
 
@@ -539,7 +577,7 @@ module.exports = CONST;</code></pre>
         
 
         <footer>
-            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Mon Feb 22 2016 21:28:31 GMT+0800 (CST)
+            Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Feb 23 2016 18:24:28 GMT+0800 (CST)
         </footer>
     </div>
 </div>

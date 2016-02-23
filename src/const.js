@@ -38,39 +38,67 @@ var CONST = {
     EMAIL   : 180
   },
   /**
-   * 系统内置的 delta 动画函数
+   * 缓动函数
    *
    * @property {function} linear - 线性动画
-   * @property {function} quadrantic - 抛物线（平方）
-   * @property {function} circ - circ
-   * @property {function} back - back
-   * @property {function} bounce - bounce
-   * @property {function} elastic - elastic
+   * @property {function} swing - swing
+   * @property {function} easeInQuad - easeInQuad
    */
-  DELTAS   : {
-    linear    : function (progress) {
-      return progress;
+  EASINGS  : {
+    linear: function (t) {
+      return t;
     },
-    quadrantic: function (progress) {
-      return Math.pow(progress, 2);
+    swing : function (t) {
+      return 0.5 - Math.cos(t * Math.PI) / 2;
     },
-    circ      : function (progress) {
-      return 1 - Math.sin(Math.acos(progress));
-    },
-    back      : function (progress) {
-      return Math.pow(progress,2)*((1.5+ 1)*progress- 1.5)
-    },
-    bounce    : function (progress) {
-      for (var a = 0, b = 1, result; 1; a += b, b /= 2) {
-        if (progress >= (7 - 4 * a) / 11) {
-          return -Math.pow((11 - 6 * a - 11 * progress) / 4, 2) + Math.pow(b, 2);
-        }
-      }
-    },
-    elastic   : function (progress) {
-      return Math.pow(2, 10 * (progress - 1)) * Math.cos(20 * Math.PI * 1.5 / 3 * progress);
-    }
 
+    easeInQuad    : function (t) {
+      return t * t
+    },
+    // decelerating to zero velocity
+    easeOutQuad   : function (t) {
+      return t * (2 - t)
+    },
+    // acceleration until halfway, then deceleration
+    easeInOutQuad : function (t) {
+      return t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t
+    },
+    // accelerating from zero velocity
+    easeInCubic   : function (t) {
+      return t * t * t
+    },
+    // decelerating to zero velocity
+    easeOutCubic  : function (t) {
+      return (--t) * t * t + 1
+    },
+    // acceleration until halfway, then deceleration
+    easeInOutCubic: function (t) {
+      return t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
+    },
+    // accelerating from zero velocity
+    easeInQuart   : function (t) {
+      return t * t * t * t
+    },
+    // decelerating to zero velocity
+    easeOutQuart  : function (t) {
+      return 1 - (--t) * t * t * t
+    },
+    // acceleration until halfway, then deceleration
+    easeInOutQuart: function (t) {
+      return t < .5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t
+    },
+    // accelerating from zero velocity
+    easeInQuint   : function (t) {
+      return t * t * t * t * t
+    },
+    // decelerating to zero velocity
+    easeOutQuint  : function (t) {
+      return 1 + (--t) * t * t * t * t
+    },
+    // acceleration until halfway, then deceleration
+    easeInOutQuint: function (t) {
+      return t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t
+    }
   }
 };
 
