@@ -284,9 +284,34 @@ $(function () {
       //frame.setPosition(target.getGlobalPosition());
 
       //console.log(frame.position, target.getGlobalPosition());
-      manager.addTarget(frame, 'x', frame.x, target.getGlobalPosition().x);
-      manager.addTarget(frame, 'y', frame.y, target.getGlobalPosition().y);
-      frame.setSize({width: target.width, height: target.height});
+      manager.addAnimal({
+        target  : frame,
+        property: 'x',
+        to      : target.getGlobalPosition().x,
+        easing  : Tivy.CONST.EASINGS.easeInOutQuad
+      });
+      manager.addAnimal({
+        target  : frame,
+        property: 'y',
+        to      : target.getGlobalPosition().y,
+        easing  : Tivy.CONST.EASINGS.easeInOutQuad
+      });
+      manager.addAnimal({
+        target  : frame,
+        property: 'frameWidth',
+        to      : target.width
+      });
+      manager.addAnimal({
+        target  : frame,
+        property: 'frameHeight',
+        to      : target.height
+      });
+      //manager.addTarget(frame, 'x', target.getGlobalPosition().x);
+      //manager.addTarget(frame, 'y', target.getGlobalPosition().y);
+      //manager.addTarget(frame, 'frameWidth', target.width);
+      //manager.addTarget(frame, 'frameHeight', target.height);
+
+      //frame.setSize({width: target.width, height: target.height});
 
 
       if (target2) {

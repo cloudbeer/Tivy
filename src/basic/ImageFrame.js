@@ -177,6 +177,39 @@ ImageFrame.prototype.setPosition = function (newPosition) {
   this.y = newPosition.y;
 };
 
+
+Object.defineProperties(ImageFrame.prototype, {
+  /**
+   * 获取或者设置框架的宽度
+   *
+   * @member {number}
+   * @memberof Tivy.ImageFrame#
+   */
+  frameWidth : {
+    get: function () {
+      return this.size.width;
+    },
+    set: function (value) {
+      this.setSize({width: value, height: this.size.height});
+    }
+  },
+  /**
+   * 获取或者设置框架的高度
+   *
+   * @member {number}
+   * @memberof Tivy.ImageFrame#
+   */
+  frameHeight: {
+    get: function () {
+      return this.size.height;
+    },
+    set: function (value) {
+      this.setSize({width: this.size.width, height: value});
+    }
+
+  }
+});
+
 /**
  * 设置一个框框
  *
