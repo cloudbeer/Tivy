@@ -74,6 +74,7 @@ function Tile(options) {
   this.posterSetted  = false;
   this.interactive   = true;
   this.data          = null;
+  this.myIndex       = options.myIndex || 0;
 
   this._init();
 }

@@ -142,9 +142,9 @@ UIObjectGroup.prototype.attachEvent = function (uiObject) {
   uiObject.on('mouseout', function () {
     _this.emit('leave', this, i);
   });
-  uiObject.on('keydown', function () {
-    console.log('keydown');
-  });
+  //uiObject.on('keydown', function () {
+  //  console.log('keydown');
+  //});
 
   uiObject.on('touchstart', function () {
     var oldIndex         = _this.currentIndex;
@@ -165,6 +165,11 @@ UIObjectGroup.prototype.attachEvent = function (uiObject) {
   uiObject.on('click', function (data) {
     _this.emit('execute', this, i);
   });
+
+  //uiObject.on('keydown', function (data) {
+  //  console.log('keypress', data);
+  //  //_this.emit('execute', this, i);
+  //});
 
 };
 

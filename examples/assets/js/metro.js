@@ -253,9 +253,9 @@ $(function () {
 
 
     //metro.accessible = true;
-    metro.on('keyup', function (a) {
-      console.log('keyup', a);
-    });
+    //metro.on('keyup', function (a) {
+    //  console.log('keyup', a);
+    //});
     metro.on('change', function (target, i1, target2, i2) {
       var oriH     = target.height,
           oriW     = target.width;
@@ -288,23 +288,25 @@ $(function () {
         target  : frame,
         property: 'x',
         to      : target.getGlobalPosition().x,
-        easing  : Tivy.CONST.EASINGS.easeInOutQuad
+        easing  : Tivy.CONST.EASINGS.easeInQuint
       });
       manager.addAnimal({
         target  : frame,
         property: 'y',
         to      : target.getGlobalPosition().y,
-        easing  : Tivy.CONST.EASINGS.easeInOutQuad
+        easing  : Tivy.CONST.EASINGS.easeOutQuint
       });
       manager.addAnimal({
         target  : frame,
         property: 'frameWidth',
-        to      : target.width
+        to      : target.width,
+        easing  : Tivy.CONST.EASINGS.easeInQuint
       });
       manager.addAnimal({
         target  : frame,
         property: 'frameHeight',
-        to      : target.height
+        to      : target.height,
+        easing  : Tivy.CONST.EASINGS.easeInQuint
       });
       //manager.addTarget(frame, 'x', target.getGlobalPosition().x);
       //manager.addTarget(frame, 'y', target.getGlobalPosition().y);
