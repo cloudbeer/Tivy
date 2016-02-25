@@ -1,7 +1,8 @@
 # Tivy
 
-这是一个 WebGL 的项目, 他基于 Pixi.js. 目前可以运行在大多数现代浏览器.
-Tivy 不是一个游戏引擎, 他是设计用于有限资源的硬件（如: 电视机）.
+这是一个 WebGL 项目, 基于 Pixi.js. 目前可以运行在大多数现代浏览器内.
+
+Tivy 不是一个游戏引擎, 他设计用于有限资源的硬件（如: 电视机）. 对动画和贴图进行了控制.
 
 Tivy is a lightware WebGL UI framework based on Pixi.js. It's designed for TV original.
 
@@ -10,6 +11,7 @@ Tivy is a lightware WebGL UI framework based on Pixi.js. It's designed for TV or
 1.  首先载入 js
 
     ```html
+    <script src="/yourpath/pixi.min.js"></script>
     <script src="/yourpath/tivy.min.js"></script>
     ```
 

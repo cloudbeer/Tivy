@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tivy - a lightware WebGL UI framework.</title>
+    
+    <meta name="description" content="Tivy is a lightware WebGL UI framework based on Pixi.js. It's designed for TV." />
+    
+        <meta name="keywords" content="TV UI pixi.js WebGL Html5" />
+        <meta name="keyword" content="TV UI pixi.js WebGL Html5" />
+    
+    
+    
+    <meta property="og:title" content=""/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content=""/>
+    
+    <meta property="og:url" content=""/>
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <script src="scripts/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+    
+    
+    <script>
+    var config = {"monospaceLinks":false,"cleverLinks":false,"default":{"outputSourceFiles":true},"applicationName":"Tivy","copyright":"Tivy Copyright © 2016 Cloudbeer.","disqus":"","googleAnalytics":"","openGraph":{"title":"","type":"website","image":"","site_name":"","url":""},"meta":{"title":"Tivy - a lightware WebGL UI framework.","description":"Tivy is a lightware WebGL UI framework based on Pixi.js. It's designed for TV.","keyword":"TV UI pixi.js WebGL Html5"},"linenums":true,"systemName":"Tivy","theme":"spacelab","navType":"vertical"};
+    </script>
+    
+
+    
+</head>
+<body>
+<div id="wrap" class="clearfix">
+    
+<div class="navigation">
+    <h3 class="applicationName"><a href="index.html">Tivy</a></h3>
+
+    <div class="search">
+        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
+    </div>
+    <ul class="list">
+
+    
+        <li class="item" data-name="Tivy.Animal">
+            <span class="title">
+                <a href="Tivy.Animal.html">Tivy.Animal</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.AnimalManager">
+            <span class="title">
+                <a href="Tivy.AnimalManager.html">Tivy.AnimalManager</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="Tivy.AnimalManager#animals"><a href="Tivy.AnimalManager.html#animals">animals</a></li>
+            
+                <li data-name="Tivy.AnimalManager#delay"><a href="Tivy.AnimalManager.html#delay">delay</a></li>
+            
+                <li data-name="Tivy.AnimalManager#duration"><a href="Tivy.AnimalManager.html#duration">duration</a></li>
+            
+                <li data-name="Tivy.AnimalManager#fps"><a href="Tivy.AnimalManager.html#fps">fps</a></li>
+            
+                <li data-name="Tivy.AnimalManager#stage"><a href="Tivy.AnimalManager.html#stage">stage</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.AnimalManager#addAnimal"><a href="Tivy.AnimalManager.html#addAnimal">addAnimal</a></li>
+            
+                <li data-name="Tivy.AnimalManager#addTarget"><a href="Tivy.AnimalManager.html#addTarget">addTarget</a></li>
+            
+                <li data-name="Tivy.AnimalManager#findAnimal"><a href="Tivy.AnimalManager.html#findAnimal">findAnimal</a></li>
+            
+                <li data-name="Tivy.AnimalManager#parseArg"><a href="Tivy.AnimalManager.html#parseArg">parseArg</a></li>
+            
+                <li data-name="Tivy.AnimalManager#runAnimals"><a href="Tivy.AnimalManager.html#runAnimals">runAnimals</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.Button">
+            <span class="title">
+                <a href="Tivy.Button.html">Tivy.Button</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.Button#bringToFront"><a href="Tivy.Button.html#bringToFront">bringToFront</a></li>
+            
+                <li data-name="Tivy.Button#sendToBack"><a href="Tivy.Button.html#sendToBack">sendToBack</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.CONST">
+            <span class="title">
+                <a href="Tivy.CONST.html">Tivy.CONST</a>
+                
+                <span class="static">static</span>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="Tivy.CONST.EASINGS"><a href="Tivy.CONST.html#.EASINGS">EASINGS</a></li>
+            
+                <li data-name="Tivy.CONST.KEY_CODES"><a href="Tivy.CONST.html#.KEY_CODES">KEY_CODES</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.ImageFrame">
+            <span class="title">
+                <a href="Tivy.ImageFrame.html">Tivy.ImageFrame</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="Tivy.ImageFrame#frameHeight"><a href="Tivy.ImageFrame.html#frameHeight">frameHeight</a></li>
+            
+                <li data-name="Tivy.ImageFrame#frameWidth"><a href="Tivy.ImageFrame.html#frameWidth">frameWidth</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.ImageFrame#bringToFront"><a href="Tivy.ImageFrame.html#bringToFront">bringToFront</a></li>
+            
+                <li data-name="Tivy.ImageFrame#sendToBack"><a href="Tivy.ImageFrame.html#sendToBack">sendToBack</a></li>
+            
+                <li data-name="Tivy.ImageFrame#setBounds"><a href="Tivy.ImageFrame.html#setBounds">setBounds</a></li>
+            
+                <li data-name="Tivy.ImageFrame#setPosition"><a href="Tivy.ImageFrame.html#setPosition">setPosition</a></li>
+            
+                <li data-name="Tivy.ImageFrame#setSize"><a href="Tivy.ImageFrame.html#setSize">setSize</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.KeyboardManager">
+            <span class="title">
+                <a href="Tivy.KeyboardManager.html">Tivy.KeyboardManager</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="Tivy.KeyboardManager#isActive"><a href="Tivy.KeyboardManager.html#isActive">isActive</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.KeyboardManager#activate"><a href="Tivy.KeyboardManager.html#activate">activate</a></li>
+            
+                <li data-name="Tivy.KeyboardManager#deactivate"><a href="Tivy.KeyboardManager.html#deactivate">deactivate</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            <span class="subtitle">Events</span>
+            
+                <li data-name="Tivy.KeyboardManager#event:activated"><a href="Tivy.KeyboardManager.html#event:activated">activated</a></li>
+            
+                <li data-name="Tivy.KeyboardManager#event:deactivated"><a href="Tivy.KeyboardManager.html#event:deactivated">deactivated</a></li>
+            
+                <li data-name="Tivy.KeyboardManager#event:keydown"><a href="Tivy.KeyboardManager.html#event:keydown">keydown</a></li>
+            
+                <li data-name="Tivy.KeyboardManager#event:keypress"><a href="Tivy.KeyboardManager.html#event:keypress">keypress</a></li>
+            
+                <li data-name="Tivy.KeyboardManager#event:keyup"><a href="Tivy.KeyboardManager.html#event:keyup">keyup</a></li>
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.Metro">
+            <span class="title">
+                <a href="Tivy.Metro.html">Tivy.Metro</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="Tivy.Metro#container"><a href="Tivy.Metro.html#container">container</a></li>
+            
+                <li data-name="Tivy.Metro#controls"><a href="Tivy.Metro.html#controls">controls</a></li>
+            
+                <li data-name="Tivy.Metro#currentControl"><a href="Tivy.Metro.html#currentControl">currentControl</a></li>
+            
+                <li data-name="Tivy.Metro#currentIndex"><a href="Tivy.Metro.html#currentIndex">currentIndex</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.Metro#activate"><a href="Tivy.Metro.html#activate">activate</a></li>
+            
+                <li data-name="Tivy.Metro#attachEvent"><a href="Tivy.Metro.html#attachEvent">attachEvent</a></li>
+            
+                <li data-name="Tivy.Metro#bindData"><a href="Tivy.Metro.html#bindData">bindData</a></li>
+            
+                <li data-name="Tivy.Metro#bringToFront"><a href="Tivy.Metro.html#bringToFront">bringToFront</a></li>
+            
+                <li data-name="Tivy.Metro#sendToBack"><a href="Tivy.Metro.html#sendToBack">sendToBack</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            <span class="subtitle">Events</span>
+            
+                <li data-name="Tivy.Metro#event:change"><a href="Tivy.Metro.html#event:change">change</a></li>
+            
+                <li data-name="Tivy.Metro#event:execute"><a href="Tivy.Metro.html#event:execute">execute</a></li>
+            
+                <li data-name="Tivy.Metro#event:focus"><a href="Tivy.Metro.html#event:focus">focus</a></li>
+            
+                <li data-name="Tivy.Metro#event:leave"><a href="Tivy.Metro.html#event:leave">leave</a></li>
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.Stage">
+            <span class="title">
+                <a href="Tivy.Stage.html">Tivy.Stage</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.Stage#addChild"><a href="Tivy.Stage.html#addChild">addChild</a></li>
+            
+                <li data-name="Tivy.Stage#hide"><a href="Tivy.Stage.html#hide">hide</a></li>
+            
+                <li data-name="Tivy.Stage#repaint"><a href="Tivy.Stage.html#repaint">repaint</a></li>
+            
+                <li data-name="Tivy.Stage#show"><a href="Tivy.Stage.html#show">show</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.Tile">
+            <span class="title">
+                <a href="Tivy.Tile.html">Tivy.Tile</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.Tile#bringToFront"><a href="Tivy.Tile.html#bringToFront">bringToFront</a></li>
+            
+                <li data-name="Tivy.Tile#destroy"><a href="Tivy.Tile.html#destroy">destroy</a></li>
+            
+                <li data-name="Tivy.Tile#sendToBack"><a href="Tivy.Tile.html#sendToBack">sendToBack</a></li>
+            
+                <li data-name="Tivy.Tile#setContent"><a href="Tivy.Tile.html#setContent">setContent</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.UIObject">
+            <span class="title">
+                <a href="Tivy.UIObject.html">Tivy.UIObject</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.UIObject#bringToFront"><a href="Tivy.UIObject.html#bringToFront">bringToFront</a></li>
+            
+                <li data-name="Tivy.UIObject#sendToBack"><a href="Tivy.UIObject.html#sendToBack">sendToBack</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            </ul>
+        </li>
+    
+        <li class="item" data-name="Tivy.UIObjectGroup">
+            <span class="title">
+                <a href="Tivy.UIObjectGroup.html">Tivy.UIObjectGroup</a>
+                
+            </span>
+            <ul class="members itemMembers">
+            
+            <span class="subtitle">Members</span>
+            
+                <li data-name="Tivy.UIObjectGroup#container"><a href="Tivy.UIObjectGroup.html#container">container</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#controls"><a href="Tivy.UIObjectGroup.html#controls">controls</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#currentControl"><a href="Tivy.UIObjectGroup.html#currentControl">currentControl</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#currentIndex"><a href="Tivy.UIObjectGroup.html#currentIndex">currentIndex</a></li>
+            
+            </ul>
+            <ul class="typedefs itemMembers">
+            
+            </ul>
+            <ul class="methods itemMembers">
+            
+            <span class="subtitle">Methods</span>
+            
+                <li data-name="Tivy.UIObjectGroup#activate"><a href="Tivy.UIObjectGroup.html#activate">activate</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#attachEvent"><a href="Tivy.UIObjectGroup.html#attachEvent">attachEvent</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#bringToFront"><a href="Tivy.UIObjectGroup.html#bringToFront">bringToFront</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#sendToBack"><a href="Tivy.UIObjectGroup.html#sendToBack">sendToBack</a></li>
+            
+            </ul>
+            <ul class="events itemMembers">
+            
+            <span class="subtitle">Events</span>
+            
+                <li data-name="Tivy.UIObjectGroup#event:change"><a href="Tivy.UIObjectGroup.html#event:change">change</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#event:execute"><a href="Tivy.UIObjectGroup.html#event:execute">execute</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#event:focus"><a href="Tivy.UIObjectGroup.html#event:focus">focus</a></li>
+            
+                <li data-name="Tivy.UIObjectGroup#event:leave"><a href="Tivy.UIObjectGroup.html#event:leave">leave</a></li>
+            
+            </ul>
+        </li>
+    
+    </ul>
+</div>
+    <div class="main">
+        <h1 class="page-title" data-filename="Tivy.CONST.html">Namespace: CONST</h1>
+        
+
+
+
+<section>
+    
+<header>
+    <h2>
+    CONST
+    </h2>
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        
+            <div class="description"><p>静态值<br>Constant values used in Tivy</p></div>
+        
+        
+        
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+        
+        
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Members</h3>
+        
+        <dl>
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".EASINGS">
+            
+            
+            <span class="type-signature static">static</span> Tivy.CONST.EASINGS
+        </h4>
+         
+            <div class="tag-source">
+                <a href="const.js.html">const.js</a>, <a href="const.js.html#line74">line 74</a>
+            </div>
+        
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>缓动函数</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>linear</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>线性动画</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>swing</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>swing</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInQuad</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInQuad</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeOutQuad</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeOutQuad</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInOutQuad</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInOutQuad</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInCubic</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInCubic</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeOutCubic</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeOutCubic</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInOutCubic</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInOutCubic</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInQuart</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInQuart</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeOutQuart</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeOutQuart</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInOutQuart</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInOutQuart</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInQuint</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInQuint</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeOutQuint</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeOutQuint</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInOutQuint</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInOutQuint</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInSine</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInSine</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeOutSine</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeOutSine</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInOutSine</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInOutSine</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInExpo</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInExpo</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeOutExpo</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeOutExpo</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInOutExpo</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInOutExpo</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInCirc</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInCirc</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeOutCirc</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeOutCirc</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInOutCirc</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInOutCirc</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInElastic</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInElastic</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeOutElastic</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeOutElastic</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInOutElastic</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInOutElastic</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInBack</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInBack</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeOutBack</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeOutBack</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeInOutBack</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeInOutBack</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>easeOutBounce</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>easeOutBounce</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id=".KEY_CODES">
+            
+            
+            <span class="type-signature static">static</span> Tivy.CONST.KEY_CODES
+        </h4>
+         
+            <div class="tag-source">
+                <a href="const.js.html">const.js</a>, <a href="const.js.html#line21">line 21</a>
+            </div>
+        
+    </div>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <p>键盘的键值, 定义了通用遥控器的主要键<br>Main keycode of remoter</p>
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+        <h5 class="subsection-title">Properties:</h5>
+        
+        <dl>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>KEY_CODES</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+            
+            <td class="description last"><p>键盘的按键值</p>
+                <h6>Properties</h6>
+
+<table class="props">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>ENTER</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    13
+                
+                </td>
+            
+            
+            <td class="description last"><p>回车</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>ESC</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    27
+                
+                </td>
+            
+            
+            <td class="description last"><p>返回</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>LEFT</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    37
+                
+                </td>
+            
+            
+            <td class="description last"><p>左</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>UP</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    38
+                
+                </td>
+            
+            
+            <td class="description last"><p>上</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>RIGHT</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    39
+                
+                </td>
+            
+            
+            <td class="description last"><p>右</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>DOWN</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+            
+            
+                <td class="default">
+                
+                    40
+                
+                </td>
+            
+            
+            <td class="description last"><p>下</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
+        </tr>
+	
+	
+	</tbody>
+</table></dl>
+        
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+        </dl>
+    
+    
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+
+        
+
+        <footer>
+            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Feb 25 2016 16:41:20 GMT+0800 (CST)
+        </footer>
+    </div>
+</div>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>
