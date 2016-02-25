@@ -1587,6 +1587,22 @@ var CONST = {
    * @property {function} easeInQuint - easeInQuint
    * @property {function} easeOutQuint - easeOutQuint
    * @property {function} easeInOutQuint - easeInOutQuint
+   * @property {function} easeInSine - easeInSine
+   * @property {function} easeOutSine - easeOutSine
+   * @property {function} easeInOutSine - easeInOutSine
+   * @property {function} easeInExpo - easeInExpo
+   * @property {function} easeOutExpo - easeOutExpo
+   * @property {function} easeInOutExpo - easeInOutExpo
+   * @property {function} easeInCirc - easeInCirc
+   * @property {function} easeOutCirc - easeOutCirc
+   * @property {function} easeInOutCirc - easeInOutCirc
+   * @property {function} easeInElastic - easeInElastic
+   * @property {function} easeOutElastic - easeOutElastic
+   * @property {function} easeInOutElastic - easeInOutElastic
+   * @property {function} easeInBack - easeInBack
+   * @property {function} easeOutBack - easeOutBack
+   * @property {function} easeInOutBack - easeInOutBack
+   * @property {function} easeOutBounce - easeOutBounce
    */
   EASINGS  : {
     linear: function (t) {
