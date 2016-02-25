@@ -85,7 +85,9 @@ http://cloudbeer.github.io/Tivy/docs/
 
 http://cloudbeer.github.io/Tivy/examples/metro.html
 
-## This project is in working now.
+---------------------------------------
 
-## 这个类库还在开发中, 欢迎加入一起开发.
+This project is in working now.
+
+这个类库还在开发中, 欢迎加入一起开发.
 
