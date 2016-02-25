@@ -71,9 +71,9 @@ Tivy is a lightware WebGL UI framework based on Pixi.js. It's designed for TV.
 
     基础事件包括:
 
-    ++ PIXI 的事件（请对照 PIXI 文档）: mousedown, mouseup, mouseover, mouseleave, touchstart, touchmove, touchend
+    + PIXI 的事件（请对照 PIXI 文档）: mousedown, mouseup, mouseover, mouseleave, touchstart, touchmove, touchend
 
-    ++ 扩展键盘事件（标准 windows 事件）:  keydown, keyup, keypress
+    + 扩展键盘事件（标准 windows 事件）:  keydown, keyup, keypress
 
 
 
