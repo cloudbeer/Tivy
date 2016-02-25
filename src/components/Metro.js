@@ -160,41 +160,16 @@ var KEY_CODES     = require('../const').KEY_CODES;
 
     metro.bindData(data);
 
-
-    metro.onTileOver = function (target, index) {
-      var oriH     = target.height,
-          oriW     = target.width;
-      target.scale = {x: 1.2, y: 1.2};
-      target.x     = target.x + (oriW - target.width) / 2;
-      target.y     = target.y + (oriH - target.height) / 2;
-      target.bringToFront();
-      stage.repaint();
-    };
-
-    metro.onTileOut = function (target, index) {
-      var oriH     = target.height,
-          oriW     = target.width;
-      target.scale = {x: 1, y: 1};
-      target.x     = target.x + (oriW - target.width) / 2;
-      target.y     = target.y + (oriH - target.height) / 2;
-      target.sendToBack();
-      stage.repaint();
-    };
-
-    metro.onTileExecute = function (target, index) {
-      console.log('execute', target.text);
-    }
-
   });
 
  *
  *
  *
  * @class
- * @param options {json} Metro config
- * @constructor
  * @memberof Tivy
  * @extends {Tivy.UIObjectGroup}
+ * @param {json} options  - Metro config
+ * @param {json} options.layout  - 布局配置
  */
 function Metro(options) {
   if (!options) {
@@ -356,8 +331,9 @@ Metro.prototype._init = function () {
 /**
  * 绑定数据
  *
- * @param newData {json} 绑定的数据, 格式如下:
- * @example
+ * @param {Object} newData - 绑定的数据, 格式如下:
+ *
+ * ```
  *  [{
    imageUrl: './assets/img/200X200-1.jpg',
    text: '小正0',
@@ -368,6 +344,7 @@ Metro.prototype._init = function () {
    text: '小正1',
    data: 'anything'
  }]
+ * ```
  *
  */
 Metro.prototype.bindData = function (newData) {

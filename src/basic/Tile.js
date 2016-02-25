@@ -3,11 +3,11 @@ var UIObject = require('../UIObject');
  * 广告招贴
  *
  *
- * ```javascript
+ * @example
  *
  var xTexture = PIXI.Texture.fromImage('./assets/img/place-holder.png');
  xTexture.baseTexture.on('loaded', function () {
-    var poster = new Tivy.Poster({
+    var tile = new Tivy.Tile({
       size: {width: 192, height: 338},
       stage: stage,
       showText: true,
@@ -26,27 +26,22 @@ var UIObject = require('../UIObject');
     }, 10000);
   });
 
- * ```
+ *
  * @class
  * @memberof Tivy
- * @param options {json} 配置节点
- * ```json
- * {
- *  stage: stage01, //Instance of Stage
- *  size: {width: 300, height: 400},
- *  position: {x: 0, y: 0},
- *  textColor: 0x7f7f7f,
- *  textBgColor: 0xffffff,
- *  textHeight: 50,
- *  font: '25px 迷你简准圆',
- *  text: '标题',
- *  imageUrl: someUrl,
- *  radius: 10,
- *  showText: false
- * }
- * ```
- * @constructor
  * @extends Tivy.UIObject
+ * @param {json} options - 配置节点
+ * @param {{width: number, height: number}} options.size={width:300,height:400}  - 尺寸
+ * @param {PIXI.Texture} options.placeHolderTexture  - 素材贴图, 为了占位
+ * @param {boolean} options.showText=false - 是否显示文字
+ * @param {string} options.text - 要显示的文字
+ * @param {number|string} options.textColor=0x7f7f7f - 文字颜色
+ * @param {number|string} options.textBgColor=0xffffff - 文字背景颜色
+ * @param {number} options.textHeight=50 - 文字区块的高度
+ * @param {string} options.font - 字体, 如 '25px 迷你简准圆'
+ * @param {string} options.imageUrl - 图片地址
+ * @param {number} options.radius=0 - 瓷片的圆角
+ *
  */
 function Tile(options) {
   if (!options) {
@@ -148,9 +143,9 @@ Tile.prototype._init = function () {
 /**
  * 设置广告招贴的图片和文字
  *
- * @param imgUrl {string} 海报的图片路径
- * @param text {string} 海报的标题
- * @param data {Object} 附加的数据
+ * @param {string} imgUrl 海报的图片路径
+ * @param {string} [text] - 海报的标题
+ * @param {Object} [data] - 附加的数据
  */
 Tile.prototype.setContent = function (imgUrl, text, data) {
   if (imgUrl) {
@@ -180,7 +175,7 @@ Tile.prototype.setContent = function (imgUrl, text, data) {
 /**
  * 销毁海报
  * Destroys the poster
- * @param [reserveTexture=false] {boolean} 是否保留贴图, 默认不保存
+ * @param {boolean} [reserveTexture=false] - 是否保留贴图, 默认不保存
  */
 Tile.prototype.destroy = function (reserveTexture) {
   this.removeChildren();

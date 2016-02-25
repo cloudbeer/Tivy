@@ -54,18 +54,6 @@
             </span>
             <ul class="members itemMembers">
             
-            <span class="subtitle">Members</span>
-            
-                <li data-name="Tivy.Animal#duration"><a href="Tivy.Animal.html#duration">duration</a></li>
-            
-                <li data-name="Tivy.Animal#easing"><a href="Tivy.Animal.html#easing">easing</a></li>
-            
-                <li data-name="Tivy.Animal#property"><a href="Tivy.Animal.html#property">property</a></li>
-            
-                <li data-name="Tivy.Animal#step"><a href="Tivy.Animal.html#step">step</a></li>
-            
-                <li data-name="Tivy.Animal#target"><a href="Tivy.Animal.html#target">target</a></li>
-            
             </ul>
             <ul class="typedefs itemMembers">
             
@@ -302,35 +290,6 @@
             </ul>
         </li>
     
-        <li class="item" data-name="Tivy.Poster">
-            <span class="title">
-                <a href="Tivy.Poster.html">Tivy.Poster</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            <span class="subtitle">Methods</span>
-            
-                <li data-name="Tivy.Poster#bringToFront"><a href="Tivy.Poster.html#bringToFront">bringToFront</a></li>
-            
-                <li data-name="Tivy.Poster#destroy"><a href="Tivy.Poster.html#destroy">destroy</a></li>
-            
-                <li data-name="Tivy.Poster#sendToBack"><a href="Tivy.Poster.html#sendToBack">sendToBack</a></li>
-            
-                <li data-name="Tivy.Poster#setContent"><a href="Tivy.Poster.html#setContent">setContent</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
         <li class="item" data-name="Tivy.Stage">
             <span class="title">
                 <a href="Tivy.Stage.html">Tivy.Stage</a>
@@ -496,7 +455,7 @@
     
         
         <div class="tag-source">
-            <a href="components_Metro.js.html">components/Metro.js</a>, <a href="components_Metro.js.html#line198">line 198</a>
+            <a href="components_Metro.js.html">components/Metro.js</a>, <a href="components_Metro.js.html#line174">line 174</a>
         </div>
         
     </div>
@@ -554,7 +513,52 @@
             
             <td class="description last">
                 
-                <p>Metro config</p></td>
+                <p>Metro config</p>
+                
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>layout</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">json</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>布局配置</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
         </tr>
 	
 	
@@ -757,31 +761,6 @@
 
     metro.bindData(data);
 
-
-    metro.onTileOver = function (target, index) {
-      var oriH     = target.height,
-          oriW     = target.width;
-      target.scale = {x: 1.2, y: 1.2};
-      target.x     = target.x + (oriW - target.width) / 2;
-      target.y     = target.y + (oriH - target.height) / 2;
-      target.bringToFront();
-      stage.repaint();
-    };
-
-    metro.onTileOut = function (target, index) {
-      var oriH     = target.height,
-          oriW     = target.width;
-      target.scale = {x: 1, y: 1};
-      target.x     = target.x + (oriW - target.width) / 2;
-      target.y     = target.y + (oriH - target.height) / 2;
-      target.sendToBack();
-      stage.repaint();
-    };
-
-    metro.onTileExecute = function (target, index) {
-      console.log('execute', target.text);
-    }
-
   });</code></pre>
     
 
@@ -929,6 +908,8 @@
                 <span class="inherited"><a href="Tivy.UIObjectGroup.html#currentControl">inherited</a></span>
             
             
+                <span class="overrides"><a href="Tivy.UIObjectGroup.html#currentControl">overrides</a></span>
+            
             <span class="type-signature ">readonly</span> currentControl<span class="type-signature type object">Object</span> 
         </h4>
          
@@ -983,6 +964,8 @@
             
                 <span class="inherited"><a href="Tivy.UIObjectGroup.html#currentIndex">inherited</a></span>
             
+            
+                <span class="overrides"><a href="Tivy.UIObjectGroup.html#currentIndex">overrides</a></span>
             
             <span class="type-signature ">readonly</span> currentIndex<span class="type-signature type number">number</span> 
         </h4>
@@ -1048,7 +1031,7 @@
     
         
         <div class="tag-source">
-            <a href="components_Metro.js.html">components/Metro.js</a>, <a href="components_Metro.js.html#line258">line 258</a>
+            <a href="components_Metro.js.html">components/Metro.js</a>, <a href="components_Metro.js.html#line350">line 350</a>
         </div>
         
     </div>
@@ -1096,7 +1079,7 @@
             <td class="type">
             
                 
-<span class="param-type">json</span>
+<span class="param-type">Object</span>
 
 
             
@@ -1106,7 +1089,17 @@
             
             <td class="description last">
                 
-                <p>绑定的数据, 格式如下:</p></td>
+                <p>绑定的数据, 格式如下:</p>
+<pre class="prettyprint source"><code> [{
+   imageUrl: './assets/img/200X200-1.jpg',
+   text: '小正0',
+   data: 'anything'
+ },
+ {
+   imageUrl: './assets/img/200X200.jpg',
+   text: '小正1',
+   data: 'anything'
+ }]</code></pre></td>
         </tr>
 	
 	
@@ -1151,23 +1144,6 @@
     
     
     
-        <h5>Example</h5>
-        
-
-    
-    <pre class="prettyprint"><code>[{
-   imageUrl: './assets/img/200X200-1.jpg',
-   text: '小正0',
-   data: 'anything'
- },
- {
-   imageUrl: './assets/img/200X200.jpg',
-   text: '小正1',
-   data: 'anything'
- }]</code></pre>
-    
-
-    
 </dd>
 
         
@@ -1184,7 +1160,7 @@
     
         
         <div class="tag-source">
-            <a href="UIObjectGroup.js.html">UIObjectGroup.js</a>, <a href="UIObjectGroup.js.html#line174">line 174</a>
+            <a href="UIObjectGroup.js.html">UIObjectGroup.js</a>, <a href="UIObjectGroup.js.html#line179">line 179</a>
         </div>
         
     </div>
@@ -1394,7 +1370,7 @@
     
         
         <div class="tag-source">
-            <a href="UIObject.js.html">UIObject.js</a>, <a href="UIObject.js.html#line42">line 42</a>
+            <a href="UIObject.js.html">UIObject.js</a>, <a href="UIObject.js.html#line45">line 45</a>
         </div>
         
     </div>
@@ -1468,7 +1444,7 @@
     
         
         <div class="tag-source">
-            <a href="UIObject.js.html">UIObject.js</a>, <a href="UIObject.js.html#line53">line 53</a>
+            <a href="UIObject.js.html">UIObject.js</a>, <a href="UIObject.js.html#line56">line 56</a>
         </div>
         
     </div>
@@ -1875,7 +1851,7 @@
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Feb 24 2016 11:07:10 GMT+0800 (CST)
+            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Feb 25 2016 12:21:15 GMT+0800 (CST)
         </footer>
     </div>
 </div>

@@ -118,9 +118,12 @@ module.exports = Stage;
  *
  * @class
  * @memberof Tivy
- * @param options {json} - 构造参数, 必须有 stage 参数
- * @constructor
  * @extends PIXI.Container
+ * @param {Object} options  - json 格式的参数
+ * @param {Tivy.Stage} options.stage  - 舞台, 这个参数必须设置
+ * @param {PIXI.DisplayObject} options.owner  - 当前物体的父容器
+ * @param {{x:number, y:number}} options.position={x:0,y:0} - 位置
+ * @param {{width:number, height:number}} options.size - 大小
  */
 function UIObject(options) {
   PIXI.Container.call(this);
@@ -364,6 +367,8 @@ UIObjectGroup.prototype.activate = function () {
 
 };
 },{"./UIObject":2}],4:[function(require,module,exports){
+var EASINGS = require('../const').EASINGS;
+
 /**
  * 一个动画, 这个单词是我故意写错的
  * An animation, this is a wrong word, it is cool!
@@ -372,48 +377,23 @@ UIObjectGroup.prototype.activate = function () {
  *
  * @class
  * @memberof Tivy
- * @param options {json} 动画配置
+ * @param {json} options - 动画配置
+ * @param {Object} options.target - 这个是一个函数,指定 target 的属性
+ * @param {string} options.property - 需要变化的物件的属性, 如 'x'
+ * @param {number} options.to - 结束的值
+ * @param {number} [options.duration=1000] - 运行动画的总时间, 单位 ms
+ * @param {function} [options.easing=Tivy.CONST.EASINGS.linear] - 缓动函数,计算属性变化. 默认参考 {@link Tivy.CONST}
+ * @param {function} [options.step] - 这个是一个函数, 用于指定 target 的属性
+ * @param {number} [options.from] - 开始的值, 如果不指定, 就是动画开始前物体的该属性值
  */
 function Animal(options) {
-
-  /**
-   * 这个是一个函数,指定 target 的属性
-   * @member {object}
-   */
-  this.target = options.target;
-  /**
-   * 需要变化的物件的属性
-   * @member {string}
-   */
+  this.target   = options.target;
   this.property = options.property;
-
-  //this.tweeners = [];
-
-
-  ///**
-  // * 运行动画的间隔时间, 单位 ms, 默认 16 （~=60fps）
-  // * @member {number}
-  // */
-  //this.delay = options.delay || 16;
-
-  /**
-   * 运行动画的总时间, 单位 ms
-   * @member {number}
-   */
-  this.duration = options.duration;
-  /**
-   * 这是一个函数,计算坐标变化
-   * @member {function}
-   */
-  this.easing = options.easing;
-
-  /**
-   * 这个是一个函数,指定 target 的属性
-   * @member {function}
-   */
-  this.step = options.step;
-  this.from = options.from;
-  this.to   = options.to;
+  this.duration = options.duration || 1000;
+  this.easing   = options.easing || EASINGS.linear;
+  this.step     = options.step;
+  this.from     = options.from;
+  this.to       = options.to;
 
 
   this.tag      = null;
@@ -421,11 +401,6 @@ function Animal(options) {
   this.finished = false;
 
   this._start = new Date;
-
-
-  //this.start      = new Date;
-  //this.timePassed = 0;
-  //this.progress   = 0;
 
 }
 
@@ -442,7 +417,7 @@ module.exports               = Animal;
 //  }
 //
 //});
-},{}],5:[function(require,module,exports){
+},{"../const":10}],5:[function(require,module,exports){
 var Animal = require('./Animal');
 var CONST  = require('../const');
 
@@ -704,7 +679,7 @@ AnimalManager.prototype.parseArg = function (v1, v2, v3, v4) {
   return rtn;
 };
 
-},{"../const":11,"./Animal":4}],6:[function(require,module,exports){
+},{"../const":10,"./Animal":4}],6:[function(require,module,exports){
 var UIObject = require('../UIObject');
 
 /**
@@ -1008,11 +983,11 @@ var UIObject = require('../UIObject');
  * 广告招贴
  *
  *
- * ```javascript
+ * @example
  *
  var xTexture = PIXI.Texture.fromImage('./assets/img/place-holder.png');
  xTexture.baseTexture.on('loaded', function () {
-    var poster = new Tivy.Poster({
+    var tile = new Tivy.Tile({
       size: {width: 192, height: 338},
       stage: stage,
       showText: true,
@@ -1031,27 +1006,22 @@ var UIObject = require('../UIObject');
     }, 10000);
   });
 
- * ```
+ *
  * @class
  * @memberof Tivy
- * @param options {json} 配置节点
- * ```json
- * {
- *  stage: stage01, //Instance of Stage
- *  size: {width: 300, height: 400},
- *  position: {x: 0, y: 0},
- *  textColor: 0x7f7f7f,
- *  textBgColor: 0xffffff,
- *  textHeight: 50,
- *  font: '25px 迷你简准圆',
- *  text: '标题',
- *  imageUrl: someUrl,
- *  radius: 10,
- *  showText: false
- * }
- * ```
- * @constructor
  * @extends Tivy.UIObject
+ * @param {json} options - 配置节点
+ * @param {{width: number, height: number}} options.size={width:300,height:400}  - 尺寸
+ * @param {PIXI.Texture} options.placeHolderTexture  - 素材贴图, 为了占位
+ * @param {boolean} options.showText=false - 是否显示文字
+ * @param {string} options.text - 要显示的文字
+ * @param {number|string} options.textColor=0x7f7f7f - 文字颜色
+ * @param {number|string} options.textBgColor=0xffffff - 文字背景颜色
+ * @param {number} options.textHeight=50 - 文字区块的高度
+ * @param {string} options.font - 字体, 如 '25px 迷你简准圆'
+ * @param {string} options.imageUrl - 图片地址
+ * @param {number} options.radius=0 - 瓷片的圆角
+ *
  */
 function Tile(options) {
   if (!options) {
@@ -1153,9 +1123,9 @@ Tile.prototype._init = function () {
 /**
  * 设置广告招贴的图片和文字
  *
- * @param imgUrl {string} 海报的图片路径
- * @param text {string} 海报的标题
- * @param data {Object} 附加的数据
+ * @param {string} imgUrl 海报的图片路径
+ * @param {string} [text] - 海报的标题
+ * @param {Object} [data] - 附加的数据
  */
 Tile.prototype.setContent = function (imgUrl, text, data) {
   if (imgUrl) {
@@ -1185,7 +1155,7 @@ Tile.prototype.setContent = function (imgUrl, text, data) {
 /**
  * 销毁海报
  * Destroys the poster
- * @param [reserveTexture=false] {boolean} 是否保留贴图, 默认不保存
+ * @param {boolean} [reserveTexture=false] - 是否保留贴图, 默认不保存
  */
 Tile.prototype.destroy = function (reserveTexture) {
   this.removeChildren();
@@ -1365,41 +1335,16 @@ var KEY_CODES     = require('../const').KEY_CODES;
 
     metro.bindData(data);
 
-
-    metro.onTileOver = function (target, index) {
-      var oriH     = target.height,
-          oriW     = target.width;
-      target.scale = {x: 1.2, y: 1.2};
-      target.x     = target.x + (oriW - target.width) / 2;
-      target.y     = target.y + (oriH - target.height) / 2;
-      target.bringToFront();
-      stage.repaint();
-    };
-
-    metro.onTileOut = function (target, index) {
-      var oriH     = target.height,
-          oriW     = target.width;
-      target.scale = {x: 1, y: 1};
-      target.x     = target.x + (oriW - target.width) / 2;
-      target.y     = target.y + (oriH - target.height) / 2;
-      target.sendToBack();
-      stage.repaint();
-    };
-
-    metro.onTileExecute = function (target, index) {
-      console.log('execute', target.text);
-    }
-
   });
 
  *
  *
  *
  * @class
- * @param options {json} Metro config
- * @constructor
  * @memberof Tivy
  * @extends {Tivy.UIObjectGroup}
+ * @param {json} options  - Metro config
+ * @param {json} options.layout  - 布局配置
  */
 function Metro(options) {
   if (!options) {
@@ -1561,8 +1506,9 @@ Metro.prototype._init = function () {
 /**
  * 绑定数据
  *
- * @param newData {json} 绑定的数据, 格式如下:
- * @example
+ * @param {Object} newData - 绑定的数据, 格式如下:
+ *
+ * ```
  *  [{
    imageUrl: './assets/img/200X200-1.jpg',
    text: '小正0',
@@ -1573,6 +1519,7 @@ Metro.prototype._init = function () {
    text: '小正1',
    data: 'anything'
  }]
+ * ```
  *
  */
 Metro.prototype.bindData = function (newData) {
@@ -1583,202 +1530,7 @@ Metro.prototype.bindData = function (newData) {
 };
 
 
-},{"../UIObjectGroup":3,"../basic/Tile":8,"../const":11}],10:[function(require,module,exports){
-var UIObject = require('../UIObject');
-/**
- * 广告招贴
- *
- *
- * ```javascript
- *
- var xTexture = PIXI.Texture.fromImage('./assets/img/place-holder.png');
- xTexture.baseTexture.on('loaded', function () {
-    var poster = new Tivy.Poster({
-      size: {width: 192, height: 338},
-      stage: stage,
-      showText: true,
-      text: "中文",
-      position: {x: 30, y: 30},
-      placeHolderTexture: xTexture,
-      textBgColor: 0x006600,
-      textColor:0xffffff,
-      //imageUrl:'./assets/img/test.png'
-    });
-
-    poster.setContent('./assets/img/test.png', '长发公主');
-
-    window.setTimeout(function () {
-      poster.destroy();
-    }, 10000);
-  });
-
- * ```
- * @class
- * @memberof Tivy
- * @constructor
- * @extends Tivy.UIObject
- * @param options {json} 配置节点
- * ```json
- * {
- *  stage: stage01, //Instance of Stage
- *  size: {width: 300, height: 400},
- *  position: {x: 0, y: 0},
- *  textColor: 0x7f7f7f,
- *  textBgColor: 0xffffff,
- *  textHeight: 50,
- *  font: '25px 迷你简准圆',
- *  text: '标题',
- *  imageUrl: someUrl,
- *  radius: 10,
- *  showText: false
- * }
- * ```
- */
-function Poster(options) {
-  if (!options) {
-    options = {};
-  }
-  this.size = options.size = options.size || {width: 300, height: 400};
-  UIObject.call(this, options);
-
-  this.placeHolderTexture = options.placeHolderTexture;
-  if (!this.placeHolderTexture) {
-    throw new Error('placeHolderTexture is null');
-  }
-
-  this.showText      = options.showText || false;
-  this.text          = options.text;
-  this.textColor     = options.textColor || 0x7f7f7f;
-  this.textBgColor   = options.textBgColor || 0xffffff;
-  this.textHeight    = options.textHeight || 50;
-  this.font          = options.font || '25px 迷你简准圆';
-  this.imageUrl      = options.imageUrl;
-  this.radius        = options.radius || 0;
-  this.posterTexture = null;
-  this.imageSprite   = null;
-  this.textLabel     = null;
-  this.posterSetted  = false;
-
-  this._paint();
-}
-
-Poster.prototype             = Object.create(UIObject.prototype);
-Poster.prototype.constructor = Poster;
-module.exports               = Poster;
-
-/**
- * 画上去
- *
- * @private
- */
-Poster.prototype._paint = function () {
-  if (this.radius) {
-    var mask = new PIXI.Graphics();
-    mask.lineStyle(0);
-    mask.beginFill(0xffffff);
-    mask.drawRoundedRect(0, 0, this.size.width, this.size.height, this.radius);
-    mask.endFill();
-    this.addChild(mask);
-    this.mask = mask;
-  }
-
-  //背景
-  var g = new PIXI.Graphics();
-  g.lineStyle(0);
-  g.beginFill(this.textBgColor, .5);
-  if (this.showText && this.text) {
-    g.drawRect(0, 0, this.size.width, this.size.height - this.textHeight);
-
-    //文字背景
-    g.beginFill(this.textBgColor, .7);
-    g.drawRect(0, this.size.height - 50, this.size.width, this.textHeight);
-
-    this.textLabel = new PIXI.Text(this.text, {
-      font: this.font,
-      fill: this.textColor
-    });
-
-    this.textLabel.y = this.size.height - this.textHeight + (this.textHeight - this.textLabel.height) / 2;
-    if (this.textLabel.width > this.size.width) {
-      this.textLabel.x = 10;
-    } else {
-      this.textLabel.x = (this.size.width - this.textLabel.width) / 2;
-    }
-
-    g.addChild(this.textLabel);
-  }
-  else {
-    g.drawRect(0, 0, this.size.width, this.size.height);
-  }
-  g.endFill();
-  this.addChild(g);
-
-  this.imageSprite        = new PIXI.Sprite(this.placeHolderTexture);
-  this.imageSprite.width  = this.size.width;
-  this.imageSprite.height = this.showText ? this.size.height - this.textHeight : this.size.height;
-  //this.imageSprite.setInteractive(true);
-
-  if (this.imageUrl) {
-    this.setContent(this.imageUrl);
-  }
-
-  this.addChild(this.imageSprite);
-
-  this.stage.repaint();
-
-};
-
-/**
- * 设置广告招贴的图片和文字
- *
- * @param imgUrl {string} 海报的图片路径
- * @param text {string} 海报的标题
- */
-Poster.prototype.setContent = function (imgUrl, text) {
-  if (imgUrl) {
-    imgUrl                   = imgUrl + '?t=' + (new Date()) * 1;
-    this.posterTexture       = PIXI.Texture.fromImage(imgUrl);
-    this.imageSprite.texture = this.posterTexture;
-    var _stage               = this.stage;
-    this.posterTexture.baseTexture.on('loaded', function () {
-      _stage.repaint();
-    });
-  }
-
-  if (this.showText && text) {
-    this.textLabel.text = text;
-    if (this.textLabel.width > this.size.width) {
-      this.textLabel.x = 10;
-    } else {
-      this.textLabel.x = (this.size.width - this.textLabel.width) / 2;
-    }
-  }
-  this.text         = text;
-  this.posterSetted = true;
-};
-
-
-/**
- * 销毁海报
- * Destroys the poster
- * @param reserveTexture {boolean} 是否保留贴图, 默认不保存
- */
-Poster.prototype.destroy = function (reserveTexture) {
-  this.removeChildren();
-  this.stage.removeChild(this);
-  UIObject.prototype.destroy.call(this, true);
-
-  //this.imageSprite.texture = this.placeHolderTexture;
-  if (!reserveTexture) {
-    if (this.posterTexture && this.posterSetted) {
-      this.posterTexture.destroy(true);
-    }
-  }
-  this.stage.repaint();
-};
-
-
-},{"../UIObject":2}],11:[function(require,module,exports){
+},{"../UIObjectGroup":3,"../basic/Tile":8,"../const":10}],10:[function(require,module,exports){
 /**
  * 静态值
  * Constant values used in Tivy
@@ -1791,7 +1543,7 @@ var CONST = {
   /**
    * 键盘的键值, 定义了通用遥控器的主要键
    * Main keycode of remoter
-   * @property {object} KEY_CODES - 键盘的按键值
+   * @property {Object} KEY_CODES - 键盘的按键值
    * @property {number} KEY_CODES.ENTER=13 - 回车
    * @property {number} KEY_CODES.ESC=27 - 返回
    * @property {number} KEY_CODES.LEFT=37 - 左
@@ -1824,6 +1576,17 @@ var CONST = {
    * @property {function} linear - 线性动画
    * @property {function} swing - swing
    * @property {function} easeInQuad - easeInQuad
+   * @property {function} easeOutQuad - easeOutQuad
+   * @property {function} easeInOutQuad - easeInOutQuad
+   * @property {function} easeInCubic - easeInCubic
+   * @property {function} easeOutCubic - easeOutCubic
+   * @property {function} easeInOutCubic - easeInOutCubic
+   * @property {function} easeInQuart - easeInQuart
+   * @property {function} easeOutQuart - easeOutQuart
+   * @property {function} easeInOutQuart - easeInOutQuart
+   * @property {function} easeInQuint - easeInQuint
+   * @property {function} easeOutQuint - easeOutQuint
+   * @property {function} easeInOutQuint - easeInOutQuint
    */
   EASINGS  : {
     linear: function (t) {
@@ -1833,58 +1596,183 @@ var CONST = {
       return 0.5 - Math.cos(t * Math.PI) / 2;
     },
 
-    easeInQuad    : function (t) {
-      return t * t
+    easeInQuad      : function (t) {
+      return t * t;
     },
     // decelerating to zero velocity
-    easeOutQuad   : function (t) {
-      return t * (2 - t)
+    easeOutQuad     : function (t) {
+      return t * (2 - t);
     },
     // acceleration until halfway, then deceleration
-    easeInOutQuad : function (t) {
-      return t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t
+    easeInOutQuad   : function (t) {
+      return t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
     },
     // accelerating from zero velocity
-    easeInCubic   : function (t) {
-      return t * t * t
+    easeInCubic     : function (t) {
+      return t * t * t;
     },
     // decelerating to zero velocity
-    easeOutCubic  : function (t) {
-      return (--t) * t * t + 1
+    easeOutCubic    : function (t) {
+      return (--t) * t * t + 1;
     },
     // acceleration until halfway, then deceleration
-    easeInOutCubic: function (t) {
-      return t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
+    easeInOutCubic  : function (t) {
+      return t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
     },
     // accelerating from zero velocity
-    easeInQuart   : function (t) {
-      return t * t * t * t
+    easeInQuart     : function (t) {
+      return t * t * t * t;
     },
     // decelerating to zero velocity
-    easeOutQuart  : function (t) {
-      return 1 - (--t) * t * t * t
+    easeOutQuart    : function (t) {
+      return 1 - (--t) * t * t * t;
     },
     // acceleration until halfway, then deceleration
-    easeInOutQuart: function (t) {
-      return t < .5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t
+    easeInOutQuart  : function (t) {
+      return t < .5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t;
     },
     // accelerating from zero velocity
-    easeInQuint   : function (t) {
-      return t * t * t * t * t
+    easeInQuint     : function (t) {
+      return t * t * t * t * t;
     },
     // decelerating to zero velocity
-    easeOutQuint  : function (t) {
-      return 1 + (--t) * t * t * t * t
+    easeOutQuint    : function (t) {
+      return 1 + (--t) * t * t * t * t;
     },
     // acceleration until halfway, then deceleration
-    easeInOutQuint: function (t) {
-      return t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t
+    easeInOutQuint  : function (t) {
+      return t < .5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t;
+    },
+    easeInSine      : function (t) {
+      return -Math.cos(t * (Math.PI / 2)) + 1;
+    },
+    easeOutSine     : function (t) {
+      return Math.sin(t * (Math.PI / 2));
+    },
+    easeInOutSine   : function (t) {
+      return -1 / 2 * (Math.cos(Math.PI * t) - 1);
+    },
+    //easeOutInSine   : function (t) {
+    //  if (t < 0.5) {
+    //    return this.easeOutSine(t);
+    //  }
+    //  return this.easeInSine(t);
+    //},
+    easeInExpo      : function (t) {
+      return (t == 0) ? 0 : Math.pow(2, 10 * (t - 1));
+    },
+    easeOutExpo     : function (t) {
+      return (t == 1) ? 1 : (-Math.pow(2, -10 * t) + 1);
+    },
+    easeInOutExpo   : function (t) {
+      if (t == 0) {
+        return 0;
+      }
+      if (t == 1) {
+        return 1;
+      }
+      t = t * 2;
+      if (t < 1) {
+        return 1 / 2 * Math.pow(2, 10 * (t - 1)) - 0.0005;
+      }
+      t = t - 1;
+      return 1 / 2 * 1.0005 * (-Math.pow(2, -10 * t) + 2);
+    },
+    //easeOutInExpo   : function (t) {
+    //  if (t < 0.5) {
+    //    return CONST.EASINGS.easeOutExpo(t);
+    //  }
+    //  return CONST.EASINGS.easeInExpo(t);
+    //},
+    easeInCirc      : function (t) {
+      return -1 * (Math.sqrt(1 - t * t) - 1);
+    },
+    easeOutCirc     : function (t) {
+      t = t - 1;
+      return Math.sqrt(1 - t * t);
+    },
+    easeInOutCirc   : function (t) {
+      if ((t /= 1 / 2) < 1) {
+        return -1 / 2 * (Math.sqrt(1 - t * t) - 1);
+      }
+      return 1 / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1);
+    },
+    //easeOutInCirc   : function (t) {
+    //  if (t < 0.5) {
+    //    return CONST.EASINGS.easeOutCirc(t);
+    //  }
+    //  return CONST.EASINGS.easeInCirc(t);
+    //},
+    easeInElastic   : function (t) {
+      if (t == 0 || t == 1) {
+        return t;
+      }
+      var p = 0.3;
+      var s = p / 4;
+      return -Math.pow(2, 10 * (t -= 1)) * Math.sin((t - s) * (2 * Math.PI) / p);
+    },
+    easeOutElastic  : function (t) {
+      if (t == 0 || t == 1) {
+        return t;
+      }
+      var p = 0.3;
+      var s = p / 4;
+      return Math.pow(2, -10 * t) * Math.sin((t - s) * (2 * Math.PI) / p) + 1;
+    },
+    easeInOutElastic: function (t) {
+      if (t == 0 || t == 1) {
+        return t;
+      }
+      t     = t * 2;
+      var p = 0.3 * 1.5;
+      var s = p / 4;
+
+      if (t < 1) {
+        return -.5 * (Math.pow(2, 10 * (t -= 1)) * Math.sin((t - s) * (2 * Math.PI) / p))
+      }
+      return Math.pow(2, -10 * (t -= 1)) * Math.sin((t - s) * (2 * Math.PI) / p) * .5 + 1;
+
+    },
+    easeInBack      : function (t) {
+      var s = 1.70158;
+      return t * t * ((s + 1) * t - s);
+    },
+    easeOutBack     : function (t) {
+      var s = 1.70158;
+      return ((t = t - 1) * t * ((s + 1) * t + s) + 1);
+    },
+    easeInOutBack   : function (t) {
+      var s = 1.70158;
+      if ((t *= 2) < 1) {
+        return 1 / 2 * (t * t * (((s *= (1.525)) + 1) * t - s));
+      }
+      return 1 / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2);
+    },
+    easeOutBounce   : function (t) {
+      if ((t) < (1 / 2.75)) {
+        return (7.5625 * t * t);
+      } else if (t < (2 / 2.75)) {
+        return (7.5625 * (t -= (1.5 / 2.75)) * t + .75);
+      } else if (t < (2.5 / 2.75)) {
+        return (7.5625 * (t -= (2.25 / 2.75)) * t + .9375);
+      } else {
+        return (7.5625 * (t -= (2.625 / 2.75)) * t + .984375);
+      }
     }
+    //easeInBounce    : function (t) {
+    //  return 1 - CONST.EASINGS.easeOutBounce(t);
+    //},
+    //easeInOutBounce : function (t) {
+    //  //if (t < d / 2) {
+    //  //  return jQuery.easing.easeInBounce(x, t * 2, 0, c, d) * .5 + b;
+    //  //}
+    //  //return jQuery.easing.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
+    //}
   }
 };
 
 module.exports = CONST;
-},{}],12:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 /**
  * 键盘事件管理器, 此类已经混合进 UIObject, 可以直接在 UIObject 示例上进行调用
  * @mixin
@@ -1981,7 +1869,7 @@ KeyboardManager.prototype.deactivate = function () {
 
 };
 
-},{}],13:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 (function (global){
 var tivy = module.exports = {
   CONST          : require('./const'),
@@ -1991,7 +1879,6 @@ var tivy = module.exports = {
   Button         : require('./basic/Button'),
   Tile           : require('./basic/Tile'),
   ImageFrame     : require('./basic/ImageFrame'),
-  Poster         : require('./components/Poster'),
   Metro          : require('./components/Metro'),
   KeyboardManager: require('./events/KeyboardManager'),
   Animal         : require('./animation/Animal'),
@@ -2009,7 +1896,7 @@ global.Tivy = tivy;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"./Stage":1,"./UIObject":2,"./UIObjectGroup":3,"./animation/Animal":4,"./animation/AnimalManager":5,"./basic/Button":6,"./basic/ImageFrame":7,"./basic/Tile":8,"./components/Metro":9,"./components/Poster":10,"./const":11,"./events/KeyboardManager":12}]},{},[13])(13)
+},{"./Stage":1,"./UIObject":2,"./UIObjectGroup":3,"./animation/Animal":4,"./animation/AnimalManager":5,"./basic/Button":6,"./basic/ImageFrame":7,"./basic/Tile":8,"./components/Metro":9,"./const":10,"./events/KeyboardManager":11}]},{},[12])(12)
 });
 
 

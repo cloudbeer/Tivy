@@ -1,5 +1,9 @@
 # Tivy
-Tivy is a lightware WebGL UI framework based on Pixi.js. It's designed for TV.
+
+这是一个 WebGL 的项目, 他基于 Pixi.js. 目前可以运行在大多数现代浏览器.
+Tivy 不是一个游戏引擎, 他是设计用于有限资源的硬件（如: 电视机）.
+
+Tivy is a lightware WebGL UI framework based on Pixi.js. It's designed for TV original.
 
 ## 使用方法
 
@@ -36,8 +40,11 @@ Tivy is a lightware WebGL UI framework based on Pixi.js. It's designed for TV.
         });
     ```
 
-4.  增加动画. 别忘记要将动画管理器 run 起来. 你也可以创建一个全局的动画管理, 创建完成之后马上 run 起来.
-    为了节约资源, 所有的动画在完成之后将不执行重绘动作
+4.  增加动画. 别忘记要将动画管理器 run 起来.
+
+    你也可以创建一个全局的动画管理, 创建完成之后马上 run 起来.
+
+    为了节约资源, 动画在完成之后将不执行重绘动作
 
     ```javascript
       var manager = new Tivy.AnimalManager({
@@ -50,14 +57,14 @@ Tivy is a lightware WebGL UI framework based on Pixi.js. It's designed for TV.
         target  : tile,
         property: 'x',
         from    : 1000,
-        to: 100,
+        to      : 100,
         easing  : Tivy.CONST.EASINGS.easeOutQuad
       });
       manager.addAnimal({
         target  : tile,
         property: 'y',
         from    : 1000,
-        to: 100,
+        to      : 100,
         easing  : Tivy.CONST.EASINGS.easeOutQuad
       });
       manager.runAnimals();

@@ -6,7 +6,6 @@ var tivy = module.exports = {
   Button         : require('./basic/Button'),
   Tile           : require('./basic/Tile'),
   ImageFrame     : require('./basic/ImageFrame'),
-  Poster         : require('./components/Poster'),
   Metro          : require('./components/Metro'),
   KeyboardManager: require('./events/KeyboardManager'),
   Animal         : require('./animation/Animal'),

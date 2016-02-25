@@ -4,9 +4,12 @@
  *
  * @class
  * @memberof Tivy
- * @param options {json} - 构造参数, 必须有 stage 参数
- * @constructor
  * @extends PIXI.Container
+ * @param {Object} options  - json 格式的参数
+ * @param {Tivy.Stage} options.stage  - 舞台, 这个参数必须设置
+ * @param {PIXI.DisplayObject} options.owner  - 当前物体的父容器
+ * @param {{x:number, y:number}} options.position={x:0,y:0} - 位置
+ * @param {{width:number, height:number}} options.size - 大小
  */
 function UIObject(options) {
   PIXI.Container.call(this);

@@ -54,18 +54,6 @@
             </span>
             <ul class="members itemMembers">
             
-            <span class="subtitle">Members</span>
-            
-                <li data-name="Tivy.Animal#duration"><a href="Tivy.Animal.html#duration">duration</a></li>
-            
-                <li data-name="Tivy.Animal#easing"><a href="Tivy.Animal.html#easing">easing</a></li>
-            
-                <li data-name="Tivy.Animal#property"><a href="Tivy.Animal.html#property">property</a></li>
-            
-                <li data-name="Tivy.Animal#step"><a href="Tivy.Animal.html#step">step</a></li>
-            
-                <li data-name="Tivy.Animal#target"><a href="Tivy.Animal.html#target">target</a></li>
-            
             </ul>
             <ul class="typedefs itemMembers">
             
@@ -302,35 +290,6 @@
             </ul>
         </li>
     
-        <li class="item" data-name="Tivy.Poster">
-            <span class="title">
-                <a href="Tivy.Poster.html">Tivy.Poster</a>
-                
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            <span class="subtitle">Methods</span>
-            
-                <li data-name="Tivy.Poster#destroy"><a href="Tivy.Poster.html#destroy">destroy</a></li>
-            
-                <li data-name="Tivy.Poster#setContent"><a href="Tivy.Poster.html#setContent">setContent</a></li>
-            
-                <li data-name="Tivy.Poster#bringToFront"><a href="Tivy.Poster.html#bringToFront">bringToFront</a></li>
-            
-                <li data-name="Tivy.Poster#sendToBack"><a href="Tivy.Poster.html#sendToBack">sendToBack</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
         <li class="item" data-name="Tivy.Stage">
             <span class="title">
                 <a href="Tivy.Stage.html">Tivy.Stage</a>
@@ -496,7 +455,7 @@
     
         
         <div class="tag-source">
-            <a href="basic_Tile.js.html">basic/Tile.js</a>, <a href="basic_Tile.js.html#line51">line 51</a>
+            <a href="basic_Tile.js.html">basic/Tile.js</a>, <a href="basic_Tile.js.html#line46">line 46</a>
         </div>
         
     </div>
@@ -508,27 +467,6 @@
     
     <div class="description">
         <p>广告招贴</p>
-<pre class="prettyprint source lang-javascript"><code>
- var xTexture = PIXI.Texture.fromImage('./assets/img/place-holder.png');
- xTexture.baseTexture.on('loaded', function () {
-    var poster = new Tivy.Poster({
-      size: {width: 192, height: 338},
-      stage: stage,
-      showText: true,
-      text: &quot;中文&quot;,
-      position: {x: 30, y: 30},
-      placeHolderTexture: xTexture,
-      textBgColor: 0x006600,
-      textColor:0xffffff,
-      //imageUrl:'./assets/img/test.png'
-    });
-
-    poster.setContent('./assets/img/test.png', '长发公主');
-
-    window.setTimeout(function () {
-      poster.destroy();
-    }, 10000);
-  });</code></pre>
     </div>
     
 
@@ -576,19 +514,318 @@
             <td class="description last">
                 
                 <p>配置节点</p>
-<pre class="prettyprint source lang-json"><code>{
- stage: stage01, //Instance of Stage
- size: {width: 300, height: 400},
- position: {x: 0, y: 0},
- textColor: 0x7f7f7f,
- textBgColor: 0xffffff,
- textHeight: 50,
- font: '25px 迷你简准圆',
- text: '标题',
- imageUrl: someUrl,
- radius: 10,
- showText: false
-}</code></pre></td>
+                
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>size</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    {width:300,height:400}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                <p>尺寸</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>placeHolderTexture</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">PIXI.Texture</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                <p>素材贴图, 为了占位</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>showText</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                <p>是否显示文字</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>text</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                <p>要显示的文字</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>textColor</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0x7f7f7f
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                <p>文字颜色</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>textBgColor</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+|
+
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0xffffff
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                <p>文字背景颜色</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>textHeight</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    50
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                <p>文字区块的高度</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>font</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                <p>字体, 如 '25px 迷你简准圆'</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>imageUrl</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                <p>图片地址</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>radius</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                <p>瓷片的圆角</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
         </tr>
 	
 	
@@ -633,6 +870,33 @@
     
     
     
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code>var xTexture = PIXI.Texture.fromImage('./assets/img/place-holder.png');
+ xTexture.baseTexture.on('loaded', function () {
+    var tile = new Tivy.Tile({
+      size: {width: 192, height: 338},
+      stage: stage,
+      showText: true,
+      text: "中文",
+      position: {x: 30, y: 30},
+      placeHolderTexture: xTexture,
+      textBgColor: 0x006600,
+      textColor:0xffffff,
+      //imageUrl:'./assets/img/test.png'
+    });
+
+    poster.setContent('./assets/img/test.png', '长发公主');
+
+    window.setTimeout(function () {
+      poster.destroy();
+    }, 10000);
+  });</code></pre>
+    
+
+    
 </dd>
 
     
@@ -671,7 +935,7 @@
     
         
         <div class="tag-source">
-            <a href="basic_Tile.js.html">basic/Tile.js</a>, <a href="basic_Tile.js.html#line184">line 184</a>
+            <a href="basic_Tile.js.html">basic/Tile.js</a>, <a href="basic_Tile.js.html#line180">line 180</a>
         </div>
         
     </div>
@@ -798,12 +1062,12 @@
         <h4 class="name" id="setContent">
             
             
-            setContent<span class="signature">(imgUrl, text, data)</span>
+            setContent<span class="signature">(imgUrl, <span class="optional">text</span>, <span class="optional">data</span>)</span>
         </h4>
     
         
         <div class="tag-source">
-            <a href="basic_Tile.js.html">basic/Tile.js</a>, <a href="basic_Tile.js.html#line154">line 154</a>
+            <a href="basic_Tile.js.html">basic/Tile.js</a>, <a href="basic_Tile.js.html#line150">line 150</a>
         </div>
         
     </div>
@@ -861,6 +1125,11 @@
             
             <td class="description last">
                 
+                    
+                    
+                        
+                    
+                
                 <p>海报的图片路径</p></td>
         </tr>
 	
@@ -884,6 +1153,13 @@
             
             <td class="description last">
                 
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
                 <p>海报的标题</p></td>
         </tr>
 	
@@ -906,6 +1182,13 @@
             
             
             <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
                 
                 <p>附加的数据</p></td>
         </tr>
@@ -968,7 +1251,7 @@
     
         
         <div class="tag-source">
-            <a href="UIObject.js.html">UIObject.js</a>, <a href="UIObject.js.html#line42">line 42</a>
+            <a href="UIObject.js.html">UIObject.js</a>, <a href="UIObject.js.html#line45">line 45</a>
         </div>
         
     </div>
@@ -1042,7 +1325,7 @@
     
         
         <div class="tag-source">
-            <a href="UIObject.js.html">UIObject.js</a>, <a href="UIObject.js.html#line53">line 53</a>
+            <a href="UIObject.js.html">UIObject.js</a>, <a href="UIObject.js.html#line56">line 56</a>
         </div>
         
     </div>
@@ -1119,7 +1402,7 @@
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Feb 24 2016 11:07:10 GMT+0800 (CST)
+            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Feb 25 2016 12:21:15 GMT+0800 (CST)
         </footer>
     </div>
 </div>

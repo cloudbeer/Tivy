@@ -12,7 +12,7 @@ $(function () {
     stage      : stage,
     showText   : true,
     text       : "中文",
-    position   : {x: 30, y: 30},
+    position   : {x: 30, y: 400},
     //placeHolderTexture: xTexture,
     textBgColor: 0x006600,
     textColor  : 0xffffff,
@@ -27,24 +27,22 @@ $(function () {
 
   var manager = new Tivy.AnimalManager({
     stage   : stage,
-    duration: 15000,
+    duration: 5000,
     fps     : 60
   });
   manager.addAnimal({
     target  : tile,
     property: 'x',
-    from    : 1000,
-    to: 100,
-    easing  : Tivy.CONST.EASINGS.easeOutQuad
+    from    : 0,
+    to      : 2000,
+    easing  : Tivy.CONST.EASINGS.linear
   });
   manager.addAnimal({
     target  : tile,
     property: 'y',
-    from    : 1000,
-    to: 100,
-    easing  : Tivy.CONST.EASINGS.easeOutCubic
+    from    : 0,
+    to      : 2000,
+    easing  : Tivy.CONST.EASINGS.easeInBounce
   });
   manager.runAnimals();
-
-
 });
