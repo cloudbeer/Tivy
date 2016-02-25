@@ -20,9 +20,7 @@ Tivy is a lightware WebGL UI framework based on Pixi.js. It's designed for TV.
       });
     ```
 
-3.  增加一个 UIObject 元素. 每一个 UIObject 元素都必须指定一个 stage.
-    多层嵌套还必须指定 owner - 父亲. 没有指定 onwer 的直接将加入 stage.
-    无需调用 addChild
+3.  增加一个 UIObject 元素到场景中.
 
     ```javascript
         var tile = new Tivy.Tile({
@@ -37,6 +35,44 @@ Tivy is a lightware WebGL UI framework based on Pixi.js. It's designed for TV.
           imageUrl:'./assets/img/test.png'
         });
     ```
+
+4.  增加动画. 别忘记要将动画管理器 run 起来. 你也可以创建一个全局的动画管理, 创建完成之后马上 run 起来.
+    为了节约资源, 所有的动画在完成之后将不执行重绘动作
+
+    ```javascript
+      var manager = new Tivy.AnimalManager({
+        stage   : stage,
+        duration: 1000,
+        fps     : 30
+      });
+
+      manager.addAnimal({
+        target  : tile,
+        property: 'x',
+        from    : 1000,
+        to: 100,
+        easing  : Tivy.CONST.EASINGS.easeOutQuad
+      });
+      manager.addAnimal({
+        target  : tile,
+        property: 'y',
+        from    : 1000,
+        to: 100,
+        easing  : Tivy.CONST.EASINGS.easeOutQuad
+      });
+      manager.runAnimals();
+  ```
+
+5.  事件支持. 采用了 on('xxx', func) 的方式响应事件.
+
+    ```javascript
+    tile.on('click', function (data) {});
+    ```
+
+    基础事件包括:
+    ++ PIXI 的事件（请对照 PIXI 文档）: mousedown, mouseup, mouseover, mouseleave, touchstart, touchmove, touchend
+    ++ 扩展键盘事件（标准 windows 事件）:  keydown, keyup, keypress
+
 
 
 ## API 文档

@@ -27,13 +27,23 @@ $(function () {
 
   var manager = new Tivy.AnimalManager({
     stage   : stage,
-    duration: 1000,
-    fps     : 30
+    duration: 15000,
+    fps     : 60
   });
-
-  manager.addTarget(tile, 'y', 1000, 100, Tivy.CONST.EASINGS.easeOutQuad);
-  manager.addTarget(tile, 'x', 1000, 100, Tivy.CONST.EASINGS.linear);
-
+  manager.addAnimal({
+    target  : tile,
+    property: 'x',
+    from    : 1000,
+    to: 100,
+    easing  : Tivy.CONST.EASINGS.easeOutQuad
+  });
+  manager.addAnimal({
+    target  : tile,
+    property: 'y',
+    from    : 1000,
+    to: 100,
+    easing  : Tivy.CONST.EASINGS.easeOutCubic
+  });
   manager.runAnimals();
 
 
