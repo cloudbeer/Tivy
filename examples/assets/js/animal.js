@@ -42,7 +42,7 @@ $(function () {
     property: 'y',
     from    : 0,
     to      : 2000,
-    easing  : Tivy.CONST.EASINGS.easeInBounce
+    easing  : Tivy.CONST.EASINGS.easeOutBounce
   });
   manager.runAnimals();
 });
