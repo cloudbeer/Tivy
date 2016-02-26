@@ -4,7 +4,7 @@ var CONST  = require('../const');
 /**
  * 动画管理器
  * @param options {json} 配置
- * @param options.stage {Tivy.Stage} 舞台
+ * @param options.stage {Tivy.Stage} 舞台, 动画的舞台应该和需要运行的物体的舞台一致
  * @param options.duration {number} 动画的运行时间, 单位: ms
  * @param options.fps=60 {number} 帧速率
  * @constructor
@@ -13,37 +13,34 @@ var CONST  = require('../const');
  * @example
  *
  *  var manager = new Tivy.AnimalManager({
-      stage   : stage,
-      duration: 300,
-      fps     : 30
-    });
- manager.runAnimals();
+ *     stage   : stage,
+ *     duration: 300,
+ *     fps     : 30
+ *   });
+ *  manager.runAnimals();
  */
 function AnimalManager(options) {
   /**
+   * 舞台
    * @readonly
    */
   this.stage = options.stage;
   /**
-   * 默认的动画运行时间
+   * 动画运行时间（具体动画如果未指定此属性,则使用管理器的）
    * @member  {number}
    */
   this.duration = options.duration;
   /**
-   * 帧速率
+   * 帧速率（具体动画如果未指定此属性,则使用管理器的）
    * @member  {number}
    */
   this.fps = options.fps || 60;
 
-  /**
-   * 由此得出的间隔时间
-   * @member {number}
-   * @readonly
-   */
   this.delay = 1000 / this.fps;
   /**
    * 动画数组
    * @member {Array}
+   * @readonly
    */
   this.animals = [];
 
@@ -54,7 +51,7 @@ AnimalManager.prototype.constructor = AnimalManager;
 module.exports                      = AnimalManager;
 
 /**
- * 寻找动画
+ * 寻找满足条件的动画
  * @param _target
  * @param _property
  * @returns {Tivy.Animal}
@@ -71,8 +68,8 @@ AnimalManager.prototype.findAnimal = function (_target, _property) {
 
 
 /**
- * @deprecated
- * 增加一个动画物件, 不建议使用, 请使用 addAnimal 方法
+ * 增加一个动画物件.
+ * @deprecated 请使用 addAnimal 方法
  * @param _target {PIXI.DisplayObject} 需要移动的物体
  * @param _property {string} 物体的属性,比如 "width"
  * @param _to {number} 移动到的值
@@ -173,7 +170,7 @@ AnimalManager.prototype.addAnimal = function (_animal) {
 };
 
 /**
- * 运行动画
+ * 运行动画管理器
  */
 AnimalManager.prototype.runAnimals = function () {
 
@@ -206,14 +203,14 @@ AnimalManager.prototype.runAnimals = function () {
 
 };
 
-/**
- * 解析动画参数
- * @param v1
- * @param v2
- * @param v3
- * @param v4
- * @returns {{}}
- */
+///**
+// * 解析动画参数
+// * @param v1
+// * @param v2
+// * @param v3
+// * @param v4
+// * @returns {{}}
+// */
 AnimalManager.prototype.parseArg = function (v1, v2, v3, v4) {
   var t1  = typeof v1;
   var t2  = typeof v2;

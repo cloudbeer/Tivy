@@ -1,23 +1,32 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Tivy = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /**
- * A Stage represents a canvas and an empty PIXI DisplayObject.
+ * 舞台包含了一个 html 的 canvas, 一个 空的 PIXI Container.
+ * 创建之后, 这个舞台就已经画到了网页中.
+ * 网页中可以添加多个舞台, 以实现独立渲染.
+ *
+ * A Stage represents a canvas and an empty PIXI Container.
  * You can add child into stage directly.
  * And it can be repainted alone.
  *
- * ```js
+ * @example
  * var stage = new Tivy.Stage({
-   *  id: 'stage01', //The canvas id
-   *  size:{width:500, height:400}, //Size of the stage, w is width, h is heigt
-   *  position:{x:0, y:0}, //Position of the stage
-   *  background: '#ccc', //Backgound of the canvas, it is a css style.
-   *  zIndex: 10 //z-index of the canvas, it is a css style.
-   * });
- * ```
+ *  id: 'stage01', //The canvas id
+ *  size:{width:500, height:400}, //Size of the stage, w is width, h is heigt
+ *  position:{x:0, y:0}, //Position of the stage
+ *  background: '#ccc', //Backgound of the canvas, it is a css style.
+ *  zIndex: 10 //z-index of the canvas, it is a css style.
+ * });
+ *
  *
  * @class
  * @memberof Tivy
- * @param options {json} - config json object.
- * @constructor
+ * @param {json} options - config json object.
+ * @param {string} options.id - 此舞台的 id, 渲染之后 canvas 的 id 也是这个.
+ * @param {{x:number, y:number}} options.position={x:0,y:0} - 位置
+ * @param {{width:number, height:number}} options.size={width:1920,height:1080} - 大小
+ * @param {string} options.background - 画布的背景（这是一个 css 属性）
+ * @param {number} options.zIndex - 画布的层级 （这是一个 css 属性）
+ *
  */
 var Stage = function (options) {
   if (!options) {
@@ -69,6 +78,7 @@ var Stage = function (options) {
 
 Stage.prototype = {
   /**
+   * 显示舞台
    * Show the stage.
    */
   show: function () {
@@ -76,6 +86,7 @@ Stage.prototype = {
     this.repaint();
   },
   /**
+   * 隐藏舞台
    * Hide the stage.
    */
   hide: function () {
@@ -85,7 +96,7 @@ Stage.prototype = {
 
   /**
    * 重绘
-   * @param uiObject {PIXI.DisplayObject} The object to repaint. if it is null, repaint this stage.
+   * @param {PIXI.DisplayObject} uiObject  - The object to repaint. if it is null, repaint this stage.
    */
   repaint: function (uiObject) {
     if (uiObject) {
@@ -97,7 +108,7 @@ Stage.prototype = {
 
   /**
    * 增加子节点
-   * @param uiObject {PIXI.DisplayObject} The object to add.
+   * @param  {PIXI.DisplayObject} uiObject - The object to add.
    */
   addChild: function (uiObject) {
     this._stage.addChild(uiObject);
@@ -181,7 +192,7 @@ var UIObject = require('./UIObject');
  * 描述了一个控件组, 并绑定了事件
  *
  * @class
- * @param options {json} 配置节点
+ * @param options {json} 配置节点, 没有特殊的配置, 参考 {@link Tivy.UIObject}
  * @constructor
  * @memberof Tivy
  * @extends {Tivy.UIObject}
@@ -424,7 +435,7 @@ var CONST  = require('../const');
 /**
  * 动画管理器
  * @param options {json} 配置
- * @param options.stage {Tivy.Stage} 舞台
+ * @param options.stage {Tivy.Stage} 舞台, 动画的舞台应该和需要运行的物体的舞台一致
  * @param options.duration {number} 动画的运行时间, 单位: ms
  * @param options.fps=60 {number} 帧速率
  * @constructor
@@ -433,37 +444,34 @@ var CONST  = require('../const');
  * @example
  *
  *  var manager = new Tivy.AnimalManager({
-      stage   : stage,
-      duration: 300,
-      fps     : 30
-    });
- manager.runAnimals();
+ *     stage   : stage,
+ *     duration: 300,
+ *     fps     : 30
+ *   });
+ *  manager.runAnimals();
  */
 function AnimalManager(options) {
   /**
+   * 舞台
    * @readonly
    */
   this.stage = options.stage;
   /**
-   * 默认的动画运行时间
+   * 动画运行时间（具体动画如果未指定此属性,则使用管理器的）
    * @member  {number}
    */
   this.duration = options.duration;
   /**
-   * 帧速率
+   * 帧速率（具体动画如果未指定此属性,则使用管理器的）
    * @member  {number}
    */
   this.fps = options.fps || 60;
 
-  /**
-   * 由此得出的间隔时间
-   * @member {number}
-   * @readonly
-   */
   this.delay = 1000 / this.fps;
   /**
    * 动画数组
    * @member {Array}
+   * @readonly
    */
   this.animals = [];
 
@@ -474,7 +482,7 @@ AnimalManager.prototype.constructor = AnimalManager;
 module.exports                      = AnimalManager;
 
 /**
- * 寻找动画
+ * 寻找满足条件的动画
  * @param _target
  * @param _property
  * @returns {Tivy.Animal}
@@ -491,8 +499,8 @@ AnimalManager.prototype.findAnimal = function (_target, _property) {
 
 
 /**
- * @deprecated
- * 增加一个动画物件, 不建议使用, 请使用 addAnimal 方法
+ * 增加一个动画物件.
+ * @deprecated 请使用 addAnimal 方法
  * @param _target {PIXI.DisplayObject} 需要移动的物体
  * @param _property {string} 物体的属性,比如 "width"
  * @param _to {number} 移动到的值
@@ -593,7 +601,7 @@ AnimalManager.prototype.addAnimal = function (_animal) {
 };
 
 /**
- * 运行动画
+ * 运行动画管理器
  */
 AnimalManager.prototype.runAnimals = function () {
 
@@ -626,14 +634,14 @@ AnimalManager.prototype.runAnimals = function () {
 
 };
 
-/**
- * 解析动画参数
- * @param v1
- * @param v2
- * @param v3
- * @param v4
- * @returns {{}}
- */
+///**
+// * 解析动画参数
+// * @param v1
+// * @param v2
+// * @param v3
+// * @param v4
+// * @returns {{}}
+// */
 AnimalManager.prototype.parseArg = function (v1, v2, v3, v4) {
   var t1  = typeof v1;
   var t2  = typeof v2;
@@ -755,7 +763,7 @@ var UIObject = require('../UIObject');
 
 /**
  * 这是一个图片外框, 你可以指定一个带有阴影的正方形图片.
- * ```
+ * @example
  var frame = new Tivy.ImageFrame({
       stage: stage,
       imageUrl: './assets/img/frame.png',
@@ -768,12 +776,16 @@ var UIObject = require('../UIObject');
       imageLength: 130
     });
 
- * ```
+ *
  * @class
  * @memberof Tivy
- * @constructor
  * @extends Tivy.UIObject
- * @param options  {json} 配置节点
+ * @param {json} options - 配置节点
+ * @param {json} options.imageUrl - 框框的图片地址. 这个图片是一个完整的图片外框.
+ *                                  这个图片应该是一个正方形, 图片的四个边应该可以拉伸. 系统自动切除.
+ * @param {json} options.radius - 图片外框的圆角半径. 图片的不可拉伸部分.
+ * @param {json} options.borderLength - 图片的框线的长度.
+ * @param {json} options.imageLength - 整张图片的长度.
  */
 function ImageFrame(options) {
   if (!options) {
@@ -1390,7 +1402,7 @@ Metro.prototype._init = function () {
   });
 
   this.on('keydown', function (evt) {
-    var _this    = this;
+    //var _this    = this;
     var oldCtr   = this.currentControl;
     var oldIndex = this.currentIndex;
     var mearContrl;
@@ -1744,7 +1756,7 @@ var CONST = {
       var s = p / 4;
 
       if (t < 1) {
-        return -.5 * (Math.pow(2, 10 * (t -= 1)) * Math.sin((t - s) * (2 * Math.PI) / p))
+        return -.5 * (Math.pow(2, 10 * (t -= 1)) * Math.sin((t - s) * (2 * Math.PI) / p));
       }
       return Math.pow(2, -10 * (t -= 1)) * Math.sin((t - s) * (2 * Math.PI) / p) * .5 + 1;
 

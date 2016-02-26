@@ -2,7 +2,7 @@ var UIObject = require('../UIObject');
 
 /**
  * 这是一个图片外框, 你可以指定一个带有阴影的正方形图片.
- * ```
+ * @example
  var frame = new Tivy.ImageFrame({
       stage: stage,
       imageUrl: './assets/img/frame.png',
@@ -15,12 +15,16 @@ var UIObject = require('../UIObject');
       imageLength: 130
     });
 
- * ```
+ *
  * @class
  * @memberof Tivy
- * @constructor
  * @extends Tivy.UIObject
- * @param options  {json} 配置节点
+ * @param {json} options - 配置节点
+ * @param {json} options.imageUrl - 框框的图片地址. 这个图片是一个完整的图片外框.
+ *                                  这个图片应该是一个正方形, 图片的四个边应该可以拉伸. 系统自动切除.
+ * @param {json} options.radius - 图片外框的圆角半径. 图片的不可拉伸部分.
+ * @param {json} options.borderLength - 图片的框线的长度.
+ * @param {json} options.imageLength - 整张图片的长度.
  */
 function ImageFrame(options) {
   if (!options) {

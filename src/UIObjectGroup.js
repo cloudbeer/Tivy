@@ -4,7 +4,7 @@ var UIObject = require('./UIObject');
  * 描述了一个控件组, 并绑定了事件
  *
  * @class
- * @param options {json} 配置节点
+ * @param options {json} 配置节点, 没有特殊的配置, 参考 {@link Tivy.UIObject}
  * @constructor
  * @memberof Tivy
  * @extends {Tivy.UIObject}

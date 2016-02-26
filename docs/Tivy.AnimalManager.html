@@ -77,8 +77,6 @@
             
                 <li data-name="Tivy.AnimalManager#animals"><a href="Tivy.AnimalManager.html#animals">animals</a></li>
             
-                <li data-name="Tivy.AnimalManager#delay"><a href="Tivy.AnimalManager.html#delay">delay</a></li>
-            
                 <li data-name="Tivy.AnimalManager#duration"><a href="Tivy.AnimalManager.html#duration">duration</a></li>
             
                 <li data-name="Tivy.AnimalManager#fps"><a href="Tivy.AnimalManager.html#fps">fps</a></li>
@@ -98,8 +96,6 @@
                 <li data-name="Tivy.AnimalManager#addTarget"><a href="Tivy.AnimalManager.html#addTarget">addTarget</a></li>
             
                 <li data-name="Tivy.AnimalManager#findAnimal"><a href="Tivy.AnimalManager.html#findAnimal">findAnimal</a></li>
-            
-                <li data-name="Tivy.AnimalManager#parseArg"><a href="Tivy.AnimalManager.html#parseArg">parseArg</a></li>
             
                 <li data-name="Tivy.AnimalManager#runAnimals"><a href="Tivy.AnimalManager.html#runAnimals">runAnimals</a></li>
             
@@ -558,7 +554,7 @@
             
             <td class="description last">
                 
-                <p>舞台</p></td>
+                <p>舞台, 动画的舞台应该和需要运行的物体的舞台一致</p></td>
         </tr>
 	
 	
@@ -670,10 +666,10 @@
 
     
     <pre class="prettyprint"><code>var manager = new Tivy.AnimalManager({
-      stage   : stage,
-      duration: 300,
-      fps     : 30
-    });
+    stage   : stage,
+    duration: 300,
+    fps     : 30
+  });
  manager.runAnimals();</code></pre>
     
 
@@ -703,11 +699,11 @@
         <h4 class="name" id="animals">
             
             
-            animals<span class="type-signature type array">Array</span> 
+            <span class="type-signature ">readonly</span> animals<span class="type-signature type array">Array</span> 
         </h4>
          
             <div class="tag-source">
-                <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line48">line 48</a>
+                <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line45">line 45</a>
             </div>
         
     </div>
@@ -753,59 +749,6 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="delay">
-            
-            
-            <span class="type-signature ">readonly</span> delay<span class="type-signature type number">number</span> 
-        </h4>
-         
-            <div class="tag-source">
-                <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line43">line 43</a>
-            </div>
-        
-    </div>
-    
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        <p>由此得出的间隔时间</p>
-    </div>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-</dd>
-        
-            
-<dt>
-    <div class="nameContainer">
         <h4 class="name" id="duration">
             
             
@@ -813,7 +756,7 @@
         </h4>
          
             <div class="tag-source">
-                <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line31">line 31</a>
+                <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line32">line 32</a>
             </div>
         
     </div>
@@ -823,7 +766,7 @@
 <dd>
     
     <div class="description">
-        <p>默认的动画运行时间</p>
+        <p>动画运行时间（具体动画如果未指定此属性,则使用管理器的）</p>
     </div>
     
     
@@ -866,7 +809,7 @@
         </h4>
          
             <div class="tag-source">
-                <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line36">line 36</a>
+                <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line37">line 37</a>
             </div>
         
     </div>
@@ -876,7 +819,7 @@
 <dd>
     
     <div class="description">
-        <p>帧速率</p>
+        <p>帧速率（具体动画如果未指定此属性,则使用管理器的）</p>
     </div>
     
     
@@ -919,7 +862,7 @@
         </h4>
          
             <div class="tag-source">
-                <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line26">line 26</a>
+                <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line27">line 27</a>
             </div>
         
     </div>
@@ -927,6 +870,10 @@
     
 </dt>
 <dd>
+    
+    <div class="description">
+        <p>舞台</p>
+    </div>
     
     
     
@@ -975,7 +922,7 @@
     
         
         <div class="tag-source">
-            <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line133">line 133</a>
+            <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line130">line 130</a>
         </div>
         
     </div>
@@ -1321,7 +1268,7 @@
     
         
         <div class="tag-source">
-            <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line81">line 81</a>
+            <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line78">line 78</a>
         </div>
         
     </div>
@@ -1330,6 +1277,10 @@
 </dt>
 <dd>
     
+    
+    <div class="description">
+        <p>增加一个动画物件.</p>
+    </div>
     
 
     
@@ -1461,7 +1412,7 @@
     
 
     
-        <dt class="important tag-deprecated">Deprecated</dt><dd><ul class="dummy"><li>增加一个动画物件, 不建议使用, 请使用 addAnimal 方法</li><ul></dd>
+        <dt class="important tag-deprecated">Deprecated</dt><dd><ul class="dummy"><li>请使用 addAnimal 方法</li><ul></dd>
     
     
     
@@ -1505,7 +1456,7 @@
     
         
         <div class="tag-source">
-            <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line62">line 62</a>
+            <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line59">line 59</a>
         </div>
         
     </div>
@@ -1516,7 +1467,7 @@
     
     
     <div class="description">
-        <p>寻找动画</p>
+        <p>寻找满足条件的动画</p>
     </div>
     
 
@@ -1656,201 +1607,6 @@
             
 <dt>
     <div class="nameContainer">
-        <h4 class="name" id="parseArg">
-            
-            
-            parseArg<span class="signature">(v1, v2, v3, v4)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{Object}</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line217">line 217</a>
-        </div>
-        
-    </div>
-
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        <p>解析动画参数</p>
-    </div>
-    
-
-    
-    
-    
-    
-    
-        
-
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>v1</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>v2</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>v3</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                </td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>v4</code></td>
-            
-            
-            <td class="type">
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                </td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
-        
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-</dl>
-
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr>
-            
-            <td class="type">
-            
-                        Object
-                        
-                    
-            </td>
-            <td class="description last"></td>
-        </tr>
-    
-    </tbody>
-</table>
-
-    
-    
-    
-</dd>
-
-        
-            
-<dt>
-    <div class="nameContainer">
         <h4 class="name" id="runAnimals">
             
             
@@ -1859,7 +1615,7 @@
     
         
         <div class="tag-source">
-            <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line178">line 178</a>
+            <a href="animation_AnimalManager.js.html">animation/AnimalManager.js</a>, <a href="animation_AnimalManager.js.html#line175">line 175</a>
         </div>
         
     </div>
@@ -1870,7 +1626,7 @@
     
     
     <div class="description">
-        <p>运行动画</p>
+        <p>运行动画管理器</p>
     </div>
     
 
@@ -1936,7 +1692,7 @@
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Feb 25 2016 16:41:20 GMT+0800 (CST)
+            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Feb 26 2016 16:47:21 GMT+0800 (CST)
         </footer>
     </div>
 </div>

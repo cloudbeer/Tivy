@@ -215,7 +215,7 @@ Metro.prototype._init = function () {
   });
 
   this.on('keydown', function (evt) {
-    var _this    = this;
+    //var _this    = this;
     var oldCtr   = this.currentControl;
     var oldIndex = this.currentIndex;
     var mearContrl;

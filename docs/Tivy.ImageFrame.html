@@ -77,8 +77,6 @@
             
                 <li data-name="Tivy.AnimalManager#animals"><a href="Tivy.AnimalManager.html#animals">animals</a></li>
             
-                <li data-name="Tivy.AnimalManager#delay"><a href="Tivy.AnimalManager.html#delay">delay</a></li>
-            
                 <li data-name="Tivy.AnimalManager#duration"><a href="Tivy.AnimalManager.html#duration">duration</a></li>
             
                 <li data-name="Tivy.AnimalManager#fps"><a href="Tivy.AnimalManager.html#fps">fps</a></li>
@@ -98,8 +96,6 @@
                 <li data-name="Tivy.AnimalManager#addTarget"><a href="Tivy.AnimalManager.html#addTarget">addTarget</a></li>
             
                 <li data-name="Tivy.AnimalManager#findAnimal"><a href="Tivy.AnimalManager.html#findAnimal">findAnimal</a></li>
-            
-                <li data-name="Tivy.AnimalManager#parseArg"><a href="Tivy.AnimalManager.html#parseArg">parseArg</a></li>
             
                 <li data-name="Tivy.AnimalManager#runAnimals"><a href="Tivy.AnimalManager.html#runAnimals">runAnimals</a></li>
             
@@ -455,7 +451,7 @@
     
         
         <div class="tag-source">
-            <a href="basic_ImageFrame.js.html">basic/ImageFrame.js</a>, <a href="basic_ImageFrame.js.html#line25">line 25</a>
+            <a href="basic_ImageFrame.js.html">basic/ImageFrame.js</a>, <a href="basic_ImageFrame.js.html#line29">line 29</a>
         </div>
         
     </div>
@@ -467,17 +463,6 @@
     
     <div class="description">
         <p>这是一个图片外框, 你可以指定一个带有阴影的正方形图片.</p>
-<pre class="prettyprint source"><code> var frame = new Tivy.ImageFrame({
-      stage: stage,
-      imageUrl: './assets/img/frame.png',
-      position: {x: 100, y: 100},
-      size: {
-        width: 50, height: 50,
-      },
-      borderLength: 61,
-      radius: 15,
-      imageLength: 130
-    });</code></pre>
     </div>
     
 
@@ -524,7 +509,121 @@
             
             <td class="description last">
                 
-                <p>配置节点</p></td>
+                <p>配置节点</p>
+                
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>imageUrl</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">json</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>框框的图片地址. 这个图片是一个完整的图片外框.<br>                                 这个图片应该是一个正方形, 图片的四个边应该可以拉伸. 系统自动切除.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>radius</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">json</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>图片外框的圆角半径. 图片的不可拉伸部分.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>borderLength</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">json</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>图片的框线的长度.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>imageLength</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">json</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                <p>整张图片的长度.</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
         </tr>
 	
 	
@@ -569,6 +668,24 @@
     
     
     
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code>var frame = new Tivy.ImageFrame({
+      stage: stage,
+      imageUrl: './assets/img/frame.png',
+      position: {x: 100, y: 100},
+      size: {
+        width: 50, height: 50,
+      },
+      borderLength: 61,
+      radius: 15,
+      imageLength: 130
+    });</code></pre>
+    
+
+    
 </dd>
 
     
@@ -604,7 +721,7 @@
         </h4>
          
             <div class="tag-source">
-                <a href="basic_ImageFrame.js.html">basic/ImageFrame.js</a>, <a href="basic_ImageFrame.js.html#line202">line 202</a>
+                <a href="basic_ImageFrame.js.html">basic/ImageFrame.js</a>, <a href="basic_ImageFrame.js.html#line206">line 206</a>
             </div>
         
     </div>
@@ -657,7 +774,7 @@
         </h4>
          
             <div class="tag-source">
-                <a href="basic_ImageFrame.js.html">basic/ImageFrame.js</a>, <a href="basic_ImageFrame.js.html#line188">line 188</a>
+                <a href="basic_ImageFrame.js.html">basic/ImageFrame.js</a>, <a href="basic_ImageFrame.js.html#line192">line 192</a>
             </div>
         
     </div>
@@ -717,7 +834,7 @@
     
         
         <div class="tag-source">
-            <a href="basic_ImageFrame.js.html">basic/ImageFrame.js</a>, <a href="basic_ImageFrame.js.html#line221">line 221</a>
+            <a href="basic_ImageFrame.js.html">basic/ImageFrame.js</a>, <a href="basic_ImageFrame.js.html#line225">line 225</a>
         </div>
         
     </div>
@@ -835,7 +952,7 @@
     
         
         <div class="tag-source">
-            <a href="basic_ImageFrame.js.html">basic/ImageFrame.js</a>, <a href="basic_ImageFrame.js.html#line175">line 175</a>
+            <a href="basic_ImageFrame.js.html">basic/ImageFrame.js</a>, <a href="basic_ImageFrame.js.html#line179">line 179</a>
         </div>
         
     </div>
@@ -953,7 +1070,7 @@
     
         
         <div class="tag-source">
-            <a href="basic_ImageFrame.js.html">basic/ImageFrame.js</a>, <a href="basic_ImageFrame.js.html#line120">line 120</a>
+            <a href="basic_ImageFrame.js.html">basic/ImageFrame.js</a>, <a href="basic_ImageFrame.js.html#line124">line 124</a>
         </div>
         
     </div>
@@ -1224,7 +1341,7 @@
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Feb 25 2016 16:41:20 GMT+0800 (CST)
+            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Feb 26 2016 16:47:21 GMT+0800 (CST)
         </footer>
     </div>
 </div>

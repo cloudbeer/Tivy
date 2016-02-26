@@ -9,6 +9,10 @@ function Slider(options) {
 
 }
 
+Slider.prototype._init = function () {
+  throw new Error('创建中');
+};
+
 Slider.prototype             = Object.create(UIObject.prototype);
 Slider.prototype.constructor = Slider;
 module.exports               = Slider;

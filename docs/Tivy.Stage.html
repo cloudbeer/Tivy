@@ -77,8 +77,6 @@
             
                 <li data-name="Tivy.AnimalManager#animals"><a href="Tivy.AnimalManager.html#animals">animals</a></li>
             
-                <li data-name="Tivy.AnimalManager#delay"><a href="Tivy.AnimalManager.html#delay">delay</a></li>
-            
                 <li data-name="Tivy.AnimalManager#duration"><a href="Tivy.AnimalManager.html#duration">duration</a></li>
             
                 <li data-name="Tivy.AnimalManager#fps"><a href="Tivy.AnimalManager.html#fps">fps</a></li>
@@ -98,8 +96,6 @@
                 <li data-name="Tivy.AnimalManager#addTarget"><a href="Tivy.AnimalManager.html#addTarget">addTarget</a></li>
             
                 <li data-name="Tivy.AnimalManager#findAnimal"><a href="Tivy.AnimalManager.html#findAnimal">findAnimal</a></li>
-            
-                <li data-name="Tivy.AnimalManager#parseArg"><a href="Tivy.AnimalManager.html#parseArg">parseArg</a></li>
             
                 <li data-name="Tivy.AnimalManager#runAnimals"><a href="Tivy.AnimalManager.html#runAnimals">runAnimals</a></li>
             
@@ -455,7 +451,7 @@
     
         
         <div class="tag-source">
-            <a href="Stage.js.html">Stage.js</a>, <a href="Stage.js.html#line21">line 21</a>
+            <a href="Stage.js.html">Stage.js</a>, <a href="Stage.js.html#line30">line 30</a>
         </div>
         
     </div>
@@ -466,14 +462,8 @@
     
     
     <div class="description">
-        <p>A Stage represents a canvas and an empty PIXI DisplayObject.<br>You can add child into stage directly.<br>And it can be repainted alone.</p>
-<pre class="prettyprint source lang-js"><code>var stage = new Tivy.Stage({
- id: 'stage01', //The canvas id
- size:{width:500, height:400}, //Size of the stage, w is width, h is heigt
- position:{x:0, y:0}, //Position of the stage
- background: '#ccc', //Backgound of the canvas, it is a css style.
- zIndex: 10 //z-index of the canvas, it is a css style.
-});</code></pre>
+        <p>舞台包含了一个 html 的 canvas, 一个 空的 PIXI Container.<br>创建之后, 这个舞台就已经画到了网页中.<br>网页中可以添加多个舞台, 以实现独立渲染.</p>
+<p>A Stage represents a canvas and an empty PIXI Container.<br>You can add child into stage directly.<br>And it can be repainted alone.</p>
     </div>
     
 
@@ -520,7 +510,170 @@
             
             <td class="description last">
                 
-                <p>config json object.</p></td>
+                <p>config json object.</p>
+                
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		<th>Default</th>
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                <p>此舞台的 id, 渲染之后 canvas 的 id 也是这个.</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>position</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    {x:0,y:0}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                <p>位置</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>size</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                    {width:1920,height:1080}
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                <p>大小</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>background</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                <p>画布的背景（这是一个 css 属性）</p></td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>zIndex</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+            
+            
+                <td class="default">
+                
+                </td>
+            
+            
+            <td class="description last">
+                
+                <p>画布的层级 （这是一个 css 属性）</p></td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+            </td>
         </tr>
 	
 	
@@ -565,6 +718,20 @@
     
     
     
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code>var stage = new Tivy.Stage({
+ id: 'stage01', //The canvas id
+ size:{width:500, height:400}, //Size of the stage, w is width, h is heigt
+ position:{x:0, y:0}, //Position of the stage
+ background: '#ccc', //Backgound of the canvas, it is a css style.
+ zIndex: 10 //z-index of the canvas, it is a css style.
+});</code></pre>
+    
+
+    
 </dd>
 
     
@@ -597,7 +764,7 @@
     
         
         <div class="tag-source">
-            <a href="Stage.js.html">Stage.js</a>, <a href="Stage.js.html#line101">line 101</a>
+            <a href="Stage.js.html">Stage.js</a>, <a href="Stage.js.html#line112">line 112</a>
         </div>
         
     </div>
@@ -714,7 +881,7 @@
     
         
         <div class="tag-source">
-            <a href="Stage.js.html">Stage.js</a>, <a href="Stage.js.html#line80">line 80</a>
+            <a href="Stage.js.html">Stage.js</a>, <a href="Stage.js.html#line91">line 91</a>
         </div>
         
     </div>
@@ -725,7 +892,7 @@
     
     
     <div class="description">
-        <p>Hide the stage.</p>
+        <p>隐藏舞台<br>Hide the stage.</p>
     </div>
     
 
@@ -786,7 +953,7 @@
     
         
         <div class="tag-source">
-            <a href="Stage.js.html">Stage.js</a>, <a href="Stage.js.html#line89">line 89</a>
+            <a href="Stage.js.html">Stage.js</a>, <a href="Stage.js.html#line100">line 100</a>
         </div>
         
     </div>
@@ -903,7 +1070,7 @@
     
         
         <div class="tag-source">
-            <a href="Stage.js.html">Stage.js</a>, <a href="Stage.js.html#line73">line 73</a>
+            <a href="Stage.js.html">Stage.js</a>, <a href="Stage.js.html#line83">line 83</a>
         </div>
         
     </div>
@@ -914,7 +1081,7 @@
     
     
     <div class="description">
-        <p>Show the stage.</p>
+        <p>显示舞台<br>Show the stage.</p>
     </div>
     
 
@@ -980,7 +1147,7 @@
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Feb 25 2016 16:41:20 GMT+0800 (CST)
+            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri Feb 26 2016 16:47:21 GMT+0800 (CST)
         </footer>
     </div>
 </div>
