@@ -22,7 +22,7 @@ $(function () {
       //imageUrl:'./assets/img/test.png'
     });
 
-    var poster2 = new Tivy.Poster({
+    var poster2 = new Tivy.Tile({
       size: {width: 200, height: 200},
       stage: stage,
       showText: true,
